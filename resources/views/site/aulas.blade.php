@@ -55,16 +55,16 @@
                     
    
 				<!-- Service -->
-				<div class="col-xl-4 col-md-6 service_col">
+                <div class="col-xl-4 col-md-6 service_col"><a href="{{route($aula->link)}}">
 					<div class="service">
 						<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
 							<div><div class="service_icon"><img src="images/icon_4.png" alt=""></div></div>
-							<div class="service_title">  {{$aula->desc}}</div>
+							<div class="service_title">{{$aula->desc}}</div>
 						</div>
 						<div class="service_text">
-							<p> {{$aula->resumo}}</p>
+							<p> {{$aula->resumo}}   <b>...veja mais.</b></p>
 						</div>
-					</div>
+					</div></a>
 				</div>
 
                 @endforeach

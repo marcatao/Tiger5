@@ -1894,3 +1894,21 @@
 
 })));
 //# sourceMappingURL=adminlte.js.map
+
+async function requisicao(ROTA, METHOD, PARAM1, PARAM2, PARAM3, PARAM4, PARAM5) {
+
+  const result =  $.ajax({
+                           url: ROTA,
+                           type: METHOD,
+            data: {          
+                '_token': $('meta[name="csrf-token"]').attr('content'),          
+                'param1': PARAM1,
+                'param2': PARAM2,
+                'param3': PARAM3,
+                'param4': PARAM4,
+                'param5': PARAM5
+            },
+            dataType: 'html'
+        });
+        return result; 
+    }

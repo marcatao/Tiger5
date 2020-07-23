@@ -30,9 +30,23 @@
 <!-- overlayScrollbars -->
 <script src="{{asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('admin/dist/js/adminlte.js')}}"></script>
+<script src="{{asset('admin/dist/js/marcatoLite.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 
+<!-- SweetAlert2 -->
+<script src="{{asset('admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
+
+<script>
+  $(function() {
+    Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+  });
+</script>  
 
 @yield('scripts')
 

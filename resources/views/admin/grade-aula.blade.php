@@ -38,7 +38,7 @@
                   <tbody>
                 
                         @foreach ($grades as $grade)
-                            <tr>
+                            <tr id="row_{{$grade->id}}">
                                 <td>{{$grade->id}}</td> 
                                 <td>{{$grade->aula->desc}}</td>       
                                 <td>{{$grade->dia}}</td>
@@ -51,7 +51,9 @@
                                 <td>{{$grade->hora_fim}}</td>
                                
                                 <td><a href="{{ route('form-grade',$grade->id) }}"class="btn btn-primary">Editar</a></td>         
-                                <td><a href="{{ route('deleta-grade',$grade->id) }}"class="btn btn-danger">Deletar</a></td> 
+                                <td><!--<a href="{{ route('deleta-grade',$grade->id) }}"class="btn btn-danger">Deletar</a>-->
+                                  <button class="btn btn-danger" onclick=deletar_grade({{ $grade->id}})>Deletar</button>
+                                </td> 
                             </tr>
                         @endforeach
                  
@@ -101,7 +103,21 @@
         "responsive": true,
       });
     });
+  
+  function  deletar_grade(id){
+    requisicao('/app/deleta-grade/'+id,'POST')
+    .then(result => {
+      if(result == 'deleted'){
+          window.Toast.fire({icon: 'success', title: 'Grade deletada com sucesso!'});
+          $('#row_'+id).hide('slow');
+      }else{
+        window.Toast.fire({icon: 'error', title: 'Ops algo saiu errado...'});
+        console.log(result)
+      }
+    });
+  }
   </script>
+
 @endsection
 
 

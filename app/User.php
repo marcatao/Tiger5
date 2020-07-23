@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','academia_id','profile_id',
     ];
 
     /**
@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getShortNameAttribute(){
+        $temp = explode(" ",$this->name);
+        return ucfirst (mb_strtolower ($nomeNovo = $temp[0] . " " . $temp[count($temp)-1]));
+    }
+
+    public function profile(){
+        return $this->belongsTo('App\profiles','profile_id','id');
+    }
+
 }

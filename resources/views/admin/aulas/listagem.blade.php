@@ -26,6 +26,7 @@
                   <tr>
                     <th>#id</th>
                     <th>Descrição</th>
+                    <th>WebPage</th>
                     <th> </th>
                     <th> </th>
                     
@@ -37,21 +38,14 @@
                             <tr>
                                 <td>{{$aula->id}}</td>       
                                 <td>{{$aula->desc}}</td>
-                               
+                                <td><a href="{{ route('detalhe-aula',$aula->id) }}"class="btn btn-outline-primary btn-block">Conteudo da webpage</a></td>         
                                 <td><a href="{{ route('form-aula',$aula->id) }}"class="btn btn-primary">Editar</a></td>         
                                 <td><a href="{{ route('deleta-aula',$aula->id) }}"class="btn btn-danger">Deletar</a></td> 
                             </tr>
                         @endforeach
                  
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>#id</th>
-                    <th>Descrição</th>
-                    <th> </th>
-                    <th> </th>
-                  </tr>
-                  </tfoot>
+ 
                 </table>
               </div>
               <!-- /.card-body -->

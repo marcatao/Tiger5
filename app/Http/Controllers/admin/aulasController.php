@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\aulas;
 use App\GradeAula;
 use App\professor;
+use App\aula_detalhe;
 
 class aulasController extends Controller
 {
@@ -17,7 +18,7 @@ class aulasController extends Controller
     }
     public function index(){
         $aulas = aulas::where('academia_id',auth()->user()->academia_id)->get();
-        return view('admin.cadastro-aula')
+        return view('admin.aulas.listagem')
         ->with('aulas',$aulas);
     }
     public function form_aulas($id){
@@ -35,6 +36,7 @@ class aulasController extends Controller
         $a->academia_id = auth()->user()->academia_id;
         $a->profile_id = auth()->user()->id;
         $a->resumo = $request->resumo;
+        $a->link = mb_strtolower(str_replace(' ','-', $request->desc));
         if($a->save()){
             return redirect(route('cadastro-aula'));
         }
@@ -48,6 +50,35 @@ class aulasController extends Controller
     }
 
 
+    public function detalhe_aula($id){
+        $detalhe = aula_detalhe::where('aula_id',$id)->first();
+        $aula = aulas::find($id);
+        if(!$detalhe){
+            $detalhe = new aula_detalhe;
+            $detalhe->titulo = $aula->desc;
+            $detalhe->texto =  " ";
+            $detalhe->img1 =  " ";
+            $detalhe->img2 =  " ";
+            $detalhe->img3 =  " ";
+            $detalhe->aula_id = $id;
+            $detalhe->save();
+        }
+ 
+        return view('admin.aulas.detalhe-aula')->with('aula_detalhe',$detalhe);
+    }
+
+    public function detalhe_aula_save(Request $request){
+        $aula_id = $request->param1;
+        $titulo = $request->param2;
+        $texto = $request->param3;
+        $detalhe = aula_detalhe::where('aula_id',$aula_id)->first();
+ 
+        $detalhe->titulo = $titulo;
+        $detalhe->texto = $texto;
+        if($detalhe->save()){
+            return response('saved',200);
+        }
+    }
 ///////////////////////////GRADE///////////////////////////////    
     public function grade_aula(){
         $grades = GradeAula::where('academia_id',auth()->user()->academia_id)->get();
@@ -65,6 +96,8 @@ class aulasController extends Controller
                  ->with('aulas',$aulas)
                  ->with('professores',$professores);
     }
+
+
     public function create_grade(Request $request){
         $a = GradeAula::find($request->id);
 
@@ -85,7 +118,7 @@ class aulasController extends Controller
     public function delete_grade($id){
         $grade = GradeAula::find($id);
         if($grade->delete()){
-            return redirect(route('grade-aula'));
+            return response('deleted',206);
         }
     }
 }

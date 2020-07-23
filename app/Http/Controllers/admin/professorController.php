@@ -22,7 +22,7 @@ class professorController extends Controller
     }
     public function form_professor($id){
         $professor="";
-        $users = user::where('academia_id',auth()->user()->academia_id)->get();
+        $users = user::where('academia_id',auth()->user()->academia_id)->where('profile_id','2')->get();
         if($id > 0) $professor = professor::find($id);
         return view('admin.professor.form')
                  ->with('id',$id)

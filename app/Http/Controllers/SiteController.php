@@ -7,6 +7,7 @@ use Instagram\Api;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 use App\aulas;
+use App\aula_detalhe;
 use App\GradeAula;
 use App\professor;
 use App\User;
@@ -65,6 +66,12 @@ class SiteController extends Controller
                 ->with('domingo',$domingo);
     }
 
+    public function aula_detalhe(Request $request){
+        $link = $request->route()->action['as'];
+        $aula = aulas::where('link',$link)->first();
+        $detalhe = aula_detalhe::where('aula_id',$aula->id)->first();
+        return view('site.aula-detalhe')->with('aula',$detalhe);
+    }
     public function grade_dia($dia){
        return   GradeAula::where('academia_id', $this->academia_id)
         ->where('dia',$dia)
@@ -104,4 +111,6 @@ class SiteController extends Controller
     return $midias;
   
     }
+
+ 
 }
