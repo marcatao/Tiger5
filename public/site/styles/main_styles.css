@@ -399,6 +399,22 @@ section
 	font-weight: 300;
 	text-transform: uppercase;
 }
+.logo2
+{
+	left: -30px;
+}
+.logo2 > div
+{
+	font-size: 28.3px;
+	line-height: 0.75;
+	 
+	font-weight: 700;
+}
+.logo2 > div span
+{
+	font-weight: 300;
+	text-transform: uppercase;
+}
 .main_nav
 {
 	margin-left: 120px;
@@ -1164,19 +1180,19 @@ section
 }
 .footer_content
 {
-	padding-bottom: 253px;
+	 
 	z-index: 1;
 }
-.footer_logo .logo
+.footer_logo .logo .logo2
 {
 	display: inline-block;
 	left: auto;
 }
-.footer_logo .logo > div
+.footer_logo .logo .logo2> div
 {
 	font-size: 45.07px;
 }
-.footer_logo .logo img
+.footer_logo .logo .logo2 img
 {
 	width: 38px;
 	height: 38px;
@@ -1299,4 +1315,9 @@ section
 .footer_image img
 {
 	max-width: 100%;
+}
+
+.laranja{
+	color: #ef8701;
+	font-size: x-large;
 }

@@ -32,10 +32,11 @@ class AlunoController extends Controller
     }
 
     public function store_aluno_registra(Request $request){
-        
+        $ativo = 0;
+        if($request->ativo) $ativo=1;
         $aluno = aluno::where('cpf',$request->cpf)->first();
         if(!$aluno) $aluno = new aluno;
-
+                 $aluno->ativo         =$ativo;
                  $aluno->user_id       =$request->user_id    ;
                  $aluno->cpf           =$request->cpf        ;
                  $aluno->rg            =$request->rg         ;

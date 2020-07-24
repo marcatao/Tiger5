@@ -44,6 +44,7 @@
                     <th>CPF</th>
                     <th>Nome</th>
                     <th>Celular</th>
+                    <th>Status</th>
                     <th>E-mail</th>
                     <th> # </th>
                   </tr>
@@ -59,6 +60,7 @@
                               <td>{{ $aluno->nome }}</td>
                               <td>{{ $aluno->Celular1}}</td>
                               <td>{{ $aluno->email }}</td>
+                              <td>{{ $aluno->AtivoTxt }}</td>
                               <td>@include('admin.alunos.elementos.botaoEditar')</td>
                             </tr>    
                         @endforeach

@@ -2,7 +2,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link text-center">
+    <a href="{{route('admin_index')}}" class="brand-link text-center">
       <span class="brand-text font-weight-light">Tiger 5</span>
     </a>
 
@@ -58,7 +58,13 @@
               <i class="nav-icon fas fa-key"></i>
               <p>Login's</p>
             </a>
-          </li>               
+          </li> 
+          <li class="nav-item">
+            <a href="{{ route('cadastro-planos') }}" class="nav-link">
+              <i class="nav-icon fas fa-bullseye"></i>
+              <p>Planos</p>
+            </a>
+          </li>                
         @endif
 
           <li class="nav-header">SISTEMA</li>

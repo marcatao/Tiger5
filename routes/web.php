@@ -56,6 +56,14 @@ Route::get('/app/aluno/{id}',  'admin\AlunoController@edita')->name('edicao-alun
 Route::get('/app/aluno/registra',  'admin\AlunoController@aluno_registra')->name('aluno-registra'); 
 Route::post('/app/aluno/registra',  'admin\AlunoController@store_aluno_registra')->name('aluno-registra'); 
 
+Route::get('/app/planos',  'admin\PlanosController@index')->name('cadastro-planos');   
+Route::get('/app/planos/form/{id}',  'admin\PlanosController@form')->name('form-planos');
+Route::post('/app/planos/form/{id}',  'admin\PlanosController@form_save')->name('form-planos');
+Route::get('/app/planos/aulas-plano',  'admin\PlanosController@aulas_plano')->name('aulas-plano');
+Route::post('/app/planos/aulas-plano',  'admin\PlanosController@aulas_plano_store')->name('aulas-plano');
+Route::get('/app/planos/delete-aula-do-plano/{id}',  'admin\PlanosController@delete_aula_do_plano')->name('delete-aula-do-plano');
+Route::post('/app/deleta-plano/{id}',  'admin\PlanosController@delete_plano')->name('deleta-plano');
+
 Route::get('/app/login',  'admin\LoginController@index')->name('cadastro-login');   
 Route::get('/app/login/create',  'admin\LoginController@create_form')->name('create-login'); 
 Route::post('/app/login/create',  'admin\LoginController@create')->name('create-login');

@@ -8,7 +8,7 @@
 						<div class="footer_content">
 							<div class="footer_logo">
 								<a href="#">
-									<div class="logo d-flex flex-row align-items-center justify-content-center"><div>Tiger<span>Thai</span></div></div>
+									<div class="logo d-flex flex-row align-items-center justify-content-center laranja"><div class="laranja">Tiger<span>Thai</span></div></div>
 								</a>
 							</div>
 							<nav class="footer_nav">

@@ -15,5 +15,14 @@ class aluno extends Model
     public function getCelular1Attribute(){
         return "(".$this->operadora1.") ".$this->cel1;
     }
-    
+     public function getAtivo2Attribute() {
+        $ativo = false;
+        if($this->ativo == 1) $ativo=true;
+        return $ativo;
+    } 
+    public function getAtivoTxtAttribute() {
+        $ativo = "inativo";
+        if($this->ativo == 1) $ativo="ativo";
+        return $ativo;
+    }   
 }

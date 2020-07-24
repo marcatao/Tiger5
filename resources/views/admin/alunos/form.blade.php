@@ -16,6 +16,18 @@
                     {{  csrf_field() }}
                     
                     <input type="hidden" name="id" id="id" value="0">
+                    <div class="row mb-3">
+                      <label>Aluno:</label>
+                        <input type="checkbox"  
+                        data-on-text="Ativo"
+                        data-off-text="Inativo"  data-bootstrap-switch name="ativo" id="ativo"      
+                        @isset($aluno)
+                          @if($aluno->Ativo2)
+                              checked
+                          @endif
+                        @endisset>
+                    </div>
+
                     <div class="row">
                       <div class="col-md-3">
                          <div class="form-group">
@@ -215,6 +227,8 @@
 @section('scripts')
 <script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
 <script src="{{asset('admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<!-- Bootstrap Switch -->
+<script src="{{asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <script>
  $(function () {
     $('#dt_nacito').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
@@ -235,6 +249,14 @@
 @endisset
 
   $(document).ready(function() {
+
+    $("input[data-bootstrap-switch]")
+    .each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    }).bootstrapToggle({
+      on: 'Enabled',
+      off: 'Disabled'
+    });
 
       function limpa_formulário_cep() {
           // Limpa valores do formulário de cep.
