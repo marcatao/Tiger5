@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use App\planos;
 use App\aulas;
 use App\aulas_plano;
+use App\Admin\PlanoMovimento;
+
+use App\Maula;
 
 
 class PlanosController extends Controller
@@ -91,4 +94,41 @@ class PlanosController extends Controller
         return $this->form($plano_id,$message);
 
     }
+
+
+
+    public function aluno_plano($id){
+        return view('admin.planos.plano-aluno')->with('id',$id);
+    }
+
+    public function post_plano(Request $request){
+        $aluno_id = (int) $request->param1;
+        $plano_id = (int) $request->param2;
+        $formapagamento_id = (int) $request->param3;
+        $valor_pago = (float) $request->param4;
+
+        $user_id = auth()->user()->id;
+        $status_id = 1;
+        return PlanoMovimento::adiciona($aluno_id,$plano_id,$formapagamento_id,$valor_pago,$user_id,$status_id);
+    }
+
+    public function lista_aulas_aluno($id, Request $request){
+        $aluno_id = $id;
+        $status_id = $request->param1;
+        if($status_id == 0) $Maula = Maula::where('status_id','<>','1')->where('aluno_id',$aluno_id)->get();
+        $Maula = Maula::where('status_id',$status_id)->where('aluno_id',$aluno_id)->get();
+        return  view('admin.planos.planos.tabela-plano')
+            ->with('Maula',$Maula)
+            ->with('id',$id);
+    }
+
+
+
+
+
+
+
+
+
+
 }

@@ -15,4 +15,7 @@ class GradeAula extends Model
     public function professor(){
         return $this->belongsTo('App\professor','professor_id','id');
     }   
+    public function unidade(){
+        return $this->belongsTo('App\unidades','unidade_id','id');
+    }   
 }

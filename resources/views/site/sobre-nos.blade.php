@@ -80,7 +80,7 @@
             <div class="team_item">
                 <div class="team_image"><img src="{{ asset($professor->foto)}}" alt=""></div>
                 <div class="team_panel d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="team_name"><a href="#">{{ $professor->user->name }}</a></div>
+                    <div class="team_name"><a href="#">{{ $professor->user->ShortName }}</a></div>
                     <div class="team_title">{{$professor->habilidades}}</div>
                 </div>
             </div>

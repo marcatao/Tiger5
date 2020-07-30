@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class aluno extends Model
 {
     protected $table = 'aluno';   
- 
+    public $timestamps = true;
+    
     public function user(){
         return $this->belongsTo('App\User','user_id','id');
     }
@@ -24,5 +25,9 @@ class aluno extends Model
         $ativo = "inativo";
         if($this->ativo == 1) $ativo="ativo";
         return $ativo;
-    }   
+    } 
+    public function getFotoPerfilAttribute() {
+        if($this->foto) return $this->foto;
+        return '/admin/profiles/nofoto.png';
+    }     
 }

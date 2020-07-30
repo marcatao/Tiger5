@@ -38,58 +38,30 @@
 					<div class="boxes_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
 						
 						<!-- Box -->
-						<div class="box">
-							<div class="d-flex flex-column align-items-center justify-content-center">
-                            </div>
-							<div class="box_title">Unidade SBC</div>
-							<div class="box_text">
-								<p>CT Tiger Thai<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Francisco Alves, 918 01º andar<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Paulicéia<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> São Bernardo do Campo/SP<br>
-                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>   11 96327-2733<br>
-                                    <i class="fa fa-male" aria-hidden="true"></i> Lael Pessolato Junior<br>
-                                    <i class="fa fa-instagram" aria-hidden="true"></i> @tigerthaibr 
-                                </p>
-							</div>
-				
-						</div>
-
-						<!-- Box -->
-						<div class="box">
-							<div class="d-flex flex-column align-items-center justify-content-center">
-							</div>
-							<div class="box_title">Unidade Santo André</div>
-							<div class="box_text">
-								<p>Inova Atrium Shopping <br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Giovanni Battista Pirelli, 155<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Vila Homero Thon<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Santo André/SP<br>
-                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>   11 95368-9830<br>
-                                    <i class="fa fa-male" aria-hidden="true"></i> Tiago Gomes<br>
-                                    <i class="fa fa-instagram" aria-hidden="true"></i> @inovaatrium 
-                                </p>
-							</div>
-				
-						</div>
-
-						<!-- Box -->
-						<div class="box">
-							<div class="d-flex flex-column align-items-center justify-content-center">
-                            </div>
-							<div class="box_title">Unidade Diadema</div>
-							<div class="box_text">
-								<p>Tiger Thai<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Av. Assembléia, 239 - 01º andar<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Vila Elida<br>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Diadema/SP<br>
-                                    <i class="fa fa-whatsapp" aria-hidden="true"></i> 11 95152-5991<br>
-                                    <i class="fa fa-male" aria-hidden="true"></i> Evaldo Antonio<br>
-                                    <i class="fa fa-instagram" aria-hidden="true"></i> @tigerthaibrdiadema 
-                                </p>
-							</div>
+						@foreach ($unidades as $unidade)
+							
 						
+						<div class="box">
+							<div class="d-flex flex-column align-items-center justify-content-center">
+                            </div>
+							<div class="box_title">{{$unidade->titulo}}</div>
+							<div class="box_text">
+								<p>{{$unidade->sub_titulo}}<br>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{$unidade->end1}}<br>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{$unidade->end2}}<br>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{$unidade->end3}}<br>
+                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>  {{$unidade->whats}}<br>
+                                    <i class="fa fa-male" aria-hidden="true"></i> {{$unidade->responsavel}}<br>
+                                    <i class="fa fa-instagram" aria-hidden="true"></i> {{$unidade->insta}}
+                                </p>
+							</div>
+				
 						</div>
+						@endforeach
+						<!-- Box -->
+		 
+
+			 
 
 					</div>
 				</div>

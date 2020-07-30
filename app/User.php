@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function getShortNameAttribute(){
         $temp = explode(" ",$this->name);
-        return ucfirst (mb_strtolower ($nomeNovo = $temp[0] . " " . $temp[count($temp)-1]));
+        return ucwords(mb_strtolower ($nomeNovo = $temp[0] . " " . $temp[count($temp)-1]));
     }
 
     public function profile(){

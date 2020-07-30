@@ -8,6 +8,7 @@ use App\aulas;
 use App\GradeAula;
 use App\professor;
 use App\aula_detalhe;
+use App\unidades;
 
 class aulasController extends Controller
 {
@@ -89,12 +90,14 @@ class aulasController extends Controller
         $aulas = aulas::where('academia_id',auth()->user()->academia_id)->get();
         $professores = professor::where('academia_id',auth()->user()->academia_id)->get();
         $grade="";
+        $unidades = unidades::where('academia_id',auth()->user()->academia_id)->get();
         if($id > 0) $grade = GradeAula::find($id);
         return view('admin.grade.form')
                  ->with('id',$id)
                  ->with('grade',$grade)
                  ->with('aulas',$aulas)
-                 ->with('professores',$professores);
+                 ->with('professores',$professores)
+                 ->with('unidades',$unidades);
     }
 
 
@@ -110,6 +113,7 @@ class aulasController extends Controller
         $a->academia_id = auth()->user()->academia_id;
         $a->user_id = auth()->user()->id;
         $a->professor_id = $request->professor_id;
+        $a->unidade_id = $request->unidade_id;
         
         if($a->save()){
             return redirect(route('grade-aula'));

@@ -10,21 +10,21 @@
     <br>
     <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Edição de Login</h3>
+                <h3 class="card-title">Cadastro/Edição de Login</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                   <form method="post" action="{{route('create-login')}}"  enctype="multipart/form-data">
                     {{  csrf_field() }}
                     
- 
+                    <input type="hidden" class="form-control" id="id" name="id" @if($user) value="{{$user->id}}" @endif  placeholder="Informe Nome completo..." required>
                          <div class="form-group">
-                            <label for=>Nome</label>
-                            <input type="text" class="form-control" id="name" name="name" @if($user) value="{{$user->name}}" @endif  placeholder="Informe Nome completo..." required>
+                            <label for=>Nome </label>
+                            <input type="text" class="form-control" id="name" name="name" @if($user) value="{{$user->name}}"  @endif  placeholder="Informe Nome completo..." required>
                          </div>
                          <div class="form-group">
                             <label for=>Email</label>
-                            <input type="email" class="form-control" id="email" name="email"  placeholder="informe o principal email..." required>
+                            <input type="email" class="form-control" id="email" name="email" @if($user) value="{{$user->email}}" readonly @endif placeholder="informe o principal email..." required>
                          </div>
                          <div class="form-group">
                             <label>Profile</label>
@@ -37,6 +37,7 @@
                                 
                             </select>
                          </div>
+                         @if(!$user) 
                           <hr>
                          <div class="form-group">
                             <label for=>Senha</label>
@@ -46,7 +47,7 @@
                             <label for=>Confirmar senha</label>
                             <input type="password" class="form-control" id="senha_confirma" name="senha_confirma" placeholder="senha confirma..." required>
                          </div>                      
-                      
+                         @endif
     
     
 
@@ -69,14 +70,19 @@
 <script>
  
 
-@isset($message)
+
 $(function () {
+@if($user)
+   $('#profile_id').val({{$user->profile_id}});
+@endif
+@isset($message)
     window.Toast.fire({
         icon: '{{$message['type']}}',
         title: ' {{$message['message']}}.'
       })
+@endisset      
 });
-@endisset
+
  
 
 

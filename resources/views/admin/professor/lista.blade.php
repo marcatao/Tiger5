@@ -24,10 +24,10 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>#id</th>
+                    <th> </th>
                     <th>Nome</th>
                     <th>Habilidades</th>
-                    <th>Foto</th>
+             
                     <th> </th>
                     <th> </th>
                     
@@ -37,10 +37,11 @@
                 
                         @foreach ($professores as $professor)
                             <tr>
-                                <td>{{$professor->id}}</td>       
+                                <td><img src="{{asset($professor->foto)}}" class="profile-user-img img-fluid"></td>
+                           
                                 <td>{{$professor->user->name}}</td>
                                 <td>{{$professor->habilidades}}</td>
-                                <td><img src="{{asset($professor->foto)}}" class="profile-user-img img-fluid"></td>
+                                
                                
                                 <td><a href="{{ route('form-professor',$professor->id) }}"class="btn btn-primary">Editar</a></td>         
                                 <td><a href="{{ route('deleta-professor',$professor->id) }}"class="btn btn-danger">Deletar</a></td> 
@@ -48,16 +49,7 @@
                         @endforeach
                  
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>#id</th>
-                    <th>Nome</th>
-                    <th>Habilidades</th>
-                    <th>Foto</th>
-                    <th> </th>
-                    <th> </th>
-                  </tr>
-                  </tfoot>
+ 
                 </table>
               </div>
               <!-- /.card-body -->
@@ -77,6 +69,14 @@
 
 <script>
     $(function () {
+      
+      @isset($message)
+        window.Toast.fire({
+          icon: '{{$message['type']}}',
+          title: ' {{$message['message']}}.'
+        })
+      @endisset
+
       $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,

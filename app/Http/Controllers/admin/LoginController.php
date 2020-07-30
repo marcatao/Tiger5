@@ -23,7 +23,7 @@ class LoginController extends Controller
         ->with('logins',$logins)
         ->with('message',$message);
     }
-
+ 
     public function create_form(Array $message=null,User $user=null){
         $profiles = profiles::all();
         return view('admin.login.form')->with('profiles',$profiles)
@@ -39,6 +39,11 @@ class LoginController extends Controller
         $login = "";
         $login  = LoginCreate::CriarLogin($name,$email,$request->senha,auth()->user()->academia_id,2);
         if($login) return $this->index(['type'=>'success','message'=>'Cadastro realizado com sucesso']);
+    }
+
+    public function editarlogin($id){
+        $user = User::find($id);
+        return $this->create_form(null,$user);
     }
 
 

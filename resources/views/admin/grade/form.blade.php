@@ -15,33 +15,54 @@
                     {{  csrf_field() }}
                     <input type="hidden" value="{{$id}}" id="id" name="id">
 
-                    <label>Selecione o dia  da semana</label>
-                    <select id="dia" name="dia" class="form-control" required>
-                      @php $diasemana = array('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'); @endphp
-                      @if($grade) 
-                          <option id="{{$grade->dia}}">{{$grade->dia}}</option>                      
-                      @endif
-                        @foreach ($diasemana as $d)
-                          <option id="{{$d}}">{{$d}}</option>
-                        @endforeach
-                    </select><br>
+                    <div class="row">
+                      <div class="col-md-6">
+                           <label>Selecione o dia  da semana</label>
+                           <select id="dia" name="dia" class="form-control" required>
+                           @php $diasemana = array('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'); @endphp
+                           @if($grade) 
+                              <option id="{{$grade->dia}}">{{$grade->dia}}</option>                      
+                           @endif
+                           @foreach ($diasemana as $d)
+                              <option id="{{$d}}">{{$d}}</option>
+                           @endforeach
+                        </select><br>
+                      </div>
 
-                    <label>Selecione a aula</label>
-                    <select id="aula_id" name="aula_id" class="form-control">
-                      @if($grade) 
-                           <option value="{{$grade->aula_id}}">{{$grade->aula->desc}}</option>                      
-                      @endif
-                        @foreach ($aulas as $aula)
-                          <option value="{{$aula->id}}">{{$aula->desc}}</option>
-                        @endforeach
-                    </select><br>
+                      <div class="col-md-6">
+                        <label>Selecione a aula</label>
+                        <select id="aula_id" name="aula_id" class="form-control">
+                          @if($grade) 
+                               <option value="{{$grade->aula_id}}">{{$grade->aula->desc}}</option>                      
+                          @endif
+                            @foreach ($aulas as $aula)
+                              <option value="{{$aula->id}}">{{$aula->desc}}</option>
+                            @endforeach
+                        </select> 
+                      </div>
+                    </div>
 
-                    <label>Selecione o professor</label>
-                    <select id="professor_id" name="professor_id" class="form-control">
-                      @foreach ($professores as $professor)
-                          <option value="{{$professor->id}}">{{$professor->user->name}}</option>
-                        @endforeach
-                    </select><br>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Selecione o professor</label>
+                        <select id="professor_id" name="professor_id" class="form-control">
+                          @foreach ($professores as $professor)
+                              <option value="{{$professor->id}}">{{$professor->user->name}}</option>
+                            @endforeach
+                        </select><br>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Selecione e unidade.</label>
+                        <select id="unidade_id" name="unidade_id" class="form-control">
+                          @foreach ($unidades as $unidade)
+                              <option value="{{$unidade->id}}">{{$unidade->titulo}}</option>
+                            @endforeach
+                        </select><br>
+                      </div>
+                    </div>
+
+
                                 
                     <label>Inicio da aula</label>
                     <div class="input-group date col-md-3" id="timepicker" data-target-input="nearest">

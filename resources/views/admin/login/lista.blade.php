@@ -22,6 +22,7 @@
                 <table id="alunos_table" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+               
                     <th>Nome</th>
                     <th>Login</th>
                     <th>Profile</th>
@@ -38,7 +39,7 @@
                               <td>{{ $login->name }}</td>
                               <td>{{ $login->email }}</td>
                               <td>{{ $login->profile->desc }}</td>
-                              <td></td>
+                              <td><a href="{{route('edit-login',$login->id)}}" class="btn btn-primary btn-block">Editar</a></td>
                             </tr>    
                         @endforeach
                     @endif    

@@ -86,7 +86,7 @@
         <div class="row">
             <div class="col">
                 <div class="section_title_container">
-                    <div class="section_subtitle">Fique de olho em</div>
+                    <div class="section_subtitle">Fique de olho na:</div>
                     <div class="section_title">Grade de aulas</div>
                 </div>
                 <div class="timetable_filtering">
@@ -108,7 +108,8 @@
                             <!-- Class -->
                             <div class="tt_class grid-item {{  str_replace(' ', '',$s->aula->desc) }}">
                                 <div class="tt_class_title">{{$s->aula->desc}}</div>
-                                <div class="tt_class_instructor">{{$s->professor->user->name}}</div>
+                                <div class="tt_class_instructor">{{$s->professor->user->ShortName}}</div>
+                                @if($s->unidade) <div class="tt_class_instructor">{{$s->unidade->titulo}}</div> @endif
                                 <div class="tt_class_time">{{$s->hora_ini}}</div>
                             </div>
                         @endforeach                            
@@ -123,7 +124,8 @@
                             <!-- Class -->
                             <div class="tt_class grid-item {{  str_replace(' ', '',$s->aula->desc) }}">
                                 <div class="tt_class_title">{{$s->aula->desc}}</div>
-                                <div class="tt_class_instructor">{{$s->professor->user->name}}</div>
+                                <div class="tt_class_instructor">{{$s->professor->user->ShortName}}</div>
+                                @if($s->unidade) <div class="tt_class_instructor">{{$s->unidade->titulo}}</div> @endif
                                 <div class="tt_class_time">{{$s->hora_ini}}</div>
                             </div>
                         @endforeach                            
@@ -138,7 +140,8 @@
                             <!-- Class -->
                             <div class="tt_class grid-item {{  str_replace(' ', '',$s->aula->desc) }}">
                                 <div class="tt_class_title">{{$s->aula->desc}}</div>
-                                <div class="tt_class_instructor">{{$s->professor->user->name}}</div>
+                                <div class="tt_class_instructor">{{$s->professor->user->ShortName}}</div>
+                                @if($s->unidade) <div class="tt_class_instructor">{{$s->unidade->titulo}}</div> @endif
                                 <div class="tt_class_time">{{$s->hora_ini}}</div>
                             </div>
                         @endforeach                            
@@ -153,7 +156,8 @@
                             <!-- Class -->
                             <div class="tt_class grid-item {{  str_replace(' ', '',$s->aula->desc) }}">
                                 <div class="tt_class_title">{{$s->aula->desc}}</div>
-                                <div class="tt_class_instructor">{{$s->professor->user->name}}</div>
+                                <div class="tt_class_instructor">{{$s->professor->user->ShortName}}</div>
+                                @if($s->unidade) <div class="tt_class_instructor">{{$s->unidade->titulo}}</div> @endif
                                 <div class="tt_class_time">{{$s->hora_ini}}</div>
                             </div>
                         @endforeach                            
@@ -168,7 +172,8 @@
                             <!-- Class -->
                             <div class="tt_class grid-item {{  str_replace(' ', '',$s->aula->desc) }}">
                                 <div class="tt_class_title">{{$s->aula->desc}}</div>
-                                <div class="tt_class_instructor">{{$s->professor->user->name}}</div>
+                                <div class="tt_class_instructor">{{$s->professor->user->ShortName}}</div>
+                                @if($s->unidade) <div class="tt_class_instructor">{{$s->unidade->titulo}}</div> @endif
                                 <div class="tt_class_time">{{$s->hora_ini}}</div>
                             </div>
                         @endforeach                            
@@ -183,7 +188,8 @@
                             <!-- Class -->
                             <div class="tt_class grid-item {{  str_replace(' ', '',$s->aula->desc) }}">
                                 <div class="tt_class_title">{{$s->aula->desc}}</div>
-                                <div class="tt_class_instructor">{{$s->professor->user->name}}</div>
+                                <div class="tt_class_instructor">{{$s->professor->user->ShortName}}</div>
+                                @if($s->unidade) <div class="tt_class_instructor">{{$s->unidade->titulo}}</div> @endif
                                 <div class="tt_class_time">{{$s->hora_ini}}</div>
                             </div>
                         @endforeach                            
@@ -198,7 +204,8 @@
                             <!-- Class -->
                             <div class="tt_class grid-item {{  str_replace(' ', '',$s->aula->desc) }}">
                                 <div class="tt_class_title">{{$s->aula->desc}}</div>
-                                <div class="tt_class_instructor">{{$s->professor->user->name}}</div>
+                                <div class="tt_class_instructor">{{$s->professor->user->ShortName}}</div>
+                                @if($s->unidade) <div class="tt_class_instructor">{{$s->unidade->titulo}}</div> @endif
                                 <div class="tt_class_time">{{$s->hora_ini}}</div>
                             </div>
                         @endforeach                            
@@ -213,7 +220,48 @@
 
 <!-- Extra -->    
 
-	
+<!-- Skills -->
+@isset($planos)
+<div class="skills mt-5 mb-5">
+    <div class="container">
+        <div class="row row-lg-eq-height">
+            <div class="section_title_container">
+                <div class="section_subtitle">Confira</div>
+                <div class="section_title">Nossos Planos</div>
+            </div>
+            <!-- Extra -->
+            <div class="col-md-12">
+                <div class="extra d-flex flex-column align-items-center justify-content-center text-center">
+
+                    
+<div class="row">
+@foreach ($planos as $plano)
+    
+ 
+                    <div class="col-md-3 mt-5 text-center">
+                        <div class="servicos text-center">
+                            <div class="titulo">
+                                <h3>{{$plano->titulo_plano}}</h3>
+                            </div>
+                        
+                                <p>{{$plano->desc_plano}}</p>
+                                <h3 class="mt-3">R$ {{ number_format($plano->valor_plano,2,',','.')}}</h3>
+                            <div class="button about_button"><a href="#" onclick="selecionaPlano()">Comprar</a></div>
+                        </div>
+                    </div>
+  @endforeach
+</div> 
+
+
+                </div>
+            </div>
+
+            <!-- Skills -->
+        
+        </div>
+    </div>
+</div>
+@endisset	
 
 @endsection
 
@@ -221,5 +269,9 @@
 @section('scripts')
 <script src="{{asset('site/plugins/Isotope/isotope.pkgd.min.js')}}"></script>
 <script src="{{asset('site/js/services.js')}}"></script>
-
+<script>
+    function selecionaPlano(){
+        alert('Esta opção ainda nao esta diponivel online, as compras de pacotes serão feitas apenas em uma de nossas unidades');
+    }
+</script>
 @endsection

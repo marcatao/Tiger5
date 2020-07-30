@@ -25,6 +25,12 @@
                with font-awesome or any other icon font library -->
         @if(Auth::user()->profile_id == 0)  
           <li class="nav-header">Gerenciamento</li>
+          <li class="nav-item">
+            <a href="{{ route('unidade-lista') }}" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>Unidades</p>
+            </a>
+          </li>    
 
            <li class="nav-item">
             <a href="{{ route('cadastro-aula') }}" class="nav-link">
@@ -53,12 +59,12 @@
               <p>Alunos</p>
             </a>
           </li> 
-          <li class="nav-item">
+         <!-- <li class="nav-item">
             <a href="{{ route('cadastro-login') }}" class="nav-link">
               <i class="nav-icon fas fa-key"></i>
               <p>Login's</p>
             </a>
-          </li> 
+          </li> -->
           <li class="nav-item">
             <a href="{{ route('cadastro-planos') }}" class="nav-link">
               <i class="nav-icon fas fa-bullseye"></i>

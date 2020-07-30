@@ -1321,3 +1321,19 @@ section
 	color: #ef8701;
 	font-size: x-large;
 }
+
+.servicos{
+	box-shadow: 15px 1px 15px 1px rgba(97, 97, 97, 0.2);
+	color: #262626;
+	padding: 10px 10px 10px 10px;
+	height: 100%;
+
+}
+.servicos .button{
+	width: 100%;
+	vertical-align: text-bottom !important;
+}
+.servicos .titulo{
+	height: 8vh;
+	vertical-align: middle;
+}

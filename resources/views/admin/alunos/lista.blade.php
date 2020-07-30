@@ -12,22 +12,12 @@
 <div class="container-fluid">
 
     <br>
-    <div class="card">
-              <div class="card-header">
-                <h3 class="card-title"></h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                  <a href="{{route('aluno-registra')}}" class="btn btn-primary btn-block">Registrar novo aluno</a>
+ 
+       
+                  <a href="{{route('aluno-registra')}}" class="btn btn-primary btn-block mb-3">Registrar novo aluno</a>
   
 
-                
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
+  
 
 
 
@@ -38,39 +28,38 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="alunos_table" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>CPF</th>
-                    <th>Nome</th>
-                    <th>Celular</th>
-                    <th>Status</th>
-                    <th>E-mail</th>
-                    <th> # </th>
-                  </tr>
-                  </thead>
+                
+
+                        <!-- ./row -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary card-tabs">
+              <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Ativos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false" onclick="tabInativo()">Inativos</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                     Loading
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab"></div>
+     
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+          
+        </div>
 
 
-                  <tbody>
-                    @isset($alunos)
-                    @if ($alunos)
-                        @foreach ($alunos as $aluno)
-                            <tr>
-                              <td>{{ $aluno->cpf }}</td>
-                              <td>{{ $aluno->nome }}</td>
-                              <td>{{ $aluno->Celular1}}</td>
-                              <td>{{ $aluno->email }}</td>
-                              <td>{{ $aluno->AtivoTxt }}</td>
-                              <td>@include('admin.alunos.elementos.botaoEditar')</td>
-                            </tr>    
-                        @endforeach
-                    @endif    
-                   @endisset
-                    
-
-                  </tbody>
- 
-                </table>
               </div>
               <!-- /.card-body -->
             </div>
@@ -80,30 +69,7 @@
 
 
 
-<div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Tem certeza que deseja excluir funcionario</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" id="id_del" name="id_del" value="0">
-         <p id="body_modal">...</p>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
-        <button type="button" class="btn btn-danger">Exluir</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-
+@include('admin.menus.modal')
 @endsection
 
 
@@ -116,12 +82,7 @@
 
 <script>
   $(function () {
-    
-
-    $("#alunos_table").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
+    chama_lista('1','custom-tabs-one-home');
     
     @isset($message)
     window.Toast.fire({
@@ -131,11 +92,45 @@
     @endisset
   });
 
-function delete_confirm(id, name){
-  $('#modal-default').modal('show');
-  $('#body_modal').html(name);
+function tabela(id){
+  $("#"+id).DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
 }
 
+function tabInativo(){
+  chama_lista('0','custom-tabs-one-profile');
+}
+function chama_lista(id,tab){
+  requisicao('/app/table/'+id,'GET')
+    .then(result => {
+        $("#"+tab).html(result);
+    });
+}
+
+function ativo(id,status){
+
+  requisicao('/app/aluno/ativo','POST',id,status)
+    .then(result => {
+      $('#linha_'+id).hide('slow');
+      window.Toast.fire({icon: 'success', title: 'Registro com sucesso!'});
+    });
+}
+
+
+
+function del(id){
+    
+  $('#modal').modal('show');
+  $('#modal-corpo').html('loading...');
+  $('#modal-titulo').html('Tem certeza que deseja deletar?');
+  requisicao('/app/aluno/deleta','GET',id)
+    .then(result => {
+      $('#modal-corpo').html(result);
+    });
+  
+}
 </script>
 
 @endsection

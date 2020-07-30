@@ -56,7 +56,7 @@
             </div>  
                 <div class="col-md-5">
 
-                <div class="card bg-gradient-primary">
+                <div class="card" style="height: 100%;">
                     <div class="card-header border-0">
                       <h3 class="card-title">
                         <i class="fas fa-boxes mr-1"></i>
@@ -67,9 +67,7 @@
                         <button type="button" class="btn btn-primary btn-sm daterange" data-toggle="tooltip" title="Adicionar Aula" id="plus_btn">
                           <i class="fa fa-plus"></i>
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" data-toggle="tooltip" title="Minimizar">
-                          <i class="fas fa-minus"></i>
-                        </button>
+ 
                       </div>
                       <!-- /.card-tools -->
                     </div>

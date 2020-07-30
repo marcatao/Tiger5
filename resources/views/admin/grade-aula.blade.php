@@ -28,6 +28,7 @@
                     <th>Aula</th>
                     <th>Dia</th>
                     <th>Professor</th>
+                    <th>Unidade</th>
                     <th>Inicio</th>
                     <th>Fim</th>
                     <th> </th>
@@ -47,6 +48,7 @@
                                   {{$grade->professor->user->name}}
                                   @endif
                                 </td>
+                                <td>@if($grade->unidade) {{$grade->unidade->titulo}} @endif</td>
                                 <td>{{$grade->hora_ini}}</td>
                                 <td>{{$grade->hora_fim}}</td>
                                
@@ -58,18 +60,7 @@
                         @endforeach
                  
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>#id</th>
-                    <th>Aula</th>
-                    <th>Dia</th>
-                    <th>Professor</th>
-                    <th>Inicio</th>
-                    <th>Fim</th>
-                    <th> </th>
-                    <th> </th>
-                  </tr>
-                  </tfoot>
+ 
                 </table>
               </div>
               <!-- /.card-body -->

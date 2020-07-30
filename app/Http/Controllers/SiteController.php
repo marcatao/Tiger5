@@ -11,7 +11,8 @@ use App\aula_detalhe;
 use App\GradeAula;
 use App\professor;
 use App\User;
-
+use App\unidades;
+use App\planos;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -30,9 +31,11 @@ class SiteController extends Controller
     public function index(){
         $midias = $this->instagram();
         $aulas  = aulas::where('academia_id',$this->academia_id)->get();
+        $unidades = unidades::where('academia_id',$this->academia_id)->get();
         return view('site.index')
         ->with('midias',$midias)
-        ->with('aulas',$aulas);
+        ->with('aulas',$aulas)
+        ->with('unidades',$unidades);
     }
     public function sobre_nos(){
         $aulas  = aulas::where('academia_id',$this->academia_id)->get();
@@ -54,7 +57,7 @@ class SiteController extends Controller
         $sexta = $this->grade_dia('Sexta');
         $sabado = $this->grade_dia('Sabado');
         $domingo = $this->grade_dia('Domingo');
-
+        $planos = planos::where('academia_id',$this->academia_id)->get();
         return view('site.aulas')
                 ->with('aulas',$aulas)
                 ->with('segunda',$segunda)
@@ -63,7 +66,8 @@ class SiteController extends Controller
                 ->with('quinta',$quinta)
                 ->with('sexta',$sexta)
                 ->with('sabado',$sabado)
-                ->with('domingo',$domingo);
+                ->with('domingo',$domingo)
+                ->with('planos',$planos);
     }
 
     public function aula_detalhe(Request $request){

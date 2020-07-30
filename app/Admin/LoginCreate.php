@@ -7,7 +7,7 @@ use App\User;
 class LoginCreate
 {
 
-    private $name;
+    private $name; 
 
     public static function CriarLogin(String $name, 
                                       String $email, 
@@ -15,7 +15,7 @@ class LoginCreate
                                       int $academia_id, 
                                       int $profile_id){
         
-         $name = ucfirst(mb_strtolower($name));
+         $name = ucwords(mb_strtolower($name));
          $email = mb_strtolower($email);       
                                  
          return User::create([
