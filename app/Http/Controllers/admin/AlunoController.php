@@ -99,16 +99,13 @@ class AlunoController extends Controller
                  $message="777";
                  if($aluno->save()){
                       $senha = preg_replace('/[^0-9]/', '', $request->dt_nacito);
-               
                       $user = User::where('email',$aluno->email)->first();
-                      
                       if(!$user){
-                        dd($user);
-                                 $user = LoginCreate::CriarLogin($aluno->nome,
-                                                                $aluno->email,
-                                                                $senha,
-                                                                auth()->user()->academia_id,
-                                                                1);
+                            $user = LoginCreate::CriarLogin($aluno->nome,
+                                                            $aluno->email,
+                                                            $senha,
+                                                            auth()->user()->academia_id,
+                                                            1);
                         $aluno->user_id=$user->id;
                         $aluno->save();                                             
                       }

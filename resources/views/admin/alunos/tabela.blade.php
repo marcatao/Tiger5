@@ -17,7 +17,7 @@
       @isset($alunos)
       @if ($alunos)
           @foreach ($alunos as $aluno)
-          
+
               <tr id="linha_{{$aluno->id}}" data-url="{{route('edicao-alunos',$aluno->id)}}" >
                 <td style="cursor: pointer;"><img src="{{asset($aluno->FotoPerfil)}}" class="profile-user-img img-fluid"></td>
                 <td style="cursor: pointer;">{{ $aluno->cpf }}</td>

@@ -96,6 +96,7 @@ function tabela(id){
   $("#"+id).DataTable({
       "responsive": true,
       "autoWidth": false,
+      "paginate" : false
     });
 }
 

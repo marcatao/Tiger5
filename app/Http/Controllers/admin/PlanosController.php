@@ -16,6 +16,13 @@ use App\Maula;
 class PlanosController extends Controller
 {
    
+
+    public function __construct()
+     {
+        $this->middleware('auth');
+     }
+
+
     public function index(){
         $p = planos::where('academia_id',auth()->user()->academia_id)->get();
         return view('admin.planos.lista')->with('planos',$p);
@@ -118,8 +125,8 @@ class PlanosController extends Controller
         if($status_id == 0) $Maula = Maula::where('status_id','<>','1')->where('aluno_id',$aluno_id)->get();
         $Maula = Maula::where('status_id',$status_id)->where('aluno_id',$aluno_id)->get();
         return  view('admin.planos.planos.tabela-plano')
-            ->with('Maula',$Maula)
-            ->with('id',$id);
+                     ->with('Maula',$Maula)
+                     ->with('id',$id);
     }
 
 

@@ -61,15 +61,15 @@ Adicionar plano manualmente:
     });
 
 $('#btn_post_plano').click(function(e) {
-    alert('sim');
     const aluno_id = $('#aluno_id').val();
     const plano_id = $('#plano_id').val();
     const formapagamento_id = $('#formapagamento_id').val();
     const valor_pago = $('#valor_pago').val();
+    
   requisicao('{{route('post-plano')}}','GET', aluno_id, plano_id, formapagamento_id, valor_pago)
     .then(result => {
-        alert('nao');
-        $("#feed").html(result);
+        plano_aluno();
+        window.Toast.fire({icon: 'success', title: 'Plano registrado com seucesso!'});
     });
 });   
 </script>

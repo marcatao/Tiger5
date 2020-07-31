@@ -94,6 +94,10 @@ Route::get('/app/unidades-form/{id}',  'admin\UnidadeController@form')->name('un
 Route::post('/app/unidades-form/{id}',  'admin\UnidadeController@save')->name('unidade-save'); 
 Route::get('/app/unidades-del/{id}',  'admin\UnidadeController@delete')->name('unidade-del'); 
  
+
+Route::get('/app/lista-presenca',  'admin\ListaPresencaController@index')->name('chamada-index');   
+
+
 Route::get('/app/forgot-password',  'admin\PassawordController@forgot_password')->name('forgot-password'); 
 Route::post('/app/forgot-password',  'admin\PassawordController@forgot_password_send')->name('forgot-password');     
 

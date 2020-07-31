@@ -59,7 +59,8 @@
               <p>Alunos</p>
             </a>
           </li> 
-         <!-- <li class="nav-item">
+
+          <!-- <li class="nav-item">
             <a href="{{ route('cadastro-login') }}" class="nav-link">
               <i class="nav-icon fas fa-key"></i>
               <p>Login's</p>
@@ -71,7 +72,14 @@
               <p>Planos</p>
             </a>
           </li>                
-        @endif
+
+          <li class="nav-item">
+            <a href="{{ route('chamada-index') }}" class="nav-link">
+              <i class="nav-icon fas fa-address-book"></i>
+              <p>Lista presença</p>
+            </a>
+          </li> 
+          @endif
 
           <li class="nav-header">SISTEMA</li>
           <li class="nav-item">
