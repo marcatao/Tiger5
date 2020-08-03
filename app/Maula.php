@@ -13,5 +13,7 @@ class Maula extends Model
     }
     public function plano(){
         return $this->belongsTo('App\planos','plano_id','id');
-    }   
+    }
+    
+    
 }

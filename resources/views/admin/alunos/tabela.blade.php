@@ -18,7 +18,7 @@
       @if ($alunos)
           @foreach ($alunos as $aluno)
 
-              <tr id="linha_{{$aluno->id}}" data-url="{{route('edicao-alunos',$aluno->id)}}" >
+              <tr id="linha_{{$aluno->id}}" onclick="aluno_select('{{route('edicao-alunos',$aluno->id)}}')" >
                 <td style="cursor: pointer;"><img src="{{asset($aluno->FotoPerfil)}}" class="profile-user-img img-fluid"></td>
                 <td style="cursor: pointer;">{{ $aluno->cpf }}</td>
                 <td style="cursor: pointer;">{{ $aluno->nome }}</td>
@@ -41,10 +41,10 @@
 <script>
     $(function () {
         tabela('{{$table}}');
-
-        $('table tr').click(function(){
-          window.location = $(this).data('url');
-          returnfalse;
-        });
     });
+
+    function aluno_select(link){
+      console.log(link);
+      window.location = link;
+    }
 </script>

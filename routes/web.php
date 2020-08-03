@@ -96,6 +96,16 @@ Route::get('/app/unidades-del/{id}',  'admin\UnidadeController@delete')->name('u
  
 
 Route::get('/app/lista-presenca',  'admin\ListaPresencaController@index')->name('chamada-index');   
+Route::get('/app/lista-presenca/form-nova-chamada',  'admin\ListaPresencaController@form_nova_chamada')->name('form-nova-chamada');   
+
+Route::get('/app/lista-presenca/aula-selection',  'admin\ListaPresencaController@aula_selection')->name('aula-selection');   
+Route::get('/app/lista-presenca/professor-selection',  'admin\ListaPresencaController@professor_selection')->name('professor-selection');   
+Route::post('/app/lista-presenca/save',  'admin\ListaPresencaController@presenca_save')->name('presenca-save');   
+Route::get('/app/lista-presenca/listas',  'admin\ListaPresencaController@lista_presenca')->name('lista-presenca');   
+Route::get('/app/lista-presenca/lista-presenca-alunos',  'admin\ListaPresencaController@lista_presenca_alunos')->name('lista-presenca-alunos');   
+Route::post('/app/lista-presenca/chamada-aluno',  'admin\ListaPresencaController@chamada_aluno')->name('chamada-aluno');   
+Route::delete('/app/lista-presenca/chamada-aluno',  'admin\ListaPresencaController@chamada_aluno_del')->name('chamada-aluno'); 
+Route::post('/app/lista-presenca/altera-status',  'admin\ListaPresencaController@altera_status')->name('altera-status');   
 
 
 Route::get('/app/forgot-password',  'admin\PassawordController@forgot_password')->name('forgot-password'); 

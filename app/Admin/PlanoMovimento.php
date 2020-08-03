@@ -49,7 +49,7 @@ class PlanoMovimento
                      $dt_fim = Carbon::now();
                      $Faula->dt_fim = $dt_fim->add("$plano->duracao_dias day");
                      $Faula->dt_utilizacao = null;
-                     $Faula->status_id = 1;
+                     $Faula->status_id = 10;
                      $Faula->save();
                        
                      } 

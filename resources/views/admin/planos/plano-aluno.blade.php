@@ -20,7 +20,7 @@
               Loading aulas abertas...
             </div>
             <div class="tab-pane fade" id="aulas-fechadas" role="tabpanel" aria-labelledby="aulas-fechadas-tab">
-              Loading aulas fechadas...
+              Loading aulas fechadas... 
             </div>
 
           </div>
@@ -39,6 +39,7 @@
     });   
 
 function carrega_abela(status,div){
+  console.log('admin.planos.planos.tabela-plano');
     requisicao('{{route('lista-aulas-aluno',$id)}}','get',status)
     .then(result => {
         $('#'+div).html(result);

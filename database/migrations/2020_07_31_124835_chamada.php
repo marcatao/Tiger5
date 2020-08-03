@@ -16,7 +16,7 @@ class Chamada extends Migration
         Schema::create('chamada', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('professor_id')->references('id')->on('professor');
-            $table->integer('aluno_id')->references('id')->on('aluno');
+            $table->integer('aula_id')->references('id')->on('aulas');
             $table->date('dt_aula');
             $table->time('hora_ini');
             $table->time('hora_fim');

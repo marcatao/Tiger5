@@ -11,6 +11,7 @@ use App\aulas_plano;
 use App\Admin\PlanoMovimento;
 
 use App\Maula;
+use App\Faula;
 
 
 class PlanosController extends Controller
@@ -73,7 +74,7 @@ class PlanosController extends Controller
 
 
 
-
+ 
 
     //aulas_plano
     public function aulas_plano(Request $request){
@@ -122,10 +123,16 @@ class PlanosController extends Controller
     public function lista_aulas_aluno($id, Request $request){
         $aluno_id = $id;
         $status_id = $request->param1;
-        if($status_id == 0) $Maula = Maula::where('status_id','<>','1')->where('aluno_id',$aluno_id)->get();
-        $Maula = Maula::where('status_id',$status_id)->where('aluno_id',$aluno_id)->get();
+        $status = ['10','9'];
+        if($status_id  == 0 ) $status = ['7'];
+
+        $Faula = Faula::where('aluno_id',$aluno_id)
+                      ->whereIn('status_id',$status)
+                      ->get();
+
+
         return  view('admin.planos.planos.tabela-plano')
-                     ->with('Maula',$Maula)
+                     ->with('Faulas',$Faula)
                      ->with('id',$id);
     }
 
