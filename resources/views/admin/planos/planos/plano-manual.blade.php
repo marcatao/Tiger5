@@ -5,7 +5,7 @@ Adicionar plano manualmente:
 
 <!--<form>-->
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label>Aluno</label>
             <select class="form-control" name="aluno_id" id="aluno_id" readonly>
                 @foreach ($alunos as $aluno)
@@ -13,7 +13,7 @@ Adicionar plano manualmente:
                 @endforeach
             </select>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label>Selecione o plano:</label>
             <select class="form-control" id="plano_id" name="plano_id">
                 @foreach (App\planos::where('academia_id',auth()->user()->academia_id)->get() as $plano)
@@ -21,12 +21,21 @@ Adicionar plano manualmente:
                 @endforeach
             </select>
         </div>
+        <div class="col-md-3">
+            <label>Renovação:</label>
+            <select class="form-control" id="renovacao" name="renovacao">
+                <option value="0">Manual</option>
+                <option value="1">Automática</option>
+
+            </select>
+        </div>
+
     </div> 
     <div class="row">
 
         <div class="col-md-3">
             <div class="form-group">
-                <label>Data Inicio:</label>
+                <label>Data Inicio/vencimento:</label>
                 <div class="input-group date" id="dt_pagamento" data-target-input="nearest" >
                      <input type="text" class="form-control datetimepicker-input" data-target="#dt_pagamento" id="dt_pagamento_val" name="dt_pagamento_val" required/>
                       <div class="input-group-append" data-target="#dt_pagamento" data-toggle="datetimepicker">
@@ -88,8 +97,14 @@ $('#btn_post_plano').click(function(e) {
     const formapagamento_id = $('#formapagamento_id').val();
     const valor_pago = $('#valor_pago').val();
     const dt_pagamento =  $('#dt_pagamento_val').val();
+    const renovacao =$('#renovacao').val();
     
-    const dataSend = {"aluno_id":aluno_id,"plano_id":plano_id,"formapagamento_id":formapagamento_id,"valor_pago":valor_pago,"dt_pagamento":dt_pagamento };
+    const dataSend = {"aluno_id":aluno_id,
+                      "plano_id":plano_id,
+                      "formapagamento_id":formapagamento_id,
+                      "valor_pago":valor_pago,
+                      "dt_pagamento":dt_pagamento,
+                      "renovacao":renovacao };
     console.log(dataSend);
   if(dt_pagamento =="" || valor_pago ==""){
     window.Toast.fire({icon: 'error', title: 'Preencha todos os campos!'});

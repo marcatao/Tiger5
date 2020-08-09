@@ -49,7 +49,9 @@ class LoginController extends Controller
 
     public function historico_user(Request $request){
         $user_id = $request->param1;
-        $historico = historico::where('user_id',$user_id)->get();
+        $historico = historico::where('user_id',$user_id)
+                              ->orderBy('dt_ocorrencia', 'desc')
+                              ->get();
         return view('admin.historico.lista')->with('historicos',$historico);
     }
 

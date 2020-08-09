@@ -116,10 +116,11 @@ class PlanosController extends Controller
         $formapagamento_id = (int) $request->param1['formapagamento_id'];
         $valor_pago = (float) $request->param1['valor_pago'];
         $dt_pagamento = $request->param1['dt_pagamento'];
+        $renovacao = $request->param1['renovacao'];
 
         $user_id = auth()->user()->id;
         $status_id = 1;
-        return PlanoMovimento::adiciona($aluno_id,$plano_id,$formapagamento_id,$valor_pago,$user_id,$status_id,$dt_pagamento);
+        return PlanoMovimento::adiciona($aluno_id,$plano_id,$formapagamento_id,$valor_pago,$user_id,$status_id,$dt_pagamento,$renovacao);
     }
 
     public function lista_aulas_aluno($id, Request $request){

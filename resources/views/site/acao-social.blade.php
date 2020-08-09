@@ -10,7 +10,7 @@
 					<div class="about_content">
 						<div class="section_title_container">
 							<div class="section_subtitle">Ação social:</div>
-							<div class="section_title">A <span>Clube dos Vira-Latas</span></div>
+							<div class="section_title"><span>Clube dos Vira-Latas</span></div>
 						</div>
 						<div class="about_text">
 							<p>O Clube dos Vira-Latas é uma organização não governamental, sem fins lucrativos, que mantém em seu abrigo mais de 500 animais, que são cuidados e alimentados diariamente, bem como promove assistência médica e de subsistência, sobrevivendo exclusivamente de doações.</p>

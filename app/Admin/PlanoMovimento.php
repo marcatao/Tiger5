@@ -11,13 +11,14 @@ use App\aulas_plano;
 
 use App\Maula;
 use App\Faula;
- 
+use App\Admin\HistoricoMovimento;
+
 class PlanoMovimento
 {
 
     
 
-    public static function adiciona(int $aluno_id, int $plano_id, int $formapagamento_id, float $valor_pago, int $user_id, int $status_id, string $dt_pagamento){
+    public static function adiciona(int $aluno_id, int $plano_id, int $formapagamento_id, float $valor_pago, int $user_id, int $status_id, string $dt_pagamento, int $renovacao){
         $plano = planos::find($plano_id);
 
         $aluno = aluno::find($aluno_id);
@@ -26,7 +27,7 @@ class PlanoMovimento
         $dt_pagamento = Carbon::parse($dt_pagamento)->format('Y-m-d');
  
 
-
+ 
         $Maula = new Maula();
         $Maula->valor_plano = $plano->valor_plano;
         $Maula->valor_pago =  $valor_pago;
@@ -37,6 +38,7 @@ class PlanoMovimento
         $Maula->formapagamento_id= $formapagamento->id;
         $Maula->user_id = $user_id;
         $Maula->status_id = $status_id;
+        $Maula->renovacao = $renovacao;
         if($Maula->save()){
             $aulasDoPlano = aulas_plano::where('plano_id',$plano->id)->get();
             foreach ($aulasDoPlano as $key => $aula) {
@@ -56,7 +58,9 @@ class PlanoMovimento
                      } 
                  }
             }
-        
+            $mensagem_historico = "o plano:". $Maula->plano->titulo_plano. " foi adicionado para o cliente";
+            $array = ['to_user_id' => $aluno->user_id,'icon' => 'fas fa-boxes bg-blue','mensagem' => $mensagem_historico ];  
+            $historico =  HistoricoMovimento::CreateHistorico($array);
         return $Maula;
     
     }

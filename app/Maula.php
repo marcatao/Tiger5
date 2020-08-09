@@ -23,6 +23,12 @@ class Maula extends Model
     public function QtdAulasEncerradas(){
         return $this->hasMany('App\Faula','maula_id','id')->whereNotIn('status_id',[10]);
     }    
+    public function getRenovacaoTextAttribute() {
+        $renovacao = "Automática";
+        if($this->renovacao == 0) $renovacao="Manual";
+        return $renovacao;
+    } 
+
     
     
 }
