@@ -8,3 +8,4 @@ class FormaPagamento extends Model
 {
     protected $table = 'FormaPagamento'; 
 }
+ 

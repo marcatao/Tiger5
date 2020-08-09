@@ -193,18 +193,23 @@
 
 	<!-- Gallery -->
 
+@isset($midias)
+@if($midias)
 	<div class="gallery">
 		
 		<!-- Gallery Slider -->
 		<div class="gallery_slider_container">
 			<div class="owl-carousel owl-theme gallery_slider">
 				@foreach ($midias as $midia)
-			 
+			
+				 @if($midia->gettypeName())
 				 @if($midia->gettypeName()<>'GraphVideo')
 	               <div class="owl-item">
 					 <img src="{{$midia->getthumbnails()[4]->src}}" class="img-fluid" alt="">
 				   </div>
 				  @endif
+				@endif
+		
 			    @endforeach
 
 
@@ -212,7 +217,8 @@
 		</div>
 
 	</div>
-
+@endif
+@endisset
 	<!-- Services -->
 
 	<div class="services">

@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <a href="{{route('admin_index')}}">Clique aqui para ir ao login </a>
                 </div>
             </div>
         </div>

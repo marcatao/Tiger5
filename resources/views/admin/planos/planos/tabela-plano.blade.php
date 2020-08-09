@@ -3,9 +3,9 @@
             <tr>
                 <th>Pacote</th>
                 <th>Aula</th>
-                <th>Dt Aquisição</th>
-                <th>Dt Prazo</th>
-                <th>Dt Aula</th>
+                <th>Inicio</th>
+                <th>Termino</th>
+                <th>Aula</th>
                 <th>Professor</th>
                 <th>Status</th>
             </tr>

@@ -33,22 +33,13 @@ class AlunoController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function aluno_detalhes($id, $message=null){
-        return view ('admin.alunos.detalhes')->with('id',$id)->with('message',$message);
+        $user_id = aluno::find($id);
+        $user_id = $user_id->user_id;
+        return view ('admin.alunos.detalhes')
+                    ->with('id',$id)
+                    ->with('message',$message)
+                    ->with('user_id',$user_id);
     }
 
 

@@ -49,7 +49,7 @@
           <li class="nav-item">
             <a href="{{ route('grade-aula') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p>Grade semanal</p>
+              <p>Grade horários</p>
             </a>
           </li>   
           

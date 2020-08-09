@@ -29,7 +29,13 @@ class SiteController extends Controller
 
 
     public function index(){
-        $midias = $this->instagram();
+    
+        try {
+            $midias = $this->instagram();
+        } catch (\Throwable $th) {
+            $midias = null;
+        }
+        
         $aulas  = aulas::where('academia_id',$this->academia_id)->get();
         $unidades = unidades::where('academia_id',$this->academia_id)->get();
         return view('site.index')

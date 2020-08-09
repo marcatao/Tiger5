@@ -83,11 +83,15 @@ Route::get('/app/planos/aulas-plano',  'admin\PlanosController@aulas_plano')->na
 Route::post('/app/planos/aulas-plano',  'admin\PlanosController@aulas_plano_store')->name('aulas-plano');
 Route::get('/app/planos/delete-aula-do-plano/{id}',  'admin\PlanosController@delete_aula_do_plano')->name('delete-aula-do-plano');
 Route::post('/app/deleta-plano/{id}',  'admin\PlanosController@delete_plano')->name('deleta-plano');
+Route::get('/app/planos/lista-planos-aluno/{id}',  'admin\PlanosController@lista_planos_aluno')->name('lista-planos-aluno');
 
 Route::get('/app/login',  'admin\LoginController@index')->name('cadastro-login');   
 Route::get('/app/login/create',  'admin\LoginController@create_form')->name('create-login');
 Route::get('/app/login/edit/{id}',  'admin\LoginController@editarlogin')->name('edit-login');  
 Route::post('/app/login/create',  'admin\LoginController@create')->name('create-login');
+Route::get('/app/login/historico-user',  'admin\LoginController@historico_user')->name('historico-user');
+
+
 
 Route::get('/app/unidades',  'admin\UnidadeController@index')->name('unidade-lista');   
 Route::get('/app/unidades-form/{id}',  'admin\UnidadeController@form')->name('unidade-form'); 

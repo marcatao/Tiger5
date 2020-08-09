@@ -110,14 +110,16 @@ class PlanosController extends Controller
     }
 
     public function post_plano(Request $request){
-        $aluno_id = (int) $request->param1;
-        $plano_id = (int) $request->param2;
-        $formapagamento_id = (int) $request->param3;
-        $valor_pago = (float) $request->param4;
+   
+        $aluno_id = (int) $request->param1['aluno_id'];
+        $plano_id = (int) $request->param1['plano_id'];
+        $formapagamento_id = (int) $request->param1['formapagamento_id'];
+        $valor_pago = (float) $request->param1['valor_pago'];
+        $dt_pagamento = $request->param1['dt_pagamento'];
 
         $user_id = auth()->user()->id;
         $status_id = 1;
-        return PlanoMovimento::adiciona($aluno_id,$plano_id,$formapagamento_id,$valor_pago,$user_id,$status_id);
+        return PlanoMovimento::adiciona($aluno_id,$plano_id,$formapagamento_id,$valor_pago,$user_id,$status_id,$dt_pagamento);
     }
 
     public function lista_aulas_aluno($id, Request $request){
@@ -134,6 +136,13 @@ class PlanosController extends Controller
         return  view('admin.planos.planos.tabela-plano')
                      ->with('Faulas',$Faula)
                      ->with('id',$id);
+    }
+
+    public function lista_planos_aluno($id){
+
+        $maula = Maula::where('aluno_id',$id)->get();
+        return view('admin.planos.planos.maula-aluno')
+        ->with('Maulas',$maula);
     }
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\profiles;
+use App\historico;
 use App\Admin\LoginCreate;
 
 class LoginController extends Controller
@@ -44,6 +45,12 @@ class LoginController extends Controller
     public function editarlogin($id){
         $user = User::find($id);
         return $this->create_form(null,$user);
+    }
+
+    public function historico_user(Request $request){
+        $user_id = $request->param1;
+        $historico = historico::where('user_id',$user_id)->get();
+        return view('admin.historico.lista')->with('historicos',$historico);
     }
 
 

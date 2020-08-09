@@ -17,20 +17,21 @@ class PlanoMovimento
 
     
 
-    public static function adiciona(int $aluno_id, int $plano_id, int $formapagamento_id, float $valor_pago, int $user_id, int $status_id){
+    public static function adiciona(int $aluno_id, int $plano_id, int $formapagamento_id, float $valor_pago, int $user_id, int $status_id, string $dt_pagamento){
         $plano = planos::find($plano_id);
 
         $aluno = aluno::find($aluno_id);
         $formapagamento = FormaPagamento::find($formapagamento_id);
-        
-        
+        $dt_pagamento = Carbon::createFromFormat('d/m/Y', $dt_pagamento);
+        $dt_pagamento = Carbon::parse($dt_pagamento)->format('Y-m-d');
+ 
 
 
         $Maula = new Maula();
         $Maula->valor_plano = $plano->valor_plano;
         $Maula->valor_pago =  $valor_pago;
         $Maula->dt_aquisicao = Carbon::now();
-        $Maula->dt_pagamento = Carbon::now();
+        $Maula->dt_pagamento = $dt_pagamento;
         $Maula->aluno_id = $aluno->id;
         $Maula->plano_id = $plano->id;
         $Maula->formapagamento_id= $formapagamento->id;
@@ -45,8 +46,8 @@ class PlanoMovimento
                      $Faula->aula_id = $aula->aula_id;
                      $Faula->professor_id = null;
                      $Faula->maula_id = $Maula->id;
-                     $Faula->dt_inicio = Carbon::now();
-                     $dt_fim = Carbon::now();
+                     $Faula->dt_inicio = $dt_pagamento;
+                     $dt_fim = Carbon::createFromFormat('Y-m-d', $Faula->dt_inicio);
                      $Faula->dt_fim = $dt_fim->add("$plano->duracao_dias day");
                      $Faula->dt_utilizacao = null;
                      $Faula->status_id = 10;

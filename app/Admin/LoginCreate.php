@@ -4,6 +4,7 @@ namespace App\Admin;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\aluno;
+use App\Admin\HistoricoMovimento;
 
 class LoginCreate
 {
@@ -46,9 +47,11 @@ class LoginCreate
 
     public static function AlunoCadastro(aluno $alunoPass){
         $aluno = aluno::where('cpf',$alunoPass->cpf)->first();
+        $mensagem_historico = " Cadastro do aluno alterado";
         if(!$aluno){
             $aluno = new aluno();
             $aluno->cpf = $alunoPass->cpf;
+            $mensagem_historico = " Cadastro do aluno realizado";
         }
 
         $aluno->ativo         =$alunoPass->ativo;
@@ -74,6 +77,9 @@ class LoginCreate
         $aluno->user_id       =$alunoPass->user_id;         
         $aluno->created_at    =$alunoPass->created_at;
         $aluno->save();
+          $array = ['to_user_id' => $aluno->user_id,'icon' => 'fas fa-envelope bg-blue','mensagem' => $mensagem_historico ];  
+          $historico =  HistoricoMovimento::CreateHistorico($array);
+        
         return $aluno;
 
     }

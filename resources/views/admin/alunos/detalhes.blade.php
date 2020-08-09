@@ -19,7 +19,10 @@
                               <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Cadastro</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false" onclick="plano_aluno()">Planos do Aluno</a>
+                              <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false" onclick="plano_aluno()">Planos</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="hitorico-do-aluno-tab" data-toggle="pill" href="#hitorico-do-aluno" role="tab" aria-controls="hitorico-do-aluno" aria-selected="false" onclick="historico_aluno()">Historico</a>
                             </li>
                           </ul>
                         </div>
@@ -32,7 +35,10 @@
                             <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                                Loading...<!--Planos -->
                             </div>
-               
+                            <div class="tab-pane fade" id="hitorico-do-aluno" role="tabpanel" aria-labelledby="hitorico-do-aluno-tab">
+                              Loading historico...<!--Planos -->
+                           </div>
+
                           </div>
                         </div>
                         <!-- /.card -->
@@ -77,6 +83,14 @@ function plano_aluno(){
   requisicao('{{route('aluno-plano',$id)}}','GET')
     .then(result => {
         $("#custom-tabs-one-profile").html(result);
+    });
+}
+
+function historico_aluno(){
+  requisicao('{{route('historico-user')}}','get', '{{$user_id}}')
+    .then($("#hitorico-do-aluno").html("Carregando, aguarde..."))
+    .then(result => {
+        $("#hitorico-do-aluno").html(result);
     });
 }
 

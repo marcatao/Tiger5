@@ -24,7 +24,11 @@
   <div class="col-md-3 ">
     @isset($aluno)
     <div class="row mb-2"><label>Matricula: {{$aluno->id}}</label></div>
-    <div class="row mb-3"><label>Matriculado: {{ date('d/m/Y', strtotime($aluno->created_at)) }}</label></div>
+    <div class="row mb-3"><label>Modalidades:</label>
+      <p>@foreach ($aluno->Modalidades as $modalidade)
+        {{$modalidade->detalhe->desc}},
+      @endforeach</p>
+    </div>
      @endisset
     <div class="row">
         <input type="checkbox" data-on-text="Ativo"  data-off-text="Inativo"  data-bootstrap-switch name="ativo" id="ativo"

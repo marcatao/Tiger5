@@ -5,7 +5,7 @@ Adicionar plano manualmente:
 
 <!--<form>-->
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
             <label>Aluno</label>
             <select class="form-control" name="aluno_id" id="aluno_id" readonly>
                 @foreach ($alunos as $aluno)
@@ -13,7 +13,7 @@ Adicionar plano manualmente:
                 @endforeach
             </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <label>Selecione o plano:</label>
             <select class="form-control" id="plano_id" name="plano_id">
                 @foreach (App\planos::where('academia_id',auth()->user()->academia_id)->get() as $plano)
@@ -21,7 +21,23 @@ Adicionar plano manualmente:
                 @endforeach
             </select>
         </div>
-        <div class="col-md-2">
+    </div> 
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Data Inicio:</label>
+                <div class="input-group date" id="dt_pagamento" data-target-input="nearest" >
+                     <input type="text" class="form-control datetimepicker-input" data-target="#dt_pagamento" id="dt_pagamento_val" name="dt_pagamento_val" required/>
+                      <div class="input-group-append" data-target="#dt_pagamento" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                </div>
+             </div>
+            </div>
+
+
+        <div class="col-md-3">
             <label>Pagamento:</label>
             <select class="form-control" id="formapagamento_id" name="formapagamento_id">
                 @foreach (App\FormaPagamento::all() as $pagamento)
@@ -29,11 +45,11 @@ Adicionar plano manualmente:
                 @endforeach
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label>Valor pago:</label>
             <input type="text" name="valor_pago" id="valor_pago" class="form-control" required>
         </div>
-        <div class="col-md-2 mt-2">
+        <div class="col-md-3 mt-2">
        
             <button class="btn btn-primary btn-block mt-4" id="btn_post_plano">Salvar</button>
         </div>
@@ -48,6 +64,12 @@ Adicionar plano manualmente:
     
 <script>
   $(function () {
+
+    $('#dt_pagamento').datetimepicker({
+        format: "DD/MM/YYYY",
+    });
+
+
         $('#valor_pago').inputmask('decimal', {
                 'alias': 'numeric',
                 'groupSeparator': ',',
@@ -65,8 +87,15 @@ $('#btn_post_plano').click(function(e) {
     const plano_id = $('#plano_id').val();
     const formapagamento_id = $('#formapagamento_id').val();
     const valor_pago = $('#valor_pago').val();
+    const dt_pagamento =  $('#dt_pagamento_val').val();
     
-  requisicao('{{route('post-plano')}}','GET', aluno_id, plano_id, formapagamento_id, valor_pago)
+    const dataSend = {"aluno_id":aluno_id,"plano_id":plano_id,"formapagamento_id":formapagamento_id,"valor_pago":valor_pago,"dt_pagamento":dt_pagamento };
+    console.log(dataSend);
+  if(dt_pagamento =="" || valor_pago ==""){
+    window.Toast.fire({icon: 'error', title: 'Preencha todos os campos!'});
+    return;
+  }  
+  requisicao('{{route('post-plano')}}','GET', dataSend)
     .then(result => {
         plano_aluno();
         window.Toast.fire({icon: 'success', title: 'Plano registrado com seucesso!'});
