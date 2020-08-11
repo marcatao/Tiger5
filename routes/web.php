@@ -29,9 +29,9 @@ Route::post('/contato',  'SiteController@contato_send')->name('contato');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/check-planos','admin\CheckController@index')->name('check-planos');
+
  
-
-
 Route::get('/app', 'AdminController@index')->name('admin_index');
 Route::get('/app/cadastro-aula',  'admin\aulasController@index')->name('cadastro-aula');
 Route::get('/app/form-aula/{id}', 'admin\aulasController@form_aulas')->name('form-aula');

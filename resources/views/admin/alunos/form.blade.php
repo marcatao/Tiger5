@@ -60,6 +60,22 @@
              </select>
         </div>
       </div>
+      @isset($aluno)
+      
+        @php
+          $aniversario = $aluno->dt_nacito;
+        //data em ingles
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$aniversario)){
+            $aniversario = Carbon\Carbon::createFromFormat('Y-m-d', $aniversario);
+        }
+        //data em br
+        if (preg_match("/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4}$/",$aniversario)){
+            $aniversario = Carbon\Carbon::createFromFormat('d/m/Y', $aniversario);
+        }
+        @endphp
+
+
+      @endisset
       <div class="col-md-3">
         <div class="form-group">
           <label>Data Nascimento</label>
@@ -67,7 +83,7 @@
                <div class="input-group-prepend">
                  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                </div>
-              <input type="text" class="form-control" id="dt_nacito" name="dt_nacito" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" @isset($aluno) value="{{$aluno->dt_nacito}}" @endisset im-insert="false" required>
+              <input type="text" class="form-control" id="dt_nacito" name="dt_nacito" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" @isset($aluno) value="{{$aniversario->format('d/m/Y')}}" @endisset im-insert="false" required>
          </div>
         </div>
       </div>

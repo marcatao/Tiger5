@@ -35,7 +35,7 @@ class AlunoController extends Controller
 
     public function aluno_detalhes($id, $message=null){
         $user_id = aluno::find($id);
-        $user_id = $user_id->user_id;
+        if($user_id) $user_id = $user_id->user_id;
         return view ('admin.alunos.detalhes')
                     ->with('id',$id)
                     ->with('message',$message)
@@ -60,6 +60,15 @@ class AlunoController extends Controller
         if($request->ativo) $ativo=1;
 
 
+        $aniversario = $request->dt_nacito;
+        //data em ingles
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$aniversario))
+            $aniversario = Carbon::createFromFormat('Y-m-d', $aniversario);
+        //data em br
+        if (preg_match("/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4}$/",$aniversario))
+            $aniversario = Carbon::createFromFormat('d/m/Y', $aniversario);
+
+
 
         $senha = preg_replace('/[^0-9]/', '', $request->dt_nacito);
         $date = Carbon::createFromFormat('d/m/Y', $request->created_at);
@@ -80,7 +89,7 @@ class AlunoController extends Controller
             $aluno->rg            =$request->rg         ;
             $aluno->nome          =$request->nome       ;
             $aluno->sexo          =$request->sexo       ;
-            $aluno->dt_nacito     =$request->dt_nacito  ;
+            $aluno->dt_nacito     =$aniversario->format('Y-m-d') ;
             $aluno->tel           =$request->tel        ;
             $aluno->cel1          =$request->cel1       ;
             $aluno->operadora1    =$request->operadora1 ;
