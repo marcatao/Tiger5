@@ -25,10 +25,20 @@
                 <td style="cursor: pointer;">{{ $aluno->Celular1}}</td>
                 <td style="cursor: pointer;">{{ $aluno->email }}</td>
                 <td style="cursor: pointer;">
-                 @if(count($aluno->Modalidades) == 0 )   @endif 
-                 @foreach ($aluno->Modalidades as $modalidade)
-                     {{$modalidade->detalhe->desc}}
-                 @endforeach
+                 @if($aluno->Planos)   
+                  @foreach ($aluno->Planos as $Maula)
+          
+                    @if($Maula->plano->aulas)
+                        @foreach ($Maula->plano->aulas as $aula)
+                        {{$aula->aula->desc}} 
+                        @endforeach
+                    @endif
+                 
+                  @endforeach
+                 @endif 
+                  
+                     
+                 
                 </td>
                 <td>@include('admin.alunos.elementos.botaoEditar')</td>
               </tr>  

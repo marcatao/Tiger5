@@ -12,8 +12,8 @@ class aluno extends Model
     public function user(){
         return $this->belongsTo('App\User','user_id','id');
     }
-    public function Modalidades(){
-        return $this->hasMany('App\Faula','aluno_id','id')->groupBy('aula_id');
+    public function Planos(){
+        return $this->hasMany('App\Maula','aluno_id','id')->groupBy('aula_id');
     }
 
     public function getCelular1Attribute(){

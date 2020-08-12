@@ -18,16 +18,20 @@ class PlanoMovimento
 
     
 
-    public static function adiciona(int $aluno_id, int $plano_id, int $formapagamento_id, float $valor_pago, int $user_id, int $status_id, string $dt_pagamento, int $renovacao){
+    public static function adiciona(int $aluno_id, int $plano_id, int $formapagamento_id, float $valor_pago, int $user_id, int $status_id, string $dt_pagamento, int $renovacao, bool $novo=null){
         $plano = planos::find($plano_id);
 
         $aluno = aluno::find($aluno_id);
         $formapagamento = FormaPagamento::find($formapagamento_id);
-        $dt_pagamento = Carbon::createFromFormat('d/m/Y', $dt_pagamento);
-        $dt_pagamento = Carbon::parse($dt_pagamento)->format('Y-m-d');
- 
 
- 
+        //data em ingles
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$dt_pagamento))
+            $dt_pagamento = Carbon::createFromFormat('Y-m-d', $dt_pagamento);
+        //data em br
+        if (preg_match("/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4}$/",$dt_pagamento))
+            $dt_pagamento = Carbon::createFromFormat('d/m/Y', $dt_pagamento);
+            $dt_pagamento = Carbon::parse($dt_pagamento)->format('Y-m-d');
+  
         $Maula = new Maula();
         $Maula->valor_plano = $plano->valor_plano;
         $Maula->valor_pago =  $valor_pago;
@@ -40,6 +44,7 @@ class PlanoMovimento
         $Maula->status_id = $status_id;
         $Maula->renovacao = $renovacao;
         if($Maula->save()){
+           if($Maula->renovacao == 0){ 
             $aulasDoPlano = aulas_plano::where('plano_id',$plano->id)->get();
             foreach ($aulasDoPlano as $key => $aula) {
                  for ($i=0; $i < $aula->qtd_aulas; $i++) { 
@@ -57,11 +62,19 @@ class PlanoMovimento
                        
                      } 
                  }
+              } //IF existe aulas agendadas...  
             }
             $mensagem_historico = "o plano:". $Maula->plano->titulo_plano. " foi adicionado para o cliente";
+            if($novo) $mensagem_historico =   "o plano:". $Maula->plano->titulo_plano. " foi renovado automáticamente pelo sistema";
             $array = ['to_user_id' => $aluno->user_id,'icon' => 'fas fa-boxes bg-blue','mensagem' => $mensagem_historico ];  
             $historico =  HistoricoMovimento::CreateHistorico($array);
         return $Maula;
     
+    }
+
+    public static function atrasado(Maula $maula){
+        $maula->status_id = 6;
+        return $maula->save();
+        
     }
 }

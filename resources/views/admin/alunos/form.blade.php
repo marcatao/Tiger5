@@ -25,9 +25,18 @@
     @isset($aluno)
     <div class="row mb-2"><label>Matricula: {{$aluno->id}}</label></div>
     <div class="row mb-3"><label>Modalidades:</label>
-      <p>@foreach ($aluno->Modalidades as $modalidade)
-        {{$modalidade->detalhe->desc}},
-      @endforeach</p>
+      <p>@if($aluno->Planos)   
+        @foreach ($aluno->Planos as $Maula)
+
+          @if($Maula->plano->aulas)
+              @foreach ($Maula->plano->aulas as $aula)
+              {{$aula->aula->desc}} 
+              @endforeach
+          @endif
+       
+        @endforeach
+       @endif 
+      </p> 
     </div>
      @endisset
     <div class="row">
