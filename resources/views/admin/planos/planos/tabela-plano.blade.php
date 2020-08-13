@@ -10,7 +10,7 @@
                 <th>Status</th>
             </tr>
 
-            @foreach ($Faulas as $Faula)
+            @foreach ($Faulas as $Faula) 
              <tr>
                 <td>{{$Faula->Maula->plano->titulo_plano}}</td>
                 <td>{{$Faula->detalhe->desc}}</td>

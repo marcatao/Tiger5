@@ -39,6 +39,26 @@
           </div>
      
  
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{number_format($faturas->sum('valor_pago'),2,',','.')}}</h3>
+
+                <p>Valores pagos neste mês</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{{route('relatorios-faturas')}}" class="small-box-footer">
+                Valores atrasados: {{number_format($faturas->where('valor_pago','0')->where('status_id',6)->sum('valor_plano'),2,',','.')}}
+                
+                <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+
           <!-- ./col -->
         </div>
         <!-- /.row -->

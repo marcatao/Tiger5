@@ -43,7 +43,7 @@
                     <div class="text_highlight">Desde 2009 impactando resultados no grande ABCD.</div>
                     <div class="about_text">
                         <p>Centro de Treinamento Tiger Thai possui a melhor estrutura do ABCD,  são 2 andares com mais de 600 metros quadrados com o melhor das artes marciais entre outras modalidades.
-                            1º andar sendo Recepção, Estúdio de Treinamento Funcional, Calistenia e Lê Parkour, Sala de Espera, Secretária, Tiger Shop, Espaço Zen e Banheiro, 2º andar Sala de treinamento Marcial com área de Saco de Pancada, Tatame e Ringue para combate ou treinamento especifico e Sala de Cinema.</p>
+                            1º andar sendo Recepção, Sala de Espera, Secretária, Tiger Shop, Espaço Zen e Banheiro, 2º andar Sala de treinamento Marcial com área de Saco de Pancada, Tatame, Ringue para combate ou treinamento especifico, Estúdio de Treinamento Funcional, Calistenia e Lê Parkour .</p>
                     </div>
                     <div class="button about_button"><a href="{{ route('contato') }}">Fazer uma aula</a></div>
                 </div>

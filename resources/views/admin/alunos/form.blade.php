@@ -24,19 +24,17 @@
   <div class="col-md-3 ">
     @isset($aluno)
     <div class="row mb-2"><label>Matricula: {{$aluno->id}}</label></div>
-    <div class="row mb-3"><label>Modalidades:</label>
-      <p>@if($aluno->Planos)   
-        @foreach ($aluno->Planos as $Maula)
-
-          @if($Maula->plano->aulas)
-              @foreach ($Maula->plano->aulas as $aula)
-              {{$aula->aula->desc}} 
-              @endforeach
-          @endif
-       
-        @endforeach
-       @endif 
-      </p> 
+    <div class="row mb-3"><label>Modalidades: </label>
+      <p>@if($aluno->ListaModalidatesAtivas()) 
+          @foreach($aluno->ListaModalidatesAtivas() as $modalidade)
+          <tr>
+           @if($modalidade)
+             {{$modalidade->desc}}, 
+             @endif
+          </tr>
+         @endforeach  
+    
+    @endif </p>
     </div>
      @endisset
     <div class="row">

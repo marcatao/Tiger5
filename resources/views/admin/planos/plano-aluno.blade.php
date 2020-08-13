@@ -1,4 +1,5 @@
-@include('admin.planos.planos.plano-manual')
+<button class="btn btn-outline-primary btn-block" onclick="chamar_form_plano_manual('0');">Adicionar um novo plano manualmente</button>
+<div id="chamar_form_plano_manual_div"></div>
 <hr>
 
 <div class="row">
@@ -59,6 +60,15 @@ function carrega_abela(status,div){
     requisicao('{{route('lista-aulas-aluno',$id)}}','get',status)
     .then(result => {
         $('#'+div).html(result);
+    });
+}
+
+function chamar_form_plano_manual(id){
+  $('#chamar_form_plano_manual_div').fadeOut();
+  console.log('planos.planos.plano-manual');
+  requisicao('{{route('form-plano-manual')}}','get',id,'{{$id}}')
+    .then(result => {
+        $('#chamar_form_plano_manual_div').html(result).fadeIn('slow');
     });
 }
 </script>

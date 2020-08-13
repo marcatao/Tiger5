@@ -10,7 +10,7 @@
 
 
 <div class="home">
-		<div class="background_image" style="background-image:url({{ asset('site/images/banner/banner1.jpg')}})"></div>
+		<div class="background_image" style="background-image:url({{ asset('site/images/banner/banner2.jpg')}})"></div>
 		<div class="overlay"></div>
 		<div class="home_container">
 			<div class="container">

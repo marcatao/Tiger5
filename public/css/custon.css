@@ -1,0 +1,17 @@
+.botao-canto{
+    cursor: pointer;
+    z-index: 10;
+    width: 5vh;
+    height: 5vh;
+    position: fixed;
+    bottom:3vh;
+    right:2vh;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,.5);
+}

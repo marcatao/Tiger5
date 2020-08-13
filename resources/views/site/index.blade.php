@@ -6,7 +6,7 @@
 	<!-- Home -->
 
 	<div class="home">
-		<div class="background_image" style="background-image:url({{asset('site/images/banner/banner1.jpg')}})"></div>
+		<div class="background_image" style="background-image:url({{asset('site/images/banner/banner2.jpg')}})"></div>
 		<div class="overlay"></div>
 		<div class="home_container">
 			<div class="container">
@@ -254,23 +254,12 @@
 							<div class="service_title">Estúdio de Treinamento</div>
 						</div>
 						<div class="service_text">
-							<p>Estúdio de Treinamento Funcional, Calistenia e Lê Parkour.</p>
+							<p>Estúdio de Treinamento Funcional, Calistenia, Lê Parkour e Pilates solo e acessorios.</p>
 						</div>
 					</div>
 				</div>
 
-				<!-- Service -->
-				<div class="col-xl-4 col-md-6 service_col">
-					<div class="service">
-						<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
-							<div><div class="service_icon"><img src="site/images/icon_12.png" alt=""></div></div>
-							<div class="service_title">Sala de Cinema</div>
-						</div>
-						<div class="service_text">
-							<p>Uma sala studio com espaço amplo e acustica favorecida para danças, gravações de videos para redes sociais.</p>
-						</div>
-					</div>
-				</div>
+ 
 
 				<!-- Service -->
 				<div class="col-xl-4 col-md-6 service_col">

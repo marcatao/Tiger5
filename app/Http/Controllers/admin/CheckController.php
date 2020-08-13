@@ -33,14 +33,15 @@ class CheckController extends Controller
                                ->get();
         foreach ($planos_renocao as $plano){
             try{
-               
-                DB::beginTransaction();
+             ;
+                DB::beginTransaction(); 
                 $dt_pagamento =  Carbon::createFromFormat('Y-m-d', $plano->dt_pagamento);
                 $dt_pagamento->addMonths(1);
                 $dt_pagamento = $dt_pagamento->format('Y-m-d');
-
+          
                 $aluno_id = $plano->aluno_id;
                 $plano_id = $plano->plano_id;
+                echo "plano_id:".$plano_id;
                 $formapagamento_id= 0;
                 $valor_pago = 0;
                 $user_id = 1;
@@ -58,6 +59,7 @@ class CheckController extends Controller
                 //if there is an error/exception in the above code before commit, it'll rollback
                  DB::rollBack();
                  return $e->getMessage();
+                 
             }
 
         }
@@ -88,7 +90,7 @@ class CheckController extends Controller
                     
                             }
                                //Mail::to('thiagomarcato@gmail.com')->send(new AjustePlanosDiario());                               
-        dd($planos_renocao);
+         
         return $planos_renocao;
     }
 }

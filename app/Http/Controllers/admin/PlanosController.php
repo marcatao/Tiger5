@@ -109,20 +109,56 @@ class PlanosController extends Controller
         return view('admin.planos.plano-aluno')->with('id',$id);
     }
 
+    public function form_plano_manual(Request $request){
+        $plano_id = $request->param1;
+        $aluno_id = $request->param2;
+        $Maula = Maula::find($plano_id);
+        return view('admin.planos.planos.plano-manual')
+        ->with('Maula',$Maula)
+        ->with('id',$aluno_id);
+    }
+
     public function post_plano(Request $request){
-   
+        
+        //deleta 
+        if($request->param3 == 'deleta'){
+            $maula_id = $request->param2;
+            $Maula = Maula::find($maula_id);
+            if($Maula){
+                return PlanoMovimento::deleta($Maula);
+            }
+        }
+
         $aluno_id = (int) $request->param1['aluno_id'];
         $plano_id = (int) $request->param1['plano_id'];
         $formapagamento_id = (int) $request->param1['formapagamento_id'];
         $valor_pago = (float) $request->param1['valor_pago'];
         $dt_pagamento = $request->param1['dt_pagamento'];
         $renovacao = $request->param1['renovacao'];
-
         $user_id = auth()->user()->id;
         $status_id = 1;
+
+        //EDICAOOOOOOO
+        if($request->param2){
+            $maula_id = $request->param2;
+            $Maula = Maula::find($maula_id);
+            if($Maula){
+                $Maula->plano_id= $plano_id;
+                $Maula->formapagamento_id = $formapagamento_id;
+                $Maula->valor_pago =$valor_pago;
+                $Maula->dt_pagamento = $dt_pagamento;
+                $Maula->renovacao = $renovacao;
+                $Maula->user_id = $user_id;
+                $Maula->status_id= $request->param1['status_id'];
+                return PlanoMovimento::edita($Maula);
+            }//if Maula existe 
+        }//if parametro existe
+        
+
         return PlanoMovimento::adiciona($aluno_id,$plano_id,$formapagamento_id,$valor_pago,$user_id,$status_id,$dt_pagamento,$renovacao);
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
     public function lista_aulas_aluno($id, Request $request){
         $aluno_id = $id;
         $status_id = $request->param1;
@@ -138,13 +174,31 @@ class PlanosController extends Controller
                      ->with('Faulas',$Faula)
                      ->with('id',$id);
     }
-
+/////////////////////////////////////////////////////////////////////////////
     public function lista_planos_aluno($id){
 
-        $maula = Maula::where('aluno_id',$id)->get();
+        $maula = Maula::where('aluno_id',$id)->orderBy('updated_at','desc')->take(15)->get();
         return view('admin.planos.planos.maula-aluno')
         ->with('Maulas',$maula);
     }
+
+
+
+    public function adicionar_pagamento(Request $request){
+        $Maula = Maula::find($request->param1);
+        return view('admin.planos.planos.pagamentos.pagamento-form')
+        ->with('Maula',$Maula);
+    }
+
+    public function salvar_pagamento(Request $request){
+        $maula_id = (int) $request->param1['maula_id'];
+        $Maula = Maula::find($maula_id);
+        $valor_pago = (float) $request->param1['valor_pago'];
+        $formapagamento_id = (int) $request->param1['formapagamento_id'];
+        PlanoMovimento::pagar($Maula,$formapagamento_id,$valor_pago,auth()->user()->id);
+
+        return "Pagamento realizado com sucesso";
+    }    
 
 
 

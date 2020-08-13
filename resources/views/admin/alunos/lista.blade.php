@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('estilo')
-
+<link rel="stylesheet" href="{{ asset('css/custon.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -13,8 +13,11 @@
 
     <br>
  
-       
-                  <a href="{{route('aluno-registra')}}" class="btn btn-primary btn-block mb-3">Registrar novo aluno</a>
+<a href="{{route('aluno-registra')}}"  class="botao-canto bg-primary">
+  <i class="fa fa-plus" aria-hidden="true"></i>
+</a>  
+<br>     
+<a href="{{route('aluno-registra')}}" class="btn btn-primary btn-block mb-3">Registrar novo aluno</a>
   
 
   

@@ -12,6 +12,7 @@
 */
 
 Route::get('/',  'SiteController@index')->name('index');
+Route::get('/home', 'SiteController@index')->name('home');
 Route::get('/sobre-nos',  'SiteController@sobre_nos')->name('sobre-nos');
 Route::get('/acao-social',  'SiteController@acao_social')->name('acao-social');
 Route::get('/instagram',  'SiteController@instagram')->name('instagram');
@@ -27,7 +28,7 @@ Route::get('/contato',  'SiteController@contato')->name('contato');
 Route::post('/contato',  'SiteController@contato_send')->name('contato');
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('/check-planos','admin\CheckController@index')->name('check-planos');
 
@@ -64,17 +65,24 @@ Route::post('/app/aluno/foto',  'admin\AlunoController@foto_form_save')->name('f
 Route::get('/app/aluno/deleta',  'admin\AlunoController@deleta_form')->name('deleta_form');
 Route::post('/app/aluno/deleta',  'admin\AlunoController@del')->name('deleta_form');
 Route::post('/app/aluno/ativo',  'admin\AlunoController@change_status')->name('aluno-ativo');  
-//Route::get('/app/aluno/{id}',  'admin\AlunoController@edita')->name('edicao-alunos');   
+//Route::get('/app/aluno/{id}',  'admin\AlunoController@edita')->name('edicao-alunos');  
+
+Route::get('/app/form-plano-manual',  'admin\PlanosController@form_plano_manual')->name('form-plano-manual'); 
 Route::get('/app/aluno/{id}',  'admin\AlunoController@aluno_detalhes')->name('edicao-alunos');  
 Route::get('/app/aluno-form/{id}',  'admin\AlunoController@aluno_form')->name('aluno-form');  
 
 
-Route::get('/app/aluno-plano/{id}',  'admin\PlanosController@aluno_plano')->name('aluno-plano');
+Route::get('/app/aluno-plano/{id}',  'admin\PlanosController@aluno_plano')->name('aluno-plano'); 
 Route::get('/app/post-plano',  'admin\PlanosController@post_plano')->name('post-plano');
 Route::get('/app/plano/lista-aulas-aluno/{id}',  'admin\PlanosController@lista_aulas_aluno')->name('lista-aulas-aluno'); 
 
 Route::get('/app/aluno/registra',  'admin\AlunoController@aluno_registra')->name('aluno-registra'); 
 Route::post('/app/aluno/registra',  'admin\AlunoController@store_aluno_registra')->name('aluno-registra'); 
+
+//Pagamento de planos
+Route::get('/app/pagmanto-plano',  'admin\PlanosController@adicionar_pagamento')->name('pagmanto-plano');
+Route::post('/app/pagmanto-plano',  'admin\PlanosController@salvar_pagamento')->name('salvar-plano');
+
 
 Route::get('/app/planos',  'admin\PlanosController@index')->name('cadastro-planos');   
 Route::get('/app/planos/form/{id}',  'admin\PlanosController@form')->name('form-planos');
@@ -114,6 +122,11 @@ Route::post('/app/lista-presenca/altera-status',  'admin\ListaPresencaController
 
 Route::get('/app/forgot-password',  'admin\PassawordController@forgot_password')->name('forgot-password'); 
 Route::post('/app/forgot-password',  'admin\PassawordController@forgot_password_send')->name('forgot-password');     
+
+
+
+Route::get('/app/relatorios/faturas',  'admin\relatorios\FaturasController@faturas')->name('relatorios-faturas');   
+
 
 use App\User;
 $p = User::where('remember_token','<>',null)->get();

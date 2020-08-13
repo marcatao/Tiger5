@@ -27,6 +27,9 @@ class Maula extends Model
         $renovacao = "Automática";
         if($this->renovacao == 0) $renovacao="Manual";
         return $renovacao;
+    }
+    public function aluno(){
+        return $this->belongsTo('App\aluno','aluno_id','id');
     } 
 
     
