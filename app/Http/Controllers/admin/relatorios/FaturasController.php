@@ -8,6 +8,6 @@ use App\Http\Controllers\Controller;
 class FaturasController extends Controller
 {
    public function faturas(){
-       return "em Desenvolvimento";
+       return view('admin.relatorios.mensalidades');
    }
 }
