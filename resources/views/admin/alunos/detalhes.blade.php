@@ -18,12 +18,14 @@
                             <li class="nav-item">
                               <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Cadastro</a>
                             </li>
+
                             <li class="nav-item">
                               <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false" onclick="plano_aluno()">Planos</a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link" id="hitorico-do-aluno-tab" data-toggle="pill" href="#hitorico-do-aluno" role="tab" aria-controls="hitorico-do-aluno" aria-selected="false" onclick="historico_aluno()">Historico</a>
                             </li>
+
                           </ul>
                         </div>
                         <div class="card-body">

@@ -1,7 +1,15 @@
 @section('conteudo')
-@php   $fotoPerfil = '/admin/profiles/nofoto.png'   @endphp
+@php   
+    $fotoPerfil = '/admin/profiles/nofoto.png';   
+    $checked = 'checked';
+@endphp
 @isset($aluno)
-  @php   $fotoPerfil = $aluno->FotoPerfil;   @endphp
+  @php  
+   $fotoPerfil = $aluno->FotoPerfil;   
+   if(!$aluno->Ativo2){
+     $checked = '';
+   }
+  @endphp
 @endisset
 
 
@@ -38,8 +46,14 @@
     </div>
      @endisset
     <div class="row">
-        <input type="checkbox" data-on-text="Ativo"  data-off-text="Inativo"  data-bootstrap-switch name="ativo" id="ativo"
-           @isset($aluno) @if($aluno->Ativo2) checked @endif @endisset>
+        <input type="checkbox" 
+               data-on-text="Ativo"  
+               data-off-text="Inativo"  
+               data-bootstrap-switch 
+               name="ativo" 
+               id="ativo"
+           {{$checked}}  
+        >
     </div>
   </div>
 

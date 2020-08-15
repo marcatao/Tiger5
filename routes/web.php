@@ -126,6 +126,7 @@ Route::post('/app/forgot-password',  'admin\PassawordController@forgot_password_
 
 
 Route::get('/app/relatorios/faturas',  'admin\relatorios\FaturasController@faturas')->name('relatorios-faturas');   
+Route::post('/app/relatorios/faturas',  'admin\relatorios\FaturasController@faturas_dados')->name('relatorios-faturas');   
 
 
 use App\User;

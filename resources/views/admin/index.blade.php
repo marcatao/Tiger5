@@ -63,6 +63,44 @@
         </div>
         <!-- /.row -->
 
+        <div class="row">
+
+          <div class="col-md-4">
+            <!-- USERS LIST -->
+            <div class="card">
+              <div class="card-header text-center">
+                <h3 class="card-title text-center"> <i class="fas fa-birthday-cake"></i> - Proximos aniversariantes.</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <ul class="users-list clearfix">
+                  @foreach ($aniversariantes as $a)
+                  @php
+                    $aluno = App\aluno::find($a->id);
+                  @endphp
+                  <a href="{{route('edicao-alunos',$a->id)}}">
+                    <li>
+                    <img src="{{$aluno->FotoPerfil}}" alt="FotoPerfil">
+                       <a class="users-list-name">{{$aluno->nome}}</a>
+                       <span class="users-list-date">@if($aluno->dt_nacito) {{date('d/m/Y', strtotime($aluno->dt_nacito))}} @endif</span>
+                    </li>
+                  </a>
+                  @endforeach
+
+                </ul>
+                <!-- /.users-list -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer text-center">
+                <a href=""> </a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!--/.card -->
+          </div>
+
+        </div>
+
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>

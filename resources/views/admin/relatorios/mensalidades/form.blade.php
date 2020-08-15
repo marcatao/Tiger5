@@ -1,12 +1,15 @@
 @extends('layouts.admin')
-
 @section('estilo')
+<link rel="stylesheet" href="{{ asset('css/custon.css')}}">
  
 @endsection
 
 
 @section('conteudo')
 
+<a href="#" onclick="printDiv('relatorios-faturas')" class="botao-canto bg-primary">
+  <i class="fa fa-print" aria-hidden="true"></i>
+</a>  
 
 <div class="col-md-12 mt-2">
     <div class="card card-primary">
@@ -49,22 +52,22 @@
 
         <div class="form-group clearfix mt-2">
           <div class="icheck-success d-inline ml-3">
-            <input type="checkbox" id="ativos">
-            <label for="ativos">
+            <input type="checkbox" id="ativos_chk" checked>
+            <label for="ativos_chk">
               Ativos
             </label>
           </div>
  
           <div class="icheck-warning d-inline ml-3">
-            <input type="checkbox" id="atrasados">
-            <label for="atrasados">
+            <input type="checkbox" id="atrasados_chk" checked>
+            <label for="atrasados_chk">
               Atrasados
             </label>
           </div>
 
           <div class="icheck-danger d-inline ml-3">
-            <input type="checkbox" id="encerrados">
-            <label for="encerrados">
+            <input type="checkbox" id="encerrados_chk" checked>
+            <label for="encerrados_chk">
               Encerrados
             </label>
           </div>
@@ -73,7 +76,10 @@
 
 </div>
 
-
+ 
+ 
+    <div id="relatorios-faturas"></div>
+ 
 
 </div></div></div>
 @endsection
@@ -83,30 +89,54 @@
 @section('scripts')
 <script>
   $(function () {
+    var date = new Date();
     $('#dt1').datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'DD/MM/YYYY',
+        date: new Date(date.getFullYear(), date.getMonth(), 1),
     });
     $('#dt2').datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'DD/MM/YYYY',
+        date: Date(date.getFullYear(), date.getMonth() + 1, 0),
     });
   });
+
 
 function prepara_data(){
     const dt1 = $('#dt1_val').val();
     const dt2 = $('#dt2_val').val();
-    
-    console.log($('#ativos').attr('checked'));
-    return ({
-        "dt1":dt1,
-        "dt2":dt2,
-    });
+    var status_id=[];
+    if($('#ativos_chk').on()[0].checked)  status_id.push(1);
+    if($('#atrasados_chk').on()[0].checked)  status_id.push(6);
+    if($('#encerrados_chk').on()[0].checked)  status_id.push(4);
+
+    return ({"dt1":dt1, "dt2":dt2,"status_id":status_id, });
 }
 
 $("#btn_carrega").click(function() {
-
+  $('#relatorios-faturas').html('Loading...');
  const data = prepara_data();
+    if(data.status_id.length == 0){
+       window.Toast.fire({icon: 'error', title: ' Selecione pelo menos 1 Status !'});
+       return;
+    }
  console.log(data);
 
+ requisicao("{{route('relatorios-faturas')}}",'post', data)
+      .then(result => {
+        $('#relatorios-faturas').html(result);
+     });
+
+
+
 });
+
+
+function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
 </script>
 @endsection

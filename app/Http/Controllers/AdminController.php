@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\aluno;
 use Carbon\Carbon;
 use App\Maula;
-
+use DB;
 
 class AdminController extends Controller
 {
@@ -16,12 +16,20 @@ class AdminController extends Controller
     }
     
     public function index(){
-        $dt = Carbon::now();
-        $dt = $dt->format('m');
+        $hoje = Carbon::now();
+        $dt = $hoje->format('m');
 
 
-        $alunos = aluno::where('academia_id',auth()->user()->academia_id)->where('ativo','1')->get();
-        $aniversariantes = aluno::whereMonth('dt_nacito',$dt)->get();
+        $alunos = aluno::where('academia_id',auth()->user()->academia_id)
+                        ->where('ativo','1')
+                        ->get();
+
+                                
+
+        $aniversariantes = DB::select("select id, date((strftime('%Y',date()))||'-'||strftime('%m',date(dt_nacito))||'-'||strftime('%d',date(dt_nacito)))
+        from aluno
+        where date((strftime('%Y',date()))||'-'||strftime('%m',date(dt_nacito))||'-'||strftime('%d',date(dt_nacito))) >= date()
+        order by date((strftime('%Y',date()))||'-'||strftime('%m',date(dt_nacito))||'-'||strftime('%d',date(dt_nacito))) limit 8");
 
         $faturas =  Maula::whereIn('status_id',[1,6])
                           ->whereMonth('dt_pagamento',$dt)
