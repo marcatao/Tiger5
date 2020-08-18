@@ -17,5 +17,9 @@ class GradeAula extends Model
     }   
     public function unidade(){
         return $this->belongsTo('App\unidades','unidade_id','id');
-    }   
+    } 
+    
+    public function status(){
+        return $this->belongsTo('App\status','status_id','id');
+    }
 }

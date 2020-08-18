@@ -63,7 +63,7 @@ class SiteController extends Controller
         $sexta = $this->grade_dia('Sexta');
         $sabado = $this->grade_dia('Sabado');
         $domingo = $this->grade_dia('Domingo');
-        $planos = planos::where('academia_id',$this->academia_id)->get();
+        $planos = planos::where('academia_id',$this->academia_id)->where('visivel_site','1')->get();
         return view('site.aulas')
                 ->with('aulas',$aulas)
                 ->with('segunda',$segunda)
@@ -85,6 +85,7 @@ class SiteController extends Controller
     public function grade_dia($dia){
        return   GradeAula::where('academia_id', $this->academia_id)
         ->where('dia',$dia)
+        ->where('status_id','1')
         ->orderBy('hora_ini','asc')
         ->get();      
     }

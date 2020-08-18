@@ -109,7 +109,7 @@ class aulasController extends Controller
         $a->dia = $request->dia;
         $a->hora_ini = $request->hora_ini;
         $a->hora_fim = $request->hora_fim;
-        $a->status_id=1;
+        $a->status_id=$request->status_id;
         $a->academia_id = auth()->user()->academia_id;
         $a->user_id = auth()->user()->id;
         $a->professor_id = $request->professor_id;

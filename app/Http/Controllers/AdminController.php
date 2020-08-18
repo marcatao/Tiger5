@@ -24,8 +24,6 @@ class AdminController extends Controller
                         ->where('ativo','1')
                         ->get();
 
-                                
-
         $aniversariantes = DB::select("select id, date((strftime('%Y',date()))||'-'||strftime('%m',date(dt_nacito))||'-'||strftime('%d',date(dt_nacito)))
         from aluno
         where date((strftime('%Y',date()))||'-'||strftime('%m',date(dt_nacito))||'-'||strftime('%d',date(dt_nacito))) >= date()

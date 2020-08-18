@@ -28,6 +28,7 @@
                     <th>Prazo</th>
                     <th>QTD Aulas</th>
                     <th>Valor</th>
+                    <th>Exibe no site</th>
                     <th> </th>
                     <th> </th>
                     
@@ -41,6 +42,12 @@
                           <td>{{$plano->duracao_dias}} dias</td>
                           <td>{{$plano->aulas->sum('qtd_aulas')}}</td>
                           <td>{{$plano->valor_plano}}</td>
+                          <td>@if($plano->visivel_site)
+                                Sim
+                              @else 
+                                Não
+                              @endif
+                          </td>
                           
                           <td><a href="{{ route('form-planos',$plano->id) }}"class="btn btn-primary">Editar</a></td>
                           <td><button class="btn btn-danger" onclick=deletar_plano({{$plano->id}})>Deletar</button></td>

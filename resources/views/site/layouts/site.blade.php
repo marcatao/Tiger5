@@ -5,3 +5,6 @@
 
 @include('site.layouts.footer')
 @include('site.layouts.scripts')
+
+@yield('scripts')
+

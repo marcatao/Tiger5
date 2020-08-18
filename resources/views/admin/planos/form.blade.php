@@ -47,7 +47,44 @@
                          <label>Valor do plano</label>
                          <input type="text" class="form-control mb-3" name='valor_plano' id='valor_plano' @isset($plano) value="{{$plano->valor_plano }}" @endisset>
                    </div> 
-                </div>   
+                  </div> <!--close row -->   
+                   <div class="row mb-5">
+                       <div class="col-md-6">
+                         @php
+                             $visivel_site = '';
+                             $visivel_valor = '';
+                             if($plano){
+                              if($plano->visivel_site == 1) $visivel_site = 'checked'; 
+                              if($plano->visivel_valor == 1) $visivel_valor = 'checked';
+                             }
+                         @endphp
+                             <label>Exibir este plano no site?</label><br>
+                              <input type="checkbox" 
+                                     data-on-text="Sim"  
+                                     data-off-text="Não"  
+                                     data-bootstrap-switch 
+                                     name="visivel_site" 
+                                     id="visivel_site"
+                                     class="mb-5 mt-3"
+                                    {{$visivel_site}}  
+                               >
+                       </div> 
+                       <div class="col-md-6">
+                        <label>Exibir valor do plano no site?</label><br>
+                        <input type="checkbox" 
+                               data-on-text="Sim"  
+                               data-off-text="Não"  
+                               data-bootstrap-switch 
+                               name="visivel_valor" 
+                               id="visivel_valor"
+                               class="mb-5 mt-3"
+                              {{$visivel_valor}}  
+                         >
+                       </div>                
+
+                   </div>
+
+                  
                     
                                   
                     <button type="submit" class="btn btn-primary btn-block mb-3"> Savlar </button>
@@ -129,8 +166,16 @@
 
 @section('scripts')
 <script src="{{asset('admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script> 
+<script src="{{asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <script>
     $(function () {
+      
+      $("input[data-bootstrap-switch]").each(function(){
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+      });
+
+
+
       @isset($message)
         window.Toast.fire({
           icon: '{{$message['type']}}',

@@ -45,6 +45,11 @@ class PlanosController extends Controller
             'duracao_dias' => 'required|integer',
             'valor_plano' => 'required|between:0,99.99',
             ]);
+        
+        $visivel_site = 0;
+        $visivel_valor =0;
+        if($request->visivel_site)  $visivel_site = 1;
+        if($request->visivel_valor) $visivel_valor = 1;
 
         ($id == 0 ) ? $plano = new planos : $plano = planos::find($id);
         
@@ -54,6 +59,8 @@ class PlanosController extends Controller
         $plano->valor_plano = (double) $request->valor_plano;
         $plano->academia_id= auth()->user()->academia_id;
         $plano->user_id = auth()->user()->id;
+        $plano->visivel_site = $visivel_site;
+        $plano->visivel_valor = $visivel_valor;
         if($plano->save()){
             $id=$plano->id;
             $message = ['type'=>'success','message'=>' Dados alterados !'];

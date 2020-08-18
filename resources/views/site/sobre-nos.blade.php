@@ -46,7 +46,7 @@
                             
                         </p>
                     </div>
-                    <div class="button about_button"><a href="{{ route('contato') }}">Fazer uma aula</a></div>
+                    <div class="button about_button"><a href="{{ route('contato') }}?assunto=Aula Experimental">Fazer uma aula</a></div>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                     <div class="extra_text">
                         <p>Venha realizar nossa aula experimental, conhcer nossa estrutura e professores</p>
                     </div>
-                    <div class="button extra_button"><a href="{{ route('contato') }}">Aula experimental</a></div>
+                    <div class="button extra_button"><a href="{{ route('contato') }}?assunto=Aula Experimental">Aula experimental</a></div>
                 </div>
             </div>
 

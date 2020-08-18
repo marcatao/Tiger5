@@ -63,22 +63,31 @@
                     </div>
 
 
-                                
+                    <div class="row">
+                      <div class="col-md-6">
                     <label>Inicio da aula</label>
-                    <div class="input-group date col-md-3" id="timepicker" data-target-input="nearest">
+                    <div class="input-group date col-md-12" id="timepicker" data-target-input="nearest">
                       <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" id="hora_ini" name="hora_ini"  @if($grade) value="{{$grade->hora_ini}}" @endif required/>
                       <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="far fa-clock"></i></div>
                       </div>
                     </div>
                     <label>Temino da aula</label>
-                    <div class="input-group date col-md-3" id="timepicker2" data-target-input="nearest">
+                    <div class="input-group date col-md-12" id="timepicker2" data-target-input="nearest">
                       <input type="text" class="form-control datetimepicker-input" data-target="#timepicker2" id="hora_fim" name="hora_fim"  @if($grade) value="{{$grade->hora_fim}}" @endif required/>
                       <div class="input-group-append" data-target="#timepicker2" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="far fa-clock"></i></div>
                       </div>
                     </div>
-                     
+                      </div>
+                      <div class="col-md-6">
+                        <label>Disponibilidade</label>
+                         <select name="status_id" id="status_id" class="form-control">
+                              <option value="1">Ativo</option>
+                              <option value="11">Indisponivel</option>
+                         </select>
+                      </div>
+                  </div>            
                     <br>
 
 
@@ -98,6 +107,7 @@
 
 <script>
 $(function () {
+  
     $('#timepicker').datetimepicker({
       format: 'HH:mm',
         pickDate: false,
@@ -115,6 +125,7 @@ $(function () {
   @if($grade)    
       $(function () {
            $('#professor_id').val({{$grade->professor_id}});
+           $('#status_id').val({{$grade->status_id}});
       });
   @endif    
   </script>

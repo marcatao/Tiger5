@@ -21,7 +21,7 @@
                             @endforeach
                              e muito mais
 							</div>
-							<div class="button home_button ml-auto mr-auto"><a href="{{ route('contato') }}">Matriculas abertas</a></div>
+							<div class="button home_button ml-auto mr-auto"><a href="{{ route('contato') }}?assunto=Matricule-se">Matricule-se</a></div>
 						</div>
 					</div>
 				</div>

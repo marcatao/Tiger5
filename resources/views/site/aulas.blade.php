@@ -245,7 +245,13 @@
                             </div>
                         
                                 <p>{{$plano->desc_plano}}</p>
-                                <h3 class="mt-3">R$ {{ number_format($plano->valor_plano,2,',','.')}}</h3>
+                                <h3 class="mt-3">
+                                    @if($plano->visivel_valor)
+                                        R$ {{ number_format($plano->valor_plano,2,',','.')}}
+                                    @else
+                                         Consulte + info                                   
+                                    @endif
+                                </h3>
                             <div class="button about_button"><a href="#" onclick="selecionaPlano()">Comprar</a></div>
                         </div>
                     </div>

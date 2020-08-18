@@ -24,13 +24,14 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>#id</th>
+ 
                     <th>Aula</th>
                     <th>Dia</th>
                     <th>Professor</th>
                     <th>Unidade</th>
                     <th>Inicio</th>
                     <th>Fim</th>
+                    <th>Dispon.</th>
                     <th> </th>
                     <th> </th>
                     
@@ -40,17 +41,18 @@
                 
                         @foreach ($grades as $grade)
                             <tr id="row_{{$grade->id}}">
-                                <td>{{$grade->id}}</td> 
+                  
                                 <td>{{$grade->aula->desc}}</td>       
                                 <td>{{$grade->dia}}</td>
                                 <td>
                                   @if($grade->professor)
-                                  {{$grade->professor->user->name}}
+                                  {{$grade->professor->user->shortName}}
                                   @endif
                                 </td>
                                 <td>@if($grade->unidade) {{$grade->unidade->titulo}} @endif</td>
                                 <td>{{$grade->hora_ini}}</td>
                                 <td>{{$grade->hora_fim}}</td>
+                                <td>{{$grade->status->descricao}}</td>
                                
                                 <td><a href="{{ route('form-grade',$grade->id) }}"class="btn btn-primary">Editar</a></td>         
                                 <td><!--<a href="{{ route('deleta-grade',$grade->id) }}"class="btn btn-danger">Deletar</a>-->

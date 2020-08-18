@@ -11,4 +11,5 @@ class planos extends Model
     public function aulas(){
         return $this->hasMany('App\aulas_plano','plano_id','id');
     }
+
 }

@@ -80,6 +80,15 @@
                                         <input type="email"  id="email" name="email" class="contact_input trans_200" placeholder="E-mail" required="required">
                                     </div>
 								</div>
+								<div class="col-lg-12">
+									<div class="input_item">
+                                        <select  id="assunto" name="assunto" class="contact_input trans_200" placeholder="Assunto" required="required">
+											<option value="contato">Contato</option>
+											<option value="Aula Experimental">Aula Experimental</option>
+											<option value="Matricule-se">Matricule-se</option>
+										</select>		
+                                    </div>
+								</div>
 							</div>
 							<div class="input_item">
                                 <textarea id="message" name="message" class="contact_input contact_textarea trans_200" placeholder="Messagem" required="required"></textarea>
@@ -102,4 +111,27 @@
 
 
 
+@endsection
+
+@section('scripts')
+<script>
+$(function () {
+	$('#assunto').val(_GET('assunto'));
+	
+});
+function _GET(name)
+{
+  var url   = window.location.search.replace("?", "");
+  var itens = url.split("&");
+
+  for(n in itens)
+  {
+    if( itens[n].match(name) )
+    {
+      return decodeURIComponent(itens[n].replace(name+"=", ""));
+    }
+  }
+  return null;
+}
+</script>
 @endsection
