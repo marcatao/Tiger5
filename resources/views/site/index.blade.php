@@ -86,7 +86,7 @@
                             
 							</p>
 						</div>
-						<div class="button about_button"><a href="{{ route('contato') }}">Fazer uma aula</a></div>
+						<div class="button about_button"><a href="{{ route('contato') }}?assunto=Aula Experimental">Fazer uma aula</a></div>
 					</div>
 				</div>
 			</div>

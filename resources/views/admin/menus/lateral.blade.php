@@ -90,6 +90,7 @@
                
               </p>
             </a>
+            
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
                 <a href="{{route('relatorios-faturas')}}" class="nav-link">
@@ -97,6 +98,12 @@
                   <p>Mensalidades</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('relatorios-aniversarios')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Aniversariantes</p>
+                </a>
+              </li>              
             </ul>
           </li>
 

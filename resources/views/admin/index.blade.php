@@ -92,7 +92,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer text-center">
-                <a href=""> </a>
+                <a href="{{route('relatorios-aniversarios')}}">Lista de aniversariantes</a>
               </div>
               <!-- /.card-footer -->
             </div>

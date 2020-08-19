@@ -12,7 +12,7 @@
 */
 
 Route::get('/',  'SiteController@index')->name('index');
-Route::get('/home', 'SiteController@index')->name('home');
+Route::get('/home', 'SiteController@index')->name('admin_index');
 Route::get('/sobre-nos',  'SiteController@sobre_nos')->name('sobre-nos');
 Route::get('/acao-social',  'SiteController@acao_social')->name('acao-social');
 Route::get('/instagram',  'SiteController@instagram')->name('instagram');
@@ -127,6 +127,9 @@ Route::post('/app/forgot-password',  'admin\PassawordController@forgot_password_
 
 Route::get('/app/relatorios/faturas',  'admin\relatorios\FaturasController@faturas')->name('relatorios-faturas');   
 Route::post('/app/relatorios/faturas',  'admin\relatorios\FaturasController@faturas_dados')->name('relatorios-faturas');   
+
+Route::get('/app/relatorios/aniversarios',  'admin\relatorios\AniversariosController@aniversarios')->name('relatorios-aniversarios');   
+Route::post('/app/relatorios/aniversarios',  'admin\relatorios\AniversariosController@aniversarios_dados')->name('relatorios-aniversarios');   
 
 
 use App\User;
