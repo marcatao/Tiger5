@@ -1,5 +1,5 @@
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="#">Tiger5</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="#">Gym09</a>.</strong>
     All rights reserved.
  
   </footer>

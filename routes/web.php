@@ -12,7 +12,7 @@
 */
 
 Route::get('/',  'SiteController@index')->name('index');
-Route::get('/home', 'SiteController@index')->name('admin_index');
+Route::get('/home', 'AdminController@index')->name('admin_index');
 Route::get('/sobre-nos',  'SiteController@sobre_nos')->name('sobre-nos');
 Route::get('/acao-social',  'SiteController@acao_social')->name('acao-social');
 Route::get('/instagram',  'SiteController@instagram')->name('instagram');
@@ -35,6 +35,7 @@ Route::get('/check-planos','admin\CheckController@index')->name('check-planos');
  
 Route::get('/app', 'AdminController@index')->name('admin_index');
 Route::get('/app/cadastro-aula',  'admin\aulasController@index')->name('cadastro-aula');
+Route::post('/app/cadastro-aula-ativa',  'admin\aulasController@cadastro_aula_ativa')->name('cadastro-aula-ativa');
 Route::get('/app/form-aula/{id}', 'admin\aulasController@form_aulas')->name('form-aula');
 Route::post('/app/form-aula/{id}','admin\aulasController@create_aulas')->name('create-form-aula');
 Route::get('/app/deleta-aula/{id}',  'admin\aulasController@delete_aulas')->name('deleta-aula');

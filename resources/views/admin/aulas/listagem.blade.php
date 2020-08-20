@@ -27,6 +27,7 @@
                     <th>#id</th>
                     <th>Descrição</th>
                     <th>WebPage</th>
+                    <th>Ativo</th>
                     <th> </th>
                     <th> </th>
                     
@@ -39,8 +40,27 @@
                                 <td>{{$aula->id}}</td>       
                                 <td>{{$aula->desc}}</td>
                                 <td><a href="{{ route('detalhe-aula',$aula->id) }}"class="btn btn-outline-primary btn-block">Conteudo da webpage</a></td>         
+                                <td class="text-center">
+                                  @php
+                                      $checked="";
+                                      if($aula->ativo==1)$checked="checked";
+                                  @endphp
+                                  <div class="row">
+                                    <input type="checkbox" 
+                                           data-on-text="Ativo"  
+                                           data-off-text="Inativo"  
+                                           data-bootstrap-switch 
+                                           name="ativo" 
+                                          id="{{$aula->id}}"
+                                          onClick="trocaAluno()"
+                                          {{$checked}}
+                                    >
+                                </div>
+
+                                </td>
                                 <td><a href="{{ route('form-aula',$aula->id) }}"class="btn btn-primary">Editar</a></td>         
                                 <td><a href="{{ route('deleta-aula',$aula->id) }}"class="btn btn-danger">Deletar</a></td> 
+                                
                             </tr>
                         @endforeach
                  
@@ -62,9 +82,17 @@
 <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-
+<script src="{{asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <script>
     $(function () {
+
+      $("input[data-bootstrap-switch]").each(function(){
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        }).on('switchChange.bootstrapSwitch', function (event, state) {
+            trocaAluno($(this).prop('checked'),this.id);
+        }); ;
+
+
       $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,
@@ -79,5 +107,13 @@
         "responsive": true,
       });
     });
+
+    function trocaAluno(st,id){
+    requisicao('{{route('cadastro-aula-ativa')}}','post',id,st)
+    .then(result => {
+        window.Toast.fire({icon: 'success', title: 'Dados Alterados'});
+        console.log(result)
+    });
+    }
   </script>
 @endsection

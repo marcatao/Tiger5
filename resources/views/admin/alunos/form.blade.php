@@ -49,7 +49,7 @@
         <input type="checkbox" 
                data-on-text="Ativo"  
                data-off-text="Inativo"  
-               data-bootstrap-switch 
+               data-bootstrap-switch  
                name="ativo" 
                id="ativo"
            {{$checked}}  

@@ -16,7 +16,7 @@
 </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020-2021 <a href="http://adminlte.io">Tiger5.com.br</a>.</strong>
+    <strong>Copyright &copy; 2020-2021 <a href="http://adminlte.io">Gym09.com.br</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> Beta

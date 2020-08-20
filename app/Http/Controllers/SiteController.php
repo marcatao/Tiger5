@@ -36,7 +36,7 @@ class SiteController extends Controller
             $midias = null;
         }
         
-        $aulas  = aulas::where('academia_id',$this->academia_id)->get();
+        $aulas  = aulas::where('academia_id',$this->academia_id)->where('ativo',1)->get();
         $unidades = unidades::where('academia_id',$this->academia_id)->get();
         return view('site.index')
         ->with('midias',$midias)
@@ -44,7 +44,7 @@ class SiteController extends Controller
         ->with('unidades',$unidades);
     }
     public function sobre_nos(){
-        $aulas  = aulas::where('academia_id',$this->academia_id)->get();
+        $aulas  = aulas::where('academia_id',$this->academia_id)->where('ativo',1)->get();
         $professores  = professor::where('academia_id',$this->academia_id)->get();
         return view('site.sobre-nos')
         ->with('professores',$professores)
@@ -83,15 +83,19 @@ class SiteController extends Controller
         return view('site.aula-detalhe')->with('aula',$detalhe);
     }
     public function grade_dia($dia){
-       return   GradeAula::where('academia_id', $this->academia_id)
-        ->where('dia',$dia)
-        ->where('status_id','1')
-        ->orderBy('hora_ini','asc')
+       return   GradeAula::join('aulas', function($join){
+                $join->on('GradeAula.aula_id','=','aulas.id')
+                ->where('aulas.ativo','=',1);
+       })
+        ->where('GradeAula.academia_id', $this->academia_id)
+        ->where('GradeAula.dia',$dia)
+        ->where('GradeAula.status_id','1')
+        ->orderBy('GradeAula.hora_ini','asc')
         ->get();      
     }
 
     public function contato(){
-        $aulas  = aulas::where('academia_id',$this->academia_id)->get();
+        $aulas  = aulas::where('academia_id',$this->academia_id)->where('ativo',1)->get();
         return view('site.contato')
         ->with('aulas',$aulas);
     }

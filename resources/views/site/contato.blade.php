@@ -31,7 +31,7 @@
 
 	<!-- Contact -->
 
-	<div class="contact">
+	<div class="contact" id="nosso_contato_div">
 		<div class="container">
 			<div class="row">
 
@@ -64,7 +64,7 @@
 				</div>
 
 				<!-- Contact Form -->
-				<div class="col-lg-8 contact_col">
+				<div class="col-lg-8 contact_col" >
 					<div class="contact_title">Mantenha Contato</div>
 					<div class="contact_form_container">
 						<form action="{{route('contato')}}" id="contact_form" class="contact_form" method="POST">
@@ -86,6 +86,7 @@
 											<option value="contato">Contato</option>
 											<option value="Aula Experimental">Aula Experimental</option>
 											<option value="Matricule-se">Matricule-se</option>
+											<option value="Informação sobre planos">Informação sobre planos</option>
 										</select>		
                                     </div>
 								</div>
@@ -117,7 +118,14 @@
 <script>
 $(function () {
 	$('#assunto').val(_GET('assunto'));
+	$('#message').html(_GET('mensagem'));
 	
+	if(_GET('assunto')){
+		$([document.documentElement, document.body]).animate({
+       		 scrollTop: $("#nosso_contato_div").offset().top
+   		}, 2000);
+		console.log('tem assunto');
+	}
 });
 function _GET(name)
 {

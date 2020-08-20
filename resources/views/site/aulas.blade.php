@@ -249,10 +249,10 @@
                                     @if($plano->visivel_valor)
                                         R$ {{ number_format($plano->valor_plano,2,',','.')}}
                                     @else
-                                         Consulte + info                                   
+                                        <p></p>                                 
                                     @endif
                                 </h3>
-                            <div class="button about_button"><a href="#" onclick="selecionaPlano()">Comprar</a></div>
+                            <div class="button about_button"><a href="{{route('contato')}}?assunto=Informação sobre planos&mensagem=Gostaria de informações sobre o plano:{{$plano->titulo_plano}}.">Consultar</a></div>
                         </div>
                     </div>
   @endforeach

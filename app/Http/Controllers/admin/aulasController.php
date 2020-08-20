@@ -37,10 +37,27 @@ class aulasController extends Controller
         $a->academia_id = auth()->user()->academia_id;
         $a->profile_id = auth()->user()->id;
         $a->resumo = $request->resumo;
+        $a->ativo = 1;
         $a->link = mb_strtolower(str_replace(' ','-', $request->desc));
         if($a->save()){
             return redirect(route('cadastro-aula'));
         }
+    }
+
+    public function cadastro_aula_ativa(Request $request){
+        $aula_id = $request->param1;
+        $ativo = $request->param2;
+        
+        if($ativo == 'true'){
+            $ativo = 1;
+        }else{
+            $ativo =0;
+        }
+        
+        $a = aulas::find($aula_id);
+        $a->ativo = $ativo;
+        if($a->save()) return "ok";
+        return "ops";
     }
 
     public function delete_aulas($id){
