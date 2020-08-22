@@ -184,7 +184,9 @@ class PlanosController extends Controller
 /////////////////////////////////////////////////////////////////////////////
     public function lista_planos_aluno($id){
 
-        $maula = Maula::where('aluno_id',$id)->orderBy('updated_at','desc')->take(15)->get();
+        $maula = Maula::where('aluno_id',$id)
+                ->whereIn('status_id',[1,6])
+                ->orderBy('updated_at','desc')->take(15)->get();
         return view('admin.planos.planos.maula-aluno')
         ->with('Maulas',$maula);
     }

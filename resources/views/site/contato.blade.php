@@ -87,6 +87,7 @@
 											<option value="Aula Experimental">Aula Experimental</option>
 											<option value="Matricule-se">Matricule-se</option>
 											<option value="Informação sobre planos">Informação sobre planos</option>
+											<option value="Produtos da vitrine">Produtos da vitrine</option>
 										</select>		
                                     </div>
 								</div>

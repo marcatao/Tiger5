@@ -10,6 +10,9 @@ use App\Admin\LoginCreate;
 use Intervention\Image\Facades\Image;
 use App\unidades;
 use App\UnidadeProfessor;
+use Carbon\Carbon;
+use App\aulas;
+use App\aulas_professor;
 
 class ProfessorController extends Controller
 {
@@ -25,9 +28,13 @@ class ProfessorController extends Controller
         ->with('message',$message);
     }
     public function form_professor($id, $message=null){
+        $professor = null;
+        $user = null;
         $professor = professor::find($id);
-
+        if($professor) $user = user::where('id',$professor->user_id)->first();
+        
         return view('admin.professor.form')
+                 ->with('user',$user)
                  ->with('id',$id)
                  ->with('professor',$professor)
                  ->with('message',$message);
@@ -35,6 +42,14 @@ class ProfessorController extends Controller
 
     public function create_professor($id,Request $request){
         $user = User::where('email',$request->email)->first();
+
+        $aniversario = $request->dt_nacito;
+        //data em ingles
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$aniversario))
+            $aniversario = Carbon::createFromFormat('Y-m-d', $aniversario);
+        //data em br
+        if (preg_match("/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4}$/",$aniversario))
+            $aniversario = Carbon::createFromFormat('d/m/Y', $aniversario);
         
         if(!$user){
             $senha = preg_replace('/[^0-9]/', '', $request->dt_nacito);
@@ -45,10 +60,26 @@ class ProfessorController extends Controller
             $user->save();
             $professor = professor::find($id);
             if(!$professor) $professor = new professor();
+
             $professor->user_id = $user->id;
             $professor->habilidades = $request->habilidades;
             $professor->academia_id = auth()->user()->academia_id;
-            $professor->dt_nacito = $request->dt_nacito;
+            $professor->dt_nacito = $aniversario->format('Y-m-d');
+            $professor->cpf           =$request->cpf        ;
+            $professor->rg            =$request->rg         ;
+            $professor->sexo          =$request->sexo       ;
+            $professor->tel           =$request->tel        ;
+            $professor->cel1          =$request->cel1       ;
+            $professor->operadora1    =$request->operadora1 ;
+            $professor->cel2          =$request->cel2       ;
+            $professor->operadora2    =$request->operadora2 ;
+            $professor->cep           =$request->cep        ;
+            $professor->rua           =$request->rua        ;
+            $professor->numero        =$request->numero     ;
+            $professor->bairro        =$request->bairro     ;
+            $professor->cidade        =$request->cidade     ;
+            $professor->estado        =$request->estado     ;
+            $professor->complemento   =$request->complemento;
             if($professor->save()){
                 $message = ['type'=>'success','message'=>' Dados alterados !'];
             }
@@ -138,5 +169,36 @@ class ProfessorController extends Controller
         }
 
     }
+
+
+
+    public function form_aula(Request $request){
+        $professor_id = $request->param1;
+        $aulas = aulas::where('academia_id',auth()->user()->academia_id)->get();
+        return view('admin.professor.form-aula')->with('professor_id',$professor_id)->with('aulas',$aulas);
+    }
+
+    public function form_aula_save(Request $request){
+        $up = aulas_professor::where('professor_id',$request->professor_id)
+                             ->where('aula_id',$request->aula_id)->first();
+        if(!$up) $up = new aulas_professor();
+        $up->professor_id = $request->professor_id;
+        $up->aula_id = $request->aula_id;
+        if($up->save()){
+            $message = ['type'=>'success','message'=>' Modalidade cadastrada com sucesso !'];
+        }
+
+        return $this->form_professor($up->professor_id,$message);
         
+    }
+
+    public function form_aula_delete($id){
+        $ap = aulas_professor::find($id);
+        if($ap){
+            $professor_id=$ap->professor_id;
+            $message = ['type'=>'success','message'=>' Modalidade excluida com sucesso !'];
+            $ap->delete();
+        }
+        return $this->form_professor($professor_id,$message);
+    }
 }

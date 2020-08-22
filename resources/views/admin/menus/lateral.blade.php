@@ -72,6 +72,13 @@
               <p>Planos</p>
             </a>
           </li>                
+          
+          <li class="nav-item">
+            <a href="{{ route('vitrine') }}" class="nav-link">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>Vitrine</p>
+            </a>
+          </li>    
 
           <li class="nav-item">
             <a href="{{ route('chamada-index') }}" class="nav-link">

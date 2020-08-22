@@ -32,7 +32,16 @@ Auth::routes();
 
 Route::get('/check-planos','admin\CheckController@index')->name('check-planos');
 
- 
+Route::get('/app/vitrine', 'admin\VitrineController@index')->name('vitrine');
+Route::get('/app/vitrine-produto', 'admin\VitrineController@vitrine_form')->name('vitrine-produto');
+Route::post('/app/vitrine-produto', 'admin\VitrineController@vitrine_save')->name('vitrine-produto');
+
+Route::get('/app/vitrine-produto/{id}', 'admin\VitrineController@vitrine_edit')->name('vitrine-produto-edit');
+Route::get('/app/vitrine-produto-delete/{id}', 'admin\VitrineController@vitrine_delete')->name('vitrine-produto-delete');
+Route::get('/app/vitrine-produto-imagem', 'admin\VitrineController@vitrine_imagem_form')->name('vitrine-imagem-edit');
+Route::post('/app/vitrine-produto-imagem', 'admin\VitrineController@vitrine_imagem_save')->name('vitrine-imagem-edit');
+Route::get('/app/vitrine-produto-imagem-del/{id}', 'admin\VitrineController@vitrine_imagem_delete')->name('vitrine-imagem-delete');
+
 Route::get('/app', 'AdminController@index')->name('admin_index');
 Route::get('/app/cadastro-aula',  'admin\aulasController@index')->name('cadastro-aula');
 Route::post('/app/cadastro-aula-ativa',  'admin\aulasController@cadastro_aula_ativa')->name('cadastro-aula-ativa');
@@ -57,6 +66,11 @@ Route::post('/app/professor/foto',  'admin\ProfessorController@foto_form_save')-
 Route::get('/app/professor/form-unidade',  'admin\ProfessorController@form_unidade')->name('professor-form-unidade');
 Route::post('/app/professor/form-unidade',  'admin\ProfessorController@form_unidade_save')->name('professor-form-unidade');
 Route::get('/app/professor/form-unidade/{id}',  'admin\ProfessorController@delete_unidade')->name('professor-delete-unidade');
+Route::get('/app/professor/form-aula',  'admin\ProfessorController@form_aula')->name('professor-form-aula');
+Route::post('/app/professor/form-aula',  'admin\ProfessorController@form_aula_save')->name('professor-form-aula');
+Route::get('/app/professor/form-aula/{id}',  'admin\ProfessorController@form_aula_delete')->name('professor-delete-aula');
+
+
 
 Route::get('/app/aluno',  'admin\AlunoController@index')->name('cadastro-alunos');  
 Route::get('/app/table/{id}',  'admin\AlunoController@index_table')->name('table-alunos'); 

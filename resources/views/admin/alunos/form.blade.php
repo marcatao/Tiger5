@@ -50,8 +50,8 @@
                data-on-text="Ativo"  
                data-off-text="Inativo"  
                data-bootstrap-switch  
-               name="ativo" 
-               id="ativo"
+               name="_ativo" 
+ 
            {{$checked}}  
         >
     </div>
@@ -267,8 +267,12 @@
 </div>
 
 </div>
+<label>Observações</label>
+<textarea class="form-control" name="obs" id="obs">
+  @isset($aluno) {{$aluno->obs}} @endisset
+</textarea>
 
-    <input type="submit" class="btn btn-primary btn-block" value="Salvar alterações">
+    <input type="submit" class="btn btn-primary btn-block mt-3" value="Salvar alterações">
   </form>  
 
   <script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>

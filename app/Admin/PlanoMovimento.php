@@ -63,7 +63,7 @@ class PlanoMovimento
         
         $dt_pagamento = Carbon::parse($dt_pagamento)->format('Y-m-d');
   
-        $Maula = new Maula();
+        $Maula = new Maula(); 
         $Maula->valor_plano = $plano->valor_plano;
         $Maula->valor_pago =  $valor_pago;
         $Maula->dt_aquisicao = Carbon::now();

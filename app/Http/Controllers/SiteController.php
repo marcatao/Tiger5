@@ -55,7 +55,7 @@ class SiteController extends Controller
     }
 
     public function aulas(){
-        $aulas  = aulas::where('academia_id',$this->academia_id)->get();
+        $aulas  = aulas::where('academia_id',$this->academia_id)->where('ativo','1')->get();
         $segunda = $this->grade_dia('Segunda');
         $terca = $this->grade_dia('Terça');
         $quarta = $this->grade_dia('Quarta');

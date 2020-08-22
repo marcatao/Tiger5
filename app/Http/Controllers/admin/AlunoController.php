@@ -106,6 +106,7 @@ class AlunoController extends Controller
             $aluno->academia_id   =auth()->user()->academia_id;
             $aluno->user_id       =$user->id;         
             $aluno->created_at    =$date;
+            $aluno->obs = $request->obs;
             $aluno = LoginCreate::AlunoCadastro($aluno);
         }//end if user
 

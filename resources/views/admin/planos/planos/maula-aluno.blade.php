@@ -3,7 +3,7 @@
             <tr>
                 <th>Pacote</th>
 
-                <th>Valor Pago</th>
+                <th>Vl Plano</th>
                 <th>Pagamento</th>
                 <th>Contratação</th>
                 <th>Pagamento</th>
@@ -23,21 +23,22 @@
             @endphp
              <tr class="{{$danger}}">
                 <td> {{$Maula->plano->titulo_plano}}</td>
-                <td>R$ {{number_format($Maula->valor_pago,2,',',',')}}</td>
+                <td>R$ {{number_format($Maula->valor_plano,2,',',',')}}</td>
                 <td> {{ $Maula->formaPagamento->descicao }}</td>
                 <td>@if($Maula->dt_aquisicao) {{date('d/m/Y', strtotime($Maula->dt_aquisicao))}} @endif</td>
                 <td>@if($Maula->dt_pagamento) {{date('d/m/Y', strtotime($Maula->dt_pagamento))}} @endif</td>
                 <td>{{$Maula->aulas->count()}} /   {{ $Maula->QtdAulasEncerradas->count() }}</td>
                 <td> {{ $Maula->RenovacaoText }}  </td>
                 <td> @if($Maula->statusDesc) 
- 
                       {{ $Maula->statusDesc->descricao }} 
                     @endif
                 </td>
                 <td> @if(   ($Maula->status_id == 6) or ($Maula->status_id==1 && $Maula->valor_pago == 0) )
                     <button class="btn btn-danger" onclick="adicionar_pagamento_maula('{{$Maula->id}}')"> Pagar </button>
+                    @elseif($Maula->status_id==1 && $Maula->valor_pago <> 0)
+                    <button class="btn btn-info"><i class="fas fa-money-bill-alt"></i></button>
                     @endif
-                </td>
+                </td> 
                 <td> 
                     <button class="btn btn-warning" onclick="chamar_form_plano_manual('{{$Maula->id}}')"> <i class="fas fa-edit"></i> </button>
                     

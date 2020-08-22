@@ -49,4 +49,5 @@
 </script>  
 
 @yield('scripts')
+@yield('scripts_')
 
