@@ -98,6 +98,10 @@ Route::post('/app/aluno/registra',  'admin\AlunoController@store_aluno_registra'
 Route::get('/app/pagmanto-plano',  'admin\PlanosController@adicionar_pagamento')->name('pagmanto-plano');
 Route::post('/app/pagmanto-plano',  'admin\PlanosController@salvar_pagamento')->name('salvar-plano');
 
+Route::get('/app/adiciona-pagmanto-plano',  'admin\PlanosController@adiciona_pagmanto_plano_form')->name('adiciona-pagmanto-plano');
+Route::post('/app/adiciona-pagmanto-plano',  'admin\PlanosController@adiciona_pagmanto_plano_save')->name('adiciona-pagmanto-plano');
+
+
 
 Route::get('/app/planos',  'admin\PlanosController@index')->name('cadastro-planos');   
 Route::get('/app/planos/form/{id}',  'admin\PlanosController@form')->name('form-planos');

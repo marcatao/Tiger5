@@ -11,7 +11,7 @@
         <th>Pagamento</th>
         <th>Data Pgto</th>
         <th>Forma Pagto</th>
-        <th>Status</th>
+        <th>Obs</th>
     </thead>
     <tbody>
     @foreach ($Maula as $r)
@@ -28,7 +28,7 @@
             <td>{{number_format($r->valor_pago,2,',','.')}}</td>
             <td>@if($r->dt_pagamento) {{date('d/m/Y', strtotime($r->dt_pagamento))}} @endif</td>
             <td>{{$r->formaPagamento->descicao}}</td>
-            <td>{{$r->statusDesc->descricao}}</td>
+            <td>@if($r->status_id == 6) {{$r->statusDesc->descricao}} @endif</td>
         </tr>
     @endforeach
     </tbody>

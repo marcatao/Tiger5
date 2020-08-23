@@ -1,4 +1,12 @@
+<link rel="stylesheet" href="{{ asset('css/custon.css')}}">
 
+<a href="#"  onclick="lancarPagamento()" class="botao-canto bg-success" alt="Adicionar pagamento">
+    <i class="fas fa-money-bill-alt" aria-hidden="true"></i>
+  </a>  
+
+@php
+    $aluno_id = 0;
+@endphp
          <table class="table table-striped table-sm">
             <tr>
                 <th>Pacote</th>
@@ -17,6 +25,7 @@
             @foreach ($Maulas as $Maula)
             @php
              $danger ='';
+             $aluno_id = $Maula->aluno_id;
              if($Maula->status_id == 6){
                  $danger = 'text-danger';
              }    
@@ -36,7 +45,7 @@
                 <td> @if(   ($Maula->status_id == 6) or ($Maula->status_id==1 && $Maula->valor_pago == 0) )
                     <button class="btn btn-danger" onclick="adicionar_pagamento_maula('{{$Maula->id}}')"> Pagar </button>
                     @elseif($Maula->status_id==1 && $Maula->valor_pago <> 0)
-                    <button class="btn btn-info"><i class="fas fa-money-bill-alt"></i></button>
+                    
                     @endif
                 </td> 
                 <td> 
@@ -49,6 +58,15 @@
         </table>    
 
 <script>
+
+function lancarPagamento(){
+    $('#modal').modal('show');
+    $('#modal-titulo').html('Selecione os Planos que serão pagos');
+    requisicao("{{route('adiciona-pagmanto-plano')}}",'GET', '{{$aluno_id}}')
+      .then(result => {
+        $('#modal-corpo').html(result);
+     });
+}
 
 function adicionar_pagamento_maula(id){
     console.log(id);

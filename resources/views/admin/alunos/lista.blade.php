@@ -11,19 +11,12 @@
 @section('conteudo')
 <div class="container-fluid">
 
-    <br>
+
  
 <a href="{{route('aluno-registra')}}"  class="botao-canto bg-primary">
   <i class="fa fa-plus" aria-hidden="true"></i>
 </a>  
-<br>     
-<a href="{{route('aluno-registra')}}" class="btn btn-primary btn-block mb-3">Registrar novo aluno</a>
-  
-
-  
-
-
-
+ 
 
             <div class="card">
               <div class="card-header">

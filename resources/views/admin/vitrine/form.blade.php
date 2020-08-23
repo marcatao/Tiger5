@@ -58,9 +58,9 @@
                 <option value="1">Exibir no website</option>
                 <option value="0">Não exibir no website</option>
             </select>
-
+ 
             <label class="mt-2">Valor</label>
-            <input type="text"   class="form-control" name="valor" id="valor" placeholder="99,99" required>
+            <input type="text" class="form-control" name="valor" id="valor" placeholder="99,99" required>
             <!--
             <label>Valor com desconto</label>
             <input type="text"   class="form-control" name="desconto" id="desconto" placeholder="99,99" required>
@@ -86,6 +86,7 @@
 @endsection
 
 @section('scripts_')
+<script src="{{asset('admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 <script src="{{asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <script>
  $(function () {
@@ -107,6 +108,17 @@
       })
     @endisset
     
+    $('#valor').inputmask('decimal', {
+                'alias': 'numeric',
+                'groupSeparator': ',',
+                'autoGroup': true,
+                'digits': 2,
+                'radixPoint': ".",
+                'digitsOptional': false,
+                'allowMinus': false,
+                'placeholder': ''
+         });
+
 });
 
 function modal(){

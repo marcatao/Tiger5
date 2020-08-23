@@ -9,10 +9,10 @@ use App\planos;
 use App\aulas;
 use App\aulas_plano;
 use App\Admin\PlanoMovimento;
-
+use Carbon\Carbon;
 use App\Maula;
 use App\Faula;
-
+use DB;
 
 class PlanosController extends Controller
 {
@@ -61,6 +61,7 @@ class PlanosController extends Controller
         $plano->user_id = auth()->user()->id;
         $plano->visivel_site = $visivel_site;
         $plano->visivel_valor = $visivel_valor;
+        $plano->qtd_aulas_semanais = $request->qtd_aulas_semanais;
         if($plano->save()){
             $id=$plano->id;
             $message = ['type'=>'success','message'=>' Dados alterados !'];
@@ -211,10 +212,68 @@ class PlanosController extends Controller
 
 
 
+public function adiciona_pagmanto_plano_form(Request $request){
+ 
+    $planosDisponiveis = Maula::where('aluno_id',$request->param1)
+    ->where('status_id',1)
+    ->where('valor_pago','>',0)
+    ->get();
+    return view('admin.planos.planos.pagamentos.selecionaPlanos')
+    ->with('planosDisponiveis',$planosDisponiveis)
+    ->with('aluno_id',$request->param1);
+
+}
+
+public function adiciona_pagmanto_plano_save(Request $request){
+   
+   try {
+        $planos = array_map('intval', $request->param1['planos_send']);
+        $aluno_id = $request->param1['aluno_id'];
+   } catch (\Throwable $th) {
+       return "Nenhum plano foi selecionado";
+   }
+  
+   
+   foreach($planos as $maula_id){
+        $this->troca_plano($maula_id);
+   }
 
 
+   return "Registros Alterados com sucesso!";
 
+}
 
+public function troca_plano($maula_id){
+    $plano = Maula::find($maula_id);
+
+    try{
+           DB::beginTransaction(); 
+           $dt_pagamento =  Carbon::createFromFormat('Y-m-d', $plano->dt_pagamento);
+           $dt_pagamento->addMonths(1);
+           $dt_pagamento = $dt_pagamento->format('Y-m-d');
+     
+           $aluno_id = $plano->aluno_id;
+           $plano_id = $plano->plano_id;
+   
+           $formapagamento_id= 0;
+           $valor_pago = 0;
+           $user_id = 1;
+           $renovacao = 1;
+           $status_id =1;
+           //echo "data pagamento".$plano->dt_pagamento;  
+           $Maula = PlanoMovimento::adiciona($aluno_id,$plano_id,$formapagamento_id,$valor_pago,$user_id,$status_id,$dt_pagamento,$renovacao,true);
+           $plano->sub = $Maula->id;
+           $plano->status_id = 4;
+           $plano->save();
+           DB::commit();
+    
+       } catch(\Exception $e){
+           //if there is an error/exception in the above code before commit, it'll rollback
+            DB::rollBack();
+            return $e->getMessage();
+            
+       } 
+}
 
 
 

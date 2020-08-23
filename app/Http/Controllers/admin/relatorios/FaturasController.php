@@ -18,15 +18,26 @@ class FaturasController extends Controller
         $dt1 = $this->ajusta_data($request->param1['dt1']);
         $dt2 = $this->ajusta_data($request->param1['dt2']);
         $status_id = $request->param1['status_id'];
-    
-        $Maula = Maula::whereBetween('dt_pagamento',[$dt1,$dt2])
-                        ->whereIn('status_id',$status_id)
-                        ->get();
+
+        if (in_array("1", $status_id)) {
+            if (in_array("6", $status_id)) {
+                $Maula = Maula::whereBetween('dt_pagamento',[$dt1,$dt2])->get();
+            }else{
+                $Maula = Maula::whereBetween('dt_pagamento',[$dt1,$dt2])
+                ->where('valor_pago','>',0)->get();
+            }    
+        }else if (in_array("6", $status_id)) {
+            $Maula = Maula::whereBetween('dt_pagamento',[$dt1,$dt2])
+            ->where('valor_pago',0)->get();
+        }       
+       
+                       
+                    
 
          return view('admin.relatorios.mensalidades.dados')
          ->with('Maula',$Maula);
    }
-
+ 
 
 
 

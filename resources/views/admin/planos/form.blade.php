@@ -81,6 +81,16 @@
                               {{$visivel_valor}}  
                          >
                        </div>                
+                       <div class="col-md-6 mt-2">
+                        <label>Quantidade Aulas semanais</label><br>
+                        <input type="number" 
+                               name="qtd_aulas_semanais" 
+                               id="qtd_aulas_semanais"
+                               class="form-control"
+                               @isset($plano) value="{{$plano->qtd_aulas_semanais }}" @endisset
+                         >
+                       </div>     
+
 
                    </div>
 

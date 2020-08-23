@@ -54,23 +54,17 @@
           <div class="icheck-success d-inline ml-3">
             <input type="checkbox" id="ativos_chk" checked>
             <label for="ativos_chk">
-              Ativos
+              Mensalidades Pagas
             </label>
           </div>
  
           <div class="icheck-warning d-inline ml-3">
             <input type="checkbox" id="atrasados_chk" checked>
             <label for="atrasados_chk">
-              Atrasados
+              Mensalidades à Pagar
             </label>
           </div>
 
-          <div class="icheck-danger d-inline ml-3">
-            <input type="checkbox" id="encerrados_chk" checked>
-            <label for="encerrados_chk">
-              Encerrados
-            </label>
-          </div>
         </div>
     </div>
 
@@ -107,7 +101,7 @@ function prepara_data(){
     var status_id=[];
     if($('#ativos_chk').on()[0].checked)  status_id.push(1);
     if($('#atrasados_chk').on()[0].checked)  status_id.push(6);
-    if($('#encerrados_chk').on()[0].checked)  status_id.push(4);
+
 
     return ({"dt1":dt1, "dt2":dt2,"status_id":status_id, });
 }

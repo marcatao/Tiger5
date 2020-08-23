@@ -23,6 +23,7 @@
       <th></th>
       <th>Nome</th>
       <th>Modalidades</th>
+      <th>Idade</th>
     </tr>
     </thead>
 
@@ -35,7 +36,7 @@
               <tr>
                 <td>{{date('d', strtotime($aluno->dt_nacito))}}</td>
                 <td><img src="{{asset($aluno->FotoPerfil)}}" class="profile-user-img img-fluid"></td>
-                <td>{{ $aluno->nome }}</td=>
+                <td>{{ $aluno->nome }}</td>
                 <td>
                 @if($aluno->ListaModalidatesAtivas()) 
                      @foreach($aluno->ListaModalidatesAtivas() as $modalidade)
@@ -45,7 +46,7 @@
                      @endforeach  
                 @endif 
                 </td>
- 
+                <td>{{date('Y', strtotime(now())) - (date('Y', strtotime($aluno->dt_nacito)))}}</td>
               </tr>  
  
           @endforeach
