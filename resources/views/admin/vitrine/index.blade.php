@@ -17,7 +17,7 @@
 <div class="col-md-12 mt-2">
   <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Produtos da Virine</h3>
+      <h3 class="card-title">Produtos da Vitrine</h3>
     </div>
     <div class="card-body">
 

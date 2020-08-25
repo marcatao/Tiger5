@@ -271,9 +271,8 @@
 <textarea class="form-control" name="obs" id="obs">
   @isset($aluno) {{$aluno->obs}} @endisset
 </textarea>
-
     <input type="submit" class="btn btn-primary btn-block mt-3" value="Salvar alterações">
-  </form>  
+ </form>  
 
   <script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
   <script src="{{asset('admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
@@ -281,11 +280,9 @@
 
   <script>
     $(function () { 
-
         $("input[data-bootstrap-switch]").each(function(){
             $(this).bootstrapSwitch('state', $(this).prop('checked'));
         });
-
         $('#dt_nacito').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
         $('#created_at').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
         $('#cpf').inputmask({ mask: ['999.999.999-99'], keepStatic: true });
