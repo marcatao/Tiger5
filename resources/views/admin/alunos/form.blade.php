@@ -46,14 +46,10 @@
     </div>
      @endisset
     <div class="row">
-        <input type="checkbox" 
-               data-on-text="Ativo"  
-               data-off-text="Inativo"  
-               data-bootstrap-switch  
-               name="_ativo" 
- 
-           {{$checked}}  
-        >
+        <select class="form-controll" name="ativo" id="ativo"> 
+            <option value="1">Ativo</option>
+            <option value="0">Inativo</option>
+        </select>
     </div>
   </div>
 
@@ -291,6 +287,7 @@
         $('#tel').inputmask({ mask: ['(99) 9999-9999'], keepStatic: true });
 
         @isset($aluno)    
+          $('#ativo').val('{{$aluno->ativo}}');
           $('#sexo').val('{{$aluno->sexo}}');
           $('#operadora1').val('{{$aluno->operadora1}}');
           $('#operadora2').val('{{$aluno->operadora2}}');
