@@ -56,8 +56,7 @@ class AlunoController extends Controller
 
 
     public function store_aluno_registra(Request $request){
-        $ativo = 0;
-        if($request->ativo) $ativo=1;
+        
 
 
         $aniversario = $request->dt_nacito;
@@ -83,7 +82,7 @@ class AlunoController extends Controller
 
         if($user){
             $aluno = new aluno;
-            $aluno->ativo         =$ativo;
+            $aluno->ativo         =$request->ativo;
             $aluno->user_id       =$request->user_id    ;
             $aluno->cpf           =$request->cpf        ;
             $aluno->rg            =$request->rg         ;

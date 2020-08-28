@@ -16,7 +16,7 @@
                 <th>Contratação</th>
                 <th>Pagamento</th>
                 <th>Aulas</th>
-                <th>Renovacao</th>
+                <th>Plano</th>
                 <th>Status</th>
                 <th> </th>
                 <th> </th>

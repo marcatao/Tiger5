@@ -17,20 +17,12 @@
                     <label> Nome da aula </label>
                     <input type="text" class="form-control" name='desc' id='desc' @if($aula) value="{{$aula->desc}}" @endif required>
                 
-                @php
-                    $checked="";
-                    if($aula->ativo==1)$checked="checked";
-                @endphp
-         
+
                   <label class="mt-3"> Ativo </label><br>
-                  <input type="checkbox" 
-                         data-on-text="Ativo"  
-                         data-off-text="Inativo"  
-                         data-bootstrap-switch 
-                         name="ativo" 
-                         id="{{$aula->id}}"
-                         {{$checked}}
-                  ><br>
+                  <select class="form-control" name="ativo" id="ativo">
+                      <option value="1">Ativo</option>
+                      <option value="0">Inativo</option>
+                  </select>
             
              
                     <label class="mt-3">Resumo</label>
@@ -52,12 +44,9 @@
 
 <script>
   $(function () {
-
-    $("input[data-bootstrap-switch]").each(function(){
-          $(this).bootstrapSwitch('state', $(this).prop('checked'));
-      }).on('switchChange.bootstrapSwitch', function (event, state) {
-          trocaAluno($(this).prop('checked'),this.id);
-      }); ;
+    @if($aula)
+      $('#ativo').val('{{$aula->ativo}}');
+    @endif
   });
 
   function trocaAluno(st,id){

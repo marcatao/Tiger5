@@ -37,7 +37,7 @@ class aulasController extends Controller
         $a->academia_id = auth()->user()->academia_id;
         $a->profile_id = auth()->user()->id;
         $a->resumo = $request->resumo;
-        $a->ativo = 1;
+        $a->ativo = $request->ativo;
         $a->link = mb_strtolower(str_replace(' ','-', $request->desc));
         if($a->save()){
             return redirect(route('cadastro-aula'));

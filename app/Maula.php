@@ -24,8 +24,8 @@ class Maula extends Model
         return $this->hasMany('App\Faula','maula_id','id')->whereNotIn('status_id',[10]);
     }    
     public function getRenovacaoTextAttribute() {
-        $renovacao = "Automática";
-        if($this->renovacao == 0) $renovacao="Manual";
+        $renovacao = "Mensal";
+        if($this->renovacao == 0) $renovacao="Unico";
         return $renovacao;
     }
     public function aluno(){

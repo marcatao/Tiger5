@@ -24,11 +24,10 @@
             </select>
         </div>
         <div class="col-md-3">
-            <label>Renovação:</label>
+            <label>Plano:</label>
             <select class="form-control" id="renovacao" name="renovacao">
-                <option value="0">Manual</option>
-                <option value="1">Automática</option>
-
+                <option value="1">Mensal</option>
+                <option value="0">Unico</option>
             </select>
         </div>
 
