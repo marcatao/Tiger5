@@ -82,6 +82,11 @@ class SiteController extends Controller
         $detalhe = aula_detalhe::where('aula_id',$aula->id)->first();
         return view('site.aula-detalhe')->with('aula',$detalhe);
     }
+    public function parceria_detalhe($id){
+         return $id;
+    }
+
+
     public function grade_dia($dia){
        return   GradeAula::join('aulas', function($join){
                 $join->on('GradeAula.aula_id','=','aulas.id')
@@ -101,20 +106,19 @@ class SiteController extends Controller
     }
 
     public function contato_send(Request $request){
-
         $admin = User::where('academia_id', $this->academia_id)
                        ->where('profile_id','0')
                        ->get();
         foreach ($admin as $u) {
             Mail::to($u->email)->send(new ContactMail($request));
         }
-        
         return redirect(route('index'));
-
     }
 
 
-
+    public function produtos(){
+        return view('site.produtos');
+    }
     public function instagram(){
 
     //https://github.com/pgrimaud/instagram-user-feed#installation-of-version-50   

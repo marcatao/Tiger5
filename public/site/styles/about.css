@@ -399,7 +399,7 @@ section
 }
 .main_nav ul li:not(:last-of-type)
 {
-	margin-right: 65px;
+	margin-right: 40px;
 }
 .main_nav ul li a
 {

@@ -17,12 +17,19 @@ Route::get('/sobre-nos',  'SiteController@sobre_nos')->name('sobre-nos');
 Route::get('/acao-social',  'SiteController@acao_social')->name('acao-social');
 Route::get('/instagram',  'SiteController@instagram')->name('instagram');
 Route::get('/aulas',  'SiteController@aulas')->name('aulas');
-
+Route::get("/parcerias/{id}", 'SiteController@parceria_detalhe')->name("parcerias_site");
+Route::get('/parcerias-tigerthai',  'SiteController@acao_social')->name('acao-parcerias-site');
+Route::get('/produtos-tigerthai',  'SiteController@produtos')->name('acao-produtos-site');
 use App\aulas;
 $a = aulas::all();
 foreach($a as $aa){
   Route::get("/aulas/".$aa->link, 'SiteController@aula_detalhe')->name($aa->link);
 }
+
+
+
+
+
 
 Route::get('/contato',  'SiteController@contato')->name('contato');
 Route::post('/contato',  'SiteController@contato_send')->name('contato');
@@ -31,6 +38,11 @@ Auth::routes();
 
 
 Route::get('/check-planos','admin\CheckController@index')->name('check-planos');
+
+Route::get('/app/parcerias', 'admin\ParceriasController@index')->name('parcerias-index');    
+Route::get('/app/parceria-cadastro/{id}', 'admin\ParceriasController@parceria_cadastro')->name('parceria-cadastro');
+Route::post('/app/parceria-cadastro/{id}', 'admin\ParceriasController@parceria_store')->name('parceria-cadastro');
+Route::get('/app/parceria-delete/{id}', 'admin\ParceriasController@parceria_delete')->name('parceria-delete');
 
 Route::get('/app/vitrine', 'admin\VitrineController@index')->name('vitrine');
 Route::get('/app/vitrine-produto', 'admin\VitrineController@vitrine_form')->name('vitrine-produto');

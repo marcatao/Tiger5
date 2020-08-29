@@ -421,7 +421,7 @@ section
 }
 .main_nav ul li:not(:last-of-type)
 {
-	margin-right: 65px;
+	margin-right: 40px;
 }
 .main_nav ul li a
 {
@@ -1336,4 +1336,10 @@ section
 .servicos .titulo{
 	height: 8vh;
 	vertical-align: middle;
+}
+.parcerias_item{
+	padding: 30px;
+}
+.section_title{
+	font-size: 40px;
 }

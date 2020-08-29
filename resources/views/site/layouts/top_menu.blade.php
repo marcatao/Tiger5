@@ -19,7 +19,8 @@
                                     <li class="active"><a href="{{route('index')}}">Inicio</a></li>
                                     <li><a href="{{route('sobre-nos')}}">Sobre nós</a></li>
                                     <li><a href="{{route('aulas')}}">Aulas</a></li>
-                                    <li><a href="{{route('acao-social')}}">Ação Social</a></li>
+                                    <li><a href="{{route('acao-parcerias-site')}}">Parcerias</a></li>
+                                    @if(count(App\vitrine::where('ativo',1)->get())) <li><a href="{{route('acao-produtos-site')}}">Produtos</a></li> @endif
                                     <li><a href="{{route('contato')}}">Contato</a></li>
                                     <li><a href="{{route('admin_index')}}">Aluno</a></li>
                                 </ul>
@@ -60,7 +61,8 @@
 				<li><a href="{{route('index')}}">Inicio</a></li>
 				<li><a href="{{route('sobre-nos')}}">Sobre nós</a></li>
 				<li><a href="{{route('aulas')}}">Aulas</a></li>
-				<li><a href="{{route('acao-social')}}">Ação Social</a></li>
+                <li><a href="{{route('acao-parcerias-site')}}">Parcerias</a></li>
+                @if(count(App\vitrine::where('ativo',1)->get())) <li><a href="{{route('acao-produtos-site')}}">Produtos</a></li> @endif
                 <li><a href="{{route('contato')}}">Contato</a></li>
                 <li><a href="{{route('admin_index')}}">Aluno</a></li>
 			</ul>

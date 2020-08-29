@@ -80,7 +80,7 @@
                                         <input type="email"  id="email" name="email" class="contact_input trans_200" placeholder="E-mail" required="required">
                                     </div>
 								</div>
-								<div class="col-lg-12">
+								<div class="col-lg-6">
 									<div class="input_item">
                                         <select  id="assunto" name="assunto" class="contact_input trans_200" placeholder="Assunto" required="required">
 											<option value="contato">Contato</option>
@@ -91,6 +91,12 @@
 										</select>		
                                     </div>
 								</div>
+								<div class="col-lg-6">
+									<div class="input_item">
+                                        <input type="text"  id="celular" name="celular" class="contact_input trans_200" placeholder="Celular (Whatsapp)" required="required">
+                                    </div>
+								</div>
+
 							</div>
 							<div class="input_item">
                                 <textarea id="message" name="message" class="contact_input contact_textarea trans_200" placeholder="Messagem" required="required"></textarea>
