@@ -120,7 +120,14 @@ class aulasController extends Controller
 
     public function create_grade(Request $request){
         $a = GradeAula::find($request->id);
-
+        if($request->dia == 'Segunda') $cod_dia = 1;
+        if($request->dia == 'Terça')   $cod_dia = 2;
+        if($request->dia == 'Quarta')  $cod_dia = 3;
+        if($request->dia == 'Quinta')  $cod_dia = 4;
+        if($request->dia == 'Sexta')   $cod_dia = 5;
+        if($request->dia == 'Sabado')  $cod_dia = 6;
+        if($request->dia == 'Domingo') $cod_dia = 7;
+        
         if(!$a) $a = new GradeAula;
         $a->aula_id = $request->aula_id;
         $a->dia = $request->dia;
@@ -131,6 +138,7 @@ class aulasController extends Controller
         $a->user_id = auth()->user()->id;
         $a->professor_id = $request->professor_id;
         $a->unidade_id = $request->unidade_id;
+        $a->cod_dia = $cod_dia;
         
         if($a->save()){
             return redirect(route('grade-aula'));

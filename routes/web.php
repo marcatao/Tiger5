@@ -92,7 +92,9 @@ Route::post('/app/aluno/foto',  'admin\AlunoController@foto_form_save')->name('f
 Route::get('/app/aluno/deleta',  'admin\AlunoController@deleta_form')->name('deleta_form');
 Route::post('/app/aluno/deleta',  'admin\AlunoController@del')->name('deleta_form');
 Route::post('/app/aluno/ativo',  'admin\AlunoController@change_status')->name('aluno-ativo');  
-//Route::get('/app/aluno/{id}',  'admin\AlunoController@edita')->name('edicao-alunos');  
+Route::get('/app/aluno/horario_aluno',  'admin\AlunoController@horario_aluno')->name('horario-aluno');
+Route::get('/app/aluno/selecao_grade_aluno',  'admin\AlunoController@selecao_grade_aluno')->name('selecao_grade_aluno');
+Route::post('/app/aluno/selecao_grade_aluno',  'admin\AlunoController@selecao_grade_aluno_store')->name('selecao_grade_aluno');
 
 Route::get('/app/form-plano-manual',  'admin\PlanosController@form_plano_manual')->name('form-plano-manual'); 
 Route::get('/app/aluno/{id}',  'admin\AlunoController@aluno_detalhes')->name('edicao-alunos');  

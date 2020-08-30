@@ -5,6 +5,11 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\aluno;
+use App\aulas_plano;
+use App\GradeAula;
+use App\planos;
+use App\grade_aluno;
+
 use App\User;
 use App\Admin\LoginCreate;
 use Intervention\Image\Facades\Image;
@@ -168,4 +173,55 @@ class AlunoController extends Controller
             return $this->index($message);
         }
     }
+
+    public function horario_aluno(Request $request){
+        $aluno = aluno::find($request->param1);
+        return view('admin.alunos.horarios.exibe-horarios-aluno')
+        ->with('aluno',$aluno);
+    }
+    public function selecao_grade_aluno(Request $request){
+        $aluno_id = $request->param1;
+        $plano_id = $request->param2;
+        $plano = planos::find($plano_id);
+
+        $aulas = aulas_plano::where('plano_id',$plano_id)
+                            ->pluck('aula_id')->toArray();
+
+        $grades = GradeAula::whereIn('aula_id',$aulas)
+                           ->where('status_id',1)
+                           ->get();
+        
+        $grade_aluno = grade_aluno::where('aluno_id',$aluno_id)->pluck('gradeAula_id')->toArray();
+
+        $qt_disponivel = $plano->qtd_aulas_semanais - count($grade_aluno);
+        return view('admin.alunos.horarios.selecao-grade-aluno')
+        ->with('grade_aluno',$grade_aluno)
+        ->with('grades',$grades)
+        ->with('qt_disponivel',$qt_disponivel)
+        ->with('aluno_id',$aluno_id);
+    
+    }
+
+    public function selecao_grade_aluno_store(Request $request){
+        $action = $request->param1;
+        $gradeAula_id = $request->param2;
+        $aluno_id = $request->param3;
+
+        $old = grade_aluno::where('aluno_id',$aluno_id)
+                            ->where('gradeAula_id', $gradeAula_id)
+                            ->first();
+        
+        if($old) $old->delete();
+        
+        if($action == 'true'){
+            $new = new grade_aluno();
+            $new->aluno_id = $aluno_id;
+            $new->gradeAula_id = $gradeAula_id;
+            $new->save();
+            return 'true';
+        }
+        return 'false';
+    }
+
+
 }

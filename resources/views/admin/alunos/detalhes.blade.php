@@ -22,6 +22,11 @@
                             <li class="nav-item">
                               <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false" onclick="plano_aluno()">Planos</a>
                             </li>
+                            
+                            <li class="nav-item">
+                              <a class="nav-link" id="horario_aluno-tab" data-toggle="pill" href="#horario_aluno" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false" onclick="horario_aluno()">Horários</a>
+                            </li>
+
                             <li class="nav-item">
                               <a class="nav-link" id="hitorico-do-aluno-tab" data-toggle="pill" href="#hitorico-do-aluno" role="tab" aria-controls="hitorico-do-aluno" aria-selected="false" onclick="historico_aluno()">Historico</a>
                             </li>
@@ -37,6 +42,9 @@
                             <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                                Loading...<!--Planos -->
                             </div>
+                            <div class="tab-pane fade" id="horario_aluno" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                              Loading horarios...<!--horario_aluno -->
+                           </div>
                             <div class="tab-pane fade" id="hitorico-do-aluno" role="tabpanel" aria-labelledby="hitorico-do-aluno-tab">
                               Loading historico...<!--Planos -->
                            </div>
@@ -93,6 +101,13 @@ function historico_aluno(){
     .then($("#hitorico-do-aluno").html("Carregando, aguarde..."))
     .then(result => {
         $("#hitorico-do-aluno").html(result);
+    });
+}
+function horario_aluno(){
+  requisicao('{{route('horario-aluno')}}','get', '{{$id}}')
+    .then($("#horario_aluno").html("Carregando, aguarde..."))
+    .then(result => {
+        $("#horario_aluno").html(result);
     });
 }
 
