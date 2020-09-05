@@ -36,8 +36,10 @@ Route::post('/contato',  'SiteController@contato_send')->name('contato');
 
 Auth::routes();
 
-
+//webhooks
 Route::get('/check-planos','admin\CheckController@index')->name('check-planos');
+Route::get('/lembrete-email-mensalidade','admin\lembrete\MensalidadeController@index')->name('lembrete-email-mensalidade');
+
 
 Route::get('/app/parcerias', 'admin\ParceriasController@index')->name('parcerias-index');    
 Route::get('/app/parceria-cadastro/{id}', 'admin\ParceriasController@parceria_cadastro')->name('parceria-cadastro');

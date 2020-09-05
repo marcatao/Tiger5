@@ -97,7 +97,7 @@
                   
                     
                                   
-                    <button type="submit" class="btn btn-primary btn-block mb-3"> Savlar </button>
+                    <button type="submit" class="btn btn-primary btn-block mb-3"> Salvar </button>
                     <a href="{{route('cadastro-planos')}}" class="btn btn-outline-warning btn-block">Voltar</a>
                 </form>   
             </div>  

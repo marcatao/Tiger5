@@ -43,7 +43,7 @@
                   @if($aluno->ListaModalidatesAtivas()) 
                   @foreach($aluno->ListaModalidatesAtivas() as $modalidade)
                     @if($modalidade)
-                     {{date('d', strtotime($modalidade->dt_pagamento))}}
+                     {{date('d/m/Y', strtotime($modalidade->dt_pagamento))}}
                      @break
                     @endif
                   @endforeach  

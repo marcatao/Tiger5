@@ -5,10 +5,33 @@
                    ->get() as $planos)
     <table style="width: 100%">                   
     <thead>
-        <th>{{$planos->plano->titulo_plano}}</th>
-        <th class="justify-content-end"><button class="btn btn-primary" onclick="select_grade('{{$planos->plano->id}}')"> + Horario</button></th>
+        <th>{{$planos->plano->titulo_plano}} - {{$planos->plano->qtd_aulas_semanais}} aulas semanalmente.</th>
+        <th class="justify-content-end"><button class="btn btn-primary" onclick="select_grade('{{$planos->plano->id}}')">Editar Grade Aula</button></th>
     </thead>
+    <tbody>
+        @php
+        
+        $aulas = App\aulas_plano::where('plano_id',$planos->plano->id)
+                            ->pluck('aula_id')->toArray();
 
+        $grade_aluno = App\grade_aluno::where('grade_aluno.aluno_id',$aluno->id)
+                                  ->join('GradeAula', 'GradeAula.id','=','grade_aluno.GradeAula_id')
+                                  ->whereIn('GradeAula.aula_id',$aulas)
+                                  ->pluck('grade_aluno.gradeAula_id')
+                                  ->toArray();
+
+        $horarios = App\GradeAula::whereIn('id', $grade_aluno)->get();
+
+        @endphp
+
+        @foreach ($horarios as $grade)
+            <tr>
+                <td>{{$grade->dia}} ({{$grade->hora_ini}} - {{$grade->hora_fim}})</td>  
+                <td> </td> 
+                
+            </tr>            
+        @endforeach
+    </tbody>
     </table>
     <hr>
 @endforeach

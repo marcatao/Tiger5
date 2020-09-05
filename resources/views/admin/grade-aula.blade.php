@@ -32,6 +32,7 @@
                     <th>Inicio</th>
                     <th>Fim</th>
                     <th>Dispon.</th>
+                    <th>Alunos</th>
                     <th> </th>
                     <th> </th>
                     
@@ -53,7 +54,10 @@
                                 <td>{{$grade->hora_ini}}</td>
                                 <td>{{$grade->hora_fim}}</td>
                                 <td>{{$grade->status->descricao}}</td>
-                               
+                                <td>
+                                  {{ App\grade_aluno::where('gradeAula_id',$grade->id)->count()}}
+                                  
+                                </td>
                                 <td><a href="{{ route('form-grade',$grade->id) }}"class="btn btn-primary">Editar</a></td>         
                                 <td><!--<a href="{{ route('deleta-grade',$grade->id) }}"class="btn btn-danger">Deletar</a>-->
                                   <button class="btn btn-danger" onclick=deletar_grade({{ $grade->id}})>Deletar</button>

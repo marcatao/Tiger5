@@ -49,7 +49,11 @@
              <input type="text" class="form-control" name="produto" id="produto" placeholder="Titulo do produto" required>
 
              <label>Detalhes do produto</label>
-             <textarea rows="7" class="form-control" name="descritivo" id="descritivo" placeholder="Um detalhamento opcional do produto"></textarea>
+             <textarea rows="7" class="form-control" name="descritivo" id="descritivo" placeholder="Um detalhamento opcional do produto">
+               @isset($vitrine)
+               {!!$vitrine->descritivo!!}
+               @endisset
+             </textarea>
         </div>
         <div class="col-md-3">
 
@@ -93,7 +97,7 @@
     @isset($vitrine)
       $('#id').val('{{$vitrine->id}}');
       $('#produto').val('{{$vitrine->produto}}');
-      $('#descritivo').val('{{$vitrine->descritivo}}');
+      
       $('#ativo').val('{{$vitrine->ativo}}');
       $('#valor').val('{{$vitrine->valor}}');
       //$('#desconto').val('{{$vitrine->desconto}}');

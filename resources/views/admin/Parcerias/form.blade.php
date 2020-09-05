@@ -53,16 +53,18 @@
   
                     <div class="form-group">
                       <label>Conteudo da pagina:</label>
-                      <textarea id="texto" name="texto" class="form-control" style="height: 300px"></textarea>
+                      <textarea id="texto" name="texto" class="form-control" style="height: 300px">
+                        @isset($p)
+                        {!!$p->texto!!}
+                      @endisset
+                    </textarea>
                     </div>
  
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
                      <button type="submit" class="btn btn-outline-primary btn-block" onclick="save()">Salvar</button>
-                     @isset($p)
-              <a class="btn btn-outline-alert btn-block" href="{{route('parcerias_site',$id)}}" target="_blank" >Ver como esta ficando...</a>
-                    @endisset
+    
               </div>
 
             </form>
@@ -86,7 +88,7 @@
       @isset($p)
         $('#sub_titulo').val('{{$p->sub_titulo}}');
         $('#titulo').val('{{$p->titulo}}');
-        $('#texto').html('{{$p->texto}}');
+ 
       @endisset 
       @isset($message)
       window.Toast.fire({

@@ -10,9 +10,9 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+         <!-- <div class="image">
           <img src="{{asset('admin/dist/img/avatar5.png')}}" class="img-circle elevation-2" alt="User Image">
-        </div>
+        </div>-->
         <div class="info">
           <a href="#" class="d-block">{{ ucfirst(trans(Auth::user()->ShortName)) }}</a>
         </div>
@@ -80,12 +80,12 @@
             </a>
           </li>    
 
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a href="{{ route('chamada-index') }}" class="nav-link">
               <i class="nav-icon fas fa-address-book"></i>
               <p>Lista presença</p>
             </a>
-          </li> 
+          </li> -->
           <li class="nav-item">
             <a href="{{ route('parcerias-index') }}" class="nav-link">
               <i class="nav-icon far fa-handshake"></i>

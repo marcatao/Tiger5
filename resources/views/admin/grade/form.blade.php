@@ -99,7 +99,34 @@
             <!-- /.card -->
 
 
-</div>
+
+@if($grade)   
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Alunos que participam dessa grade</h3>
+  </div>
+  
+  <div class="card-body">
+    @php
+        $alunos = App\grade_aluno::where('gradeAula_id',$grade->id)->pluck('aluno_id')->toArray();
+        $alunos = App\aluno::whereIn('id',$alunos)->get();
+    @endphp
+
+      @foreach ($alunos as $aluno)
+          <a href="{{route('edicao-alunos',$aluno->id)}}" target="_blank">
+            <tr class="mao">
+            <td style="cursor: pointer;"><img src="{{asset($aluno->FotoPerfil)}}" class="profile-user-img img-fluid"></td>
+            <td>{{$aluno->nome}}</td>
+          </tr>
+          </a>
+      @endforeach
+
+  </div>
+</div>   
+
+@endif
+
+</div><!--container -->
 @endsection
 
 @section('scripts')

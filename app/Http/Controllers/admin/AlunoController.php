@@ -191,7 +191,11 @@ class AlunoController extends Controller
                            ->where('status_id',1)
                            ->get();
         
-        $grade_aluno = grade_aluno::where('aluno_id',$aluno_id)->pluck('gradeAula_id')->toArray();
+        $grade_aluno = grade_aluno::where('grade_aluno.aluno_id',$aluno_id)
+                                  ->join('GradeAula', 'GradeAula.id','=','grade_aluno.GradeAula_id')
+                                  ->whereIn('GradeAula.aula_id',$aulas)
+                                  ->pluck('grade_aluno.gradeAula_id')
+                                  ->toArray();
 
         $qt_disponivel = $plano->qtd_aulas_semanais - count($grade_aluno);
         return view('admin.alunos.horarios.selecao-grade-aluno')

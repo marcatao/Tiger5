@@ -46,7 +46,7 @@
     </div>
      @endisset
     <div class="row">
-        <select class="form-controll" name="ativo" id="ativo"> 
+        <select class="form-control" name="ativo" id="ativo"> 
             <option value="1">Ativo</option>
             <option value="0">Inativo</option>
         </select>

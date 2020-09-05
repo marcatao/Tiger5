@@ -31,7 +31,11 @@
     <tbody>
       @isset($alunos)
       @if ($alunos)
-          @foreach ($alunos as $aluno)
+      @php $sorted = $alunos->sortKeys(); @endphp
+ 
+          @foreach ($sorted as $aluno_dia)
+            @foreach ($aluno_dia as $aluno)
+            
             @php $status = "Em dia"; @endphp
               <tr>
                 <td>{{date('d', strtotime($aluno->dt_nacito))}}</td>
@@ -48,7 +52,8 @@
                 </td>
                 <td>{{date('Y', strtotime(now())) - (date('Y', strtotime($aluno->dt_nacito)))}}</td>
               </tr>  
- 
+                
+              @endforeach
           @endforeach
       @endif    
      @endisset
