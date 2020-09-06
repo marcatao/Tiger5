@@ -49,11 +49,11 @@
              <input type="text" class="form-control" name="produto" id="produto" placeholder="Titulo do produto" required>
 
              <label>Detalhes do produto</label>
-             <textarea rows="7" class="form-control" name="descritivo" id="descritivo" placeholder="Um detalhamento opcional do produto">
-               @isset($vitrine)
-               {!!$vitrine->descritivo!!}
-               @endisset
-             </textarea>
+             <textarea rows="7" 
+                       class="form-control" 
+                       name="descritivo" 
+                       id="descritivo">@isset($vitrine){!!$vitrine->descritivo!!}@endisset
+              </textarea>
         </div>
         <div class="col-md-3">
 
@@ -92,8 +92,22 @@
 @section('scripts_')
 <script src="{{asset('admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 <script src="{{asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+<script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
+
+
 <script>
  $(function () {
+  $('#descritivo').summernote({
+    toolbar: [
+        //[groupname, [button list]]
+
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['color', ['color']],
+        
+        
+    ]
+  });
+
     @isset($vitrine)
       $('#id').val('{{$vitrine->id}}');
       $('#produto').val('{{$vitrine->produto}}');

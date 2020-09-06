@@ -92,7 +92,8 @@
 
 
                   
-                    <button type="submit" class="btn btn-primary btn-block"> Savlar </button>
+                    <button type="submit" class="btn btn-primary btn-block mb-1"> Salvar </button>
+                    <a href="{{route('grade-aula')}}" class="btn btn-outline-warning btn-block"> Voltar </a>
               </div>
               <!-- /.card-body -->
             </div>
@@ -111,16 +112,16 @@
         $alunos = App\grade_aluno::where('gradeAula_id',$grade->id)->pluck('aluno_id')->toArray();
         $alunos = App\aluno::whereIn('id',$alunos)->get();
     @endphp
-
+    <table class="table">
       @foreach ($alunos as $aluno)
-          <a href="{{route('edicao-alunos',$aluno->id)}}" target="_blank">
-            <tr class="mao">
-            <td style="cursor: pointer;"><img src="{{asset($aluno->FotoPerfil)}}" class="profile-user-img img-fluid"></td>
-            <td>{{$aluno->nome}}</td>
+          <a href="{{route('edicao-alunos',$aluno->id)}}" target="_blank" class="mb-3">
+            <tr class="mao mb-3">
+            <td style="cursor: pointer;" ><img src="{{asset($aluno->FotoPerfil)}}"  width='50px' class="profile-user-img img-fluid"></td>
+            <td><h4>{{$aluno->nome}}</h4></td>
           </tr>
           </a>
       @endforeach
-
+    </table>
   </div>
 </div>   
 

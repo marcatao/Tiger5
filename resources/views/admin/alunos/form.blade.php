@@ -46,11 +46,17 @@
     </div>
      @endisset
     <div class="row">
-        <select class="form-control" name="ativo" id="ativo"> 
+        <select class="form-control" name="ativo" id="ativo" onchange="verificaSePode(this.value)"> 
             <option value="1">Ativo</option>
             <option value="0">Inativo</option>
         </select>
     </div>
+  </div>
+  <div class="col-md-5"></div>
+  <div class="col-md-2 pull-right">
+    <label for="dia_venc">Dia vencimento</label>
+    <input type="number" name="dia_venc" id="dia_venc" min="1" max="31" class="form-control" required>
+    <small class="text-muted">Válido somente para proximos lançamentos</small>
   </div>
 
   </div> 
@@ -264,9 +270,7 @@
 
 </div>
 <label>Observações</label>
-<textarea class="form-control" name="obs" id="obs">
-  @isset($aluno) {{$aluno->obs}} @endisset
-</textarea>
+<textarea class="form-control" name="obs" id="obs">@isset($aluno){{$aluno->obs}}@endisset</textarea>
     <input type="submit" class="btn btn-primary btn-block mt-3" value="Salvar alterações">
  </form>  
 
@@ -292,6 +296,7 @@
           $('#operadora1').val('{{$aluno->operadora1}}');
           $('#operadora2').val('{{$aluno->operadora2}}');
           $('#estado').val('{{$aluno->estado}}');
+          $('#dia_venc').val('{{$aluno->dia_venc}}');
         @endisset
 
         @if(!$aluno)
@@ -357,5 +362,14 @@ function modal(){
 
 }
 
+
+function verificaSePode(val){
+  @if($desativar == 0)
+    if (val == 0){
+       alert('Primeiro cancele os planos ativos do aluno na Aba "Planos", para poder desativar o aluno');
+       $('#ativo').val('1');
+    }
+  @endif
+}
 
 </script>

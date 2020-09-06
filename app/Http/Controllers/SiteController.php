@@ -132,4 +132,10 @@ class SiteController extends Controller
     }
 
  
+    public function vitrine_detalhe(Request $request){
+        $link = $request->route()->action['as'];
+        $id = str_replace('produto_','',$link);
+        $produto = \App\vitrine::find($id);
+         return view('site.vitrine.detalhe-produto')->with('produto',$produto);
+    }
 }

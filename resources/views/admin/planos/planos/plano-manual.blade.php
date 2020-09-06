@@ -43,7 +43,12 @@
                             data-target="#dt_pagamento" 
                             id="dt_pagamento_val" 
                             name="dt_pagamento_val" 
-                            @if($Maula) value="{{date('d/m/Y', strtotime($Maula->dt_pagamento))}}" @endif
+                            @if($Maula) value="{{date('d/m/Y', strtotime($Maula->dt_pagamento))}}"
+                            @else 
+                                @if ($alunos[0]->dia_venc)
+                                value="{{$alunos[0]->dia_venc}}{{date('/m/Y', strtotime(now()))}}" 
+                                @endif
+                            @endif
                             required/>
                       <div class="input-group-append" data-target="#dt_pagamento" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>

@@ -76,6 +76,7 @@ class LoginCreate
         $aluno->academia_id   =$alunoPass->academia_id;
         $aluno->user_id       =$alunoPass->user_id;         
         $aluno->created_at    =$alunoPass->created_at;
+        $aluno->dia_venc    =$alunoPass->dia_venc;
         $aluno->obs    =$alunoPass->obs;
         $aluno->save();
           $array = ['to_user_id' => $aluno->user_id,'icon' => 'fas fa-envelope bg-blue','mensagem' => $mensagem_historico ];  

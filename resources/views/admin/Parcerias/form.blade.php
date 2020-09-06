@@ -53,11 +53,12 @@
   
                     <div class="form-group">
                       <label>Conteudo da pagina:</label>
-                      <textarea id="texto" name="texto" class="form-control" style="height: 300px">
-                        @isset($p)
-                        {!!$p->texto!!}
-                      @endisset
-                    </textarea>
+                      <textarea id="texto" 
+                                name="texto" 
+                                class="form-control" 
+                                style="height: 300px">
+                                @isset($p){!!$p->texto!!}@endisset
+                      </textarea>
                     </div>
  
               </div>

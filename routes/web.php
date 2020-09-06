@@ -173,5 +173,12 @@ foreach($p as $pp){
   Route::get("/forgot-password/".$pp->remember_token, 'admin\PassawordController@form_novasenha')->name($pp->remember_token);
 }
 
+ 
+$vitrine = App\vitrine::where('ativo',1)->get();
+foreach($vitrine as $v){
+  Route::get("/produto/".$v->id, 'SiteController@vitrine_detalhe')->name('produto_'.$v->id);
+}
+
+
 Route::post('/app/password-update',  'admin\PassawordController@password_update')->name('password-update');  
 

@@ -15,7 +15,7 @@
                 <th>Pagamento</th>
                 <th>Contratação</th>
                 <th>Pagamento</th>
-                <th>Aulas</th>
+                <!--<th>Aulas</th>-->
                 <th>Plano</th>
                 <th>Status</th>
                 <th> </th>
@@ -36,7 +36,7 @@
                 <td> {{ $Maula->formaPagamento->descicao }}</td>
                 <td>@if($Maula->dt_aquisicao) {{date('d/m/Y', strtotime($Maula->dt_aquisicao))}} @endif</td>
                 <td>@if($Maula->dt_pagamento) {{date('d/m/Y', strtotime($Maula->dt_pagamento))}} @endif</td>
-                <td>{{$Maula->aulas->count()}} /   {{ $Maula->QtdAulasEncerradas->count() }}</td>
+               <!-- <td>{{$Maula->aulas->count()}} /   {{ $Maula->QtdAulasEncerradas->count() }}</td>-->
                 <td> {{ $Maula->RenovacaoText }}  </td>
                 <td> @if($Maula->statusDesc) 
                       {{ $Maula->statusDesc->descricao }} 

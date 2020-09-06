@@ -11,7 +11,7 @@
                         <div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
                             <a href="{{route('index')}}">
                                 <div class="logo d-flex flex-row align-items-center justify-content-start">
-                                    <img src="{{asset('site/images/logo/logo.png')}}" alt="logo" width="130px" class="mt-5">
+                                    <img src="{{asset('site/images/logo/logo2.png')}}" alt="logo" width="130px" class="mt-5">
                                 </div>
                             </a>
                             <nav class="main_nav">

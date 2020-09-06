@@ -55,7 +55,7 @@
         <div class="container fill_height">
             <div class="row fill_height">
                 <div class="col-lg-6 offset-lg-6 fill_height">
-                    <div class="img-fluid"><img src="{{asset('site/images/sobrenos/bg1.jpg')}}" alt=""></div>
+                    <div class="img-fluid"><img src="{{asset('site/images/sobrenos/bg2.jpg')}}" alt=""></div>
                 </div>
             </div>
         </div>

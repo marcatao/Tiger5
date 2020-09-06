@@ -9,6 +9,7 @@ use App\aulas_plano;
 use App\GradeAula;
 use App\planos;
 use App\grade_aluno;
+use App\Maula;
 
 use App\User;
 use App\Admin\LoginCreate;
@@ -49,11 +50,17 @@ class AlunoController extends Controller
 
 
     public function aluno_form($id){
+        $maula = Maula::where('aluno_id',$id)
+                ->whereIn('status_id',[1,6])
+                ->count();
+        $desativar=1;
+        if($maula > 0) $desativar = 0;
 
         $aluno = aluno::where('academia_id',auth()->user()->academia_id)->where('id',$id)->first();
         return view('admin.alunos.form')
                     ->with('id',$id)
-                    ->with('aluno',$aluno);
+                    ->with('aluno',$aluno)
+                    ->with('desativar',$desativar);
     }
 
 
@@ -110,6 +117,7 @@ class AlunoController extends Controller
             $aluno->academia_id   =auth()->user()->academia_id;
             $aluno->user_id       =$user->id;         
             $aluno->created_at    =$date;
+            $aluno->dia_venc = $request->dia_venc;
             $aluno->obs = $request->obs;
             $aluno = LoginCreate::AlunoCadastro($aluno);
         }//end if user
