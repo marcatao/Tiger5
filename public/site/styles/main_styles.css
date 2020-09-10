@@ -721,7 +721,8 @@ section
 .boxes
 {
 	z-index: 1;
-	margin-top: -270px;
+	/**margin-top: -270px;**/
+	margin-top: -27vh;
 }
 .box
 {
