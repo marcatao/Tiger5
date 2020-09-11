@@ -18,7 +18,7 @@
 					<div class="col">
 						<div class="home_content">
 							<div class="home_title">Contato</div>
-							<div class="home_subtitle">				@foreach ($aulas as $aula)
+							<div class="home_subtitles">				@foreach ($aulas as $aula)
                                 {{$aula->desc}},    
                             @endforeach
                              e muito mais</div>
@@ -58,6 +58,18 @@
 									<div><div><i class="fa fa-envelope" aria-hidden="true"></i></div></div>
 									<div>contato@tigerthai.com.br</div>
 								</li>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div><i class="fa fa-instagram" aria-hidden="true"></i></div></div>
+									<div>tigerthaibr </div>
+								</li>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div><i class="fa fa-facebook" aria-hidden="true"></i></div></div>
+									<div>tigerthaibrasil </div>
+								</li>	
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div><i class="fa fa-google" aria-hidden="true"></i></div></div>
+									<div> tigerthai </div>
+								</li>																
 							</ul>
 						</div>
 					</div>

@@ -15,22 +15,30 @@
 						<div class="home_content text-center">
 
 							<div class="home_title">Tiger Thai</div>
-							<div class="home_subtitle">
+							<div class="home_subtitles mt-3">
 								@foreach ($aulas as $aula)
-                             	   {{$aula->desc}},    
+                             	   <l class="mr-1">{{$aula->desc}}</l>,    
                            		 @endforeach
 							 e muito mais<br>
-							 <a href="https://www.instagram.com/tigerthaibr" class="rede-social mr-2">
-								 <i class="fa fa-instagram" ></i> tigerthaibr 
-							</a>
-							<a href="https://www.facebook.com/tigerthaibrasil" class="rede-social mr-2">
-								<i class="fa fa-facebook" ></i> tigerthaibrasil 
-						   </a>
-						   <a href="https://www.google.com/search?sxsrf=ALeKk02jP_zmyZaL624-yioTidacGh67PA%3A1599344518449&source=hp&ei=hg9UX9__GMnW5OUP5uqKoAE&q=tigerthai&oq=tigerthai&gs_lcp=CgZwc3ktYWIQAzIQCC4QxwEQrwEQChDLARCTAjIECAAQCjIECAAQCjIECAAQCjIKCC4QxwEQrwEQCjIKCC4QxwEQrwEQCjIKCC4QxwEQrwEQCjIECAAQCjIECAAQCjIECAAQCjoECCMQJzoFCAAQkQI6AggAOgIILjoHCAAQRhD5AToHCAAQChDLAToHCC4QChDLAToECC4QCjoICC4QxwEQowI6BQguEJMCOgUIABDLAToFCC4QywE6CAguEMsBEJMCUO8NWLg8YMtAaAVwAHgAgAG2AYgB6Q2SAQQxLjEzmAEAoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwjf2pLPhtPrAhVJK7kGHWa1AhQQ4dUDCAc&uact=5" class="rede-social">
-							   <i class="fa fa-google" ></i> tigerthai
-						  </a>
+							 	<div class="row mt-2">
+									<div class="col-md-4">  
+									<a href="https://www.instagram.com/tigerthaibr" class="rede-social mr-2">
+										 <i class="fa fa-instagram" ></i> tigerthaibr 
+									</a>
+									</div>
+									<div class="col-md-4"> 
+									<a href="https://www.facebook.com/tigerthaibrasil" class="rede-social mr-2">
+										<i class="fa fa-facebook" ></i> tigerthaibrasil 
+									</a>
+									</div>
+									<div class="col-md-4"> 
+						  			<a href="https://www.google.com/search?sxsrf=ALeKk02jP_zmyZaL624-yioTidacGh67PA%3A1599344518449&source=hp&ei=hg9UX9__GMnW5OUP5uqKoAE&q=tigerthai&oq=tigerthai&gs_lcp=CgZwc3ktYWIQAzIQCC4QxwEQrwEQChDLARCTAjIECAAQCjIECAAQCjIECAAQCjIKCC4QxwEQrwEQCjIKCC4QxwEQrwEQCjIKCC4QxwEQrwEQCjIECAAQCjIECAAQCjIECAAQCjoECCMQJzoFCAAQkQI6AggAOgIILjoHCAAQRhD5AToHCAAQChDLAToHCC4QChDLAToECC4QCjoICC4QxwEQowI6BQguEJMCOgUIABDLAToFCC4QywE6CAguEMsBEJMCUO8NWLg8YMtAaAVwAHgAgAG2AYgB6Q2SAQQxLjEzmAEAoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwjf2pLPhtPrAhVJK7kGHWa1AhQQ4dUDCAc&uact=5" class="rede-social">
+									  <i class="fa fa-google" ></i> tigerthai
+									 </a>
+									</div>
+								</div>
 							</div>
-							<div class="button home_button ml-auto mr-auto"><a href="{{ route('contato') }}?assunto=Matricule-se">Matricule-se</a></div>
+							<!--<div class="button home_button ml-auto mr-auto"><a href="{{ route('contato') }}?assunto=Matricule-se">Matricule-se</a></div>-->
 						</div>
 					</div>
 				</div>
@@ -88,7 +96,7 @@
 				<div class="col-lg-6">
 					<div class="about_content">
 						<div class="section_title_container">
-							<div class="section_subtitle">Um pouco sobe:</div>
+							<div class="section_subtitle">Um pouco sobre:</div>
 							<div class="section_title">A <span>TIGER THAI</span></div>
 						</div>
 						<div class="text_highlight">Desde 2009 impactando resultados no grande ABCD.</div>
@@ -97,16 +105,18 @@
                             
 							</p>
 						</div>
-						<div class="button about_button"><a href="{{ route('contato') }}?assunto=Aula Experimental">Fazer uma aula</a></div>
+						<div class="button about_button mb-5 text-center">
+							<a href="{{ route('contato') }}?assunto=Aula Experimental">Fazer uma aula</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="about_background">
+		<div class="about_background d-none d-sm-block">
 			<div class="container fill_height">
 				<div class="row fill_height">
 					<div class="col-lg-6 offset-lg-6 fill_height">
-						<div class="about_image"><img src="{{asset('site/images/sobrenos/bg2.jpg')}}" alt=""></div>
+						<div class="about_image mb-3"><img src="{{asset('site/images/sobrenos/bg2.jpg')}}" alt=""></div>
 					</div>
 				</div>
 			</div>

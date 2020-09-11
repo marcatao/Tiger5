@@ -680,17 +680,17 @@ section
 .contact_list ul li > div:first-of-type > div
 {
 	width: 30px;
-	font-size: 14px;
+	font-size: 2vh;
 	font-weight: 400;
 	color: #ff9711;
-	line-height: 1.714;
+ 
 }
 .contact_list ul li > div:last-of-type
 {
-	font-size: 14px;
-	font-weight: 400;
+	font-size: 1.5vh;
+	font-weight: 300;
 	color: #535353;
-	line-height: 1.714;
+ 
 }
 .contact_title
 {
@@ -837,11 +837,10 @@ section
 	background: #262626;
 	padding-top: 96px;
 	border-top: solid 1px #88591d;
-	padding-bottom: 105px;
+	padding-bottom: 20px;
 }
 .footer_content
 {
-	padding-bottom: 253px;
 	z-index: 1;
 }
 .footer_logo .logo

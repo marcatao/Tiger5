@@ -25,7 +25,12 @@
 								@endforeach	
 							@endif
 							<div class="mt-2">
-								<h4>{{$item->produto}}</h4>
+								<h4>{{$item->produto}}
+									
+								@if (strlen($item->produto) <= 23)
+								<br><br>
+								@endif
+								</h4>
 							</div>
 						
 						 
@@ -35,8 +40,12 @@
 									@else
 										<p>Valores sob consulta</p>                                 
 									@endif
-                                </h4>
-							<div class="button about_button"><a href="{{route('produto_'.$item->id)}}"> Detalhes </a></div>
+								</h4>
+								
+
+							<div class="align-text-bottom button about_button">
+								<a href="{{route('produto_'.$item->id)}}"> Detalhes </a>
+							</div>
                                 
 							
 						</div>

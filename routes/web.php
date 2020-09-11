@@ -42,6 +42,7 @@ Route::get('/lembrete-email-mensalidade','admin\lembrete\MensalidadeController@i
 
 
 Route::get('/app/parcerias', 'admin\ParceriasController@index')->name('parcerias-index');    
+Route::get('/app/parceria-ordem', 'admin\ParceriasController@parceria_ordem')->name('parceria-ordem');    
 Route::get('/app/parceria-cadastro/{id}', 'admin\ParceriasController@parceria_cadastro')->name('parceria-cadastro');
 Route::post('/app/parceria-cadastro/{id}', 'admin\ParceriasController@parceria_store')->name('parceria-cadastro');
 Route::get('/app/parceria-delete/{id}', 'admin\ParceriasController@parceria_delete')->name('parceria-delete');

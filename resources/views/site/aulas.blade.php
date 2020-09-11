@@ -222,6 +222,7 @@
 
 <!-- Skills -->
 @isset($planos)
+ 
 <div class="skills mt-5 mb-5">
     <div class="container">
         <div class="row row-lg-eq-height">

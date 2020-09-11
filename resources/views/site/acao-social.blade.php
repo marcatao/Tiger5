@@ -6,7 +6,7 @@
 	<div class="about mt-5">
 		<div class="container about_container">
 			<div class="row">
-			@foreach (App\parcerias::orderBy('id','desc')->get() as $p)
+			@foreach (App\parcerias::orderBy('id','asc')->get() as $p)
 				<div class="col-md-12 mt-3 parcerias_item">
 					<div class="row">
 					<div class="col-md-8">

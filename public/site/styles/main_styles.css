@@ -1329,10 +1329,16 @@ section
 	padding: 10px 10px 10px 10px;
 	height: 100%;
 
+ 
+
+
 }
 .servicos .button{
 	width: 100%;
 	vertical-align: text-bottom !important;
+ 
+ 
+
 }
 .servicos .titulo{
 	height: 8vh;
@@ -1360,6 +1366,10 @@ padding-left: 8vh;
 	font-size: 4vh;
 	font-weight: 600;
 }
+.rede-social{
+	border-bottom: 1px solid #f98c00;
+}
+
 .rede-social,  .rede-social a, .rede-social i{
 	margin-top: 4vh;
 	text-decoration: none;
@@ -1368,11 +1378,19 @@ padding-left: 8vh;
 	align-content: center;
 	font-size: 3vh;
 	
+	
 }
 .rede-social i{
 	font-size: 3vh;
 	margin-bottom: -20px;
+
 }
 .rede-social:hover,  .rede-social a:hover, .rede-social i:hover{
 	color: #ff9711;
+}
+
+.home_subtitles{
+	font-weight: 400;
+	color: rgb(204, 204, 204);
+	font-size: 1.5vh;
 }

@@ -23,6 +23,8 @@
                     <form method="post" action="{{route('parceria-cadastro',$id)}}"  enctype="multipart/form-data">
                         {{  csrf_field() }}
                         <input type="hidden" id="id" name="id">
+
+
                     
                     <div class="row">
                         <div class="col-md-3">
@@ -34,6 +36,9 @@
                         </div>
 
                         <div class="col-md-9">
+
+      
+
                             <div class="form-group mao">   
                                 <label class="mao" for="img">Clique para selecionar foto de capa...</label>
                                 <input type="file" id="img_capa" name="img_capa" class="form-control"/>
@@ -89,6 +94,7 @@
       @isset($p)
         $('#sub_titulo').val('{{$p->sub_titulo}}');
         $('#titulo').val('{{$p->titulo}}');
+ 
  
       @endisset 
       @isset($message)

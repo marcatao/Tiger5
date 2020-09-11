@@ -26,9 +26,12 @@
 <table id="vitrine_produtos" class="table table-bordered table-striped table-hover">
   <thead>
   <tr>
+    <th>ordem</th>
     <th></th>
     <th>SubTitulo</th>
     <th>Titulo</th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -40,6 +43,7 @@
     @if ($parcerias)
         @foreach ($parcerias as $p)
             <tr>
+              <td>{{$p->id}}</td>
               <td>
                 @if($p->img_capa)
                 <img src="{{asset($p->img_capa)}}" class="profile-user-img img-fluid">
@@ -48,6 +52,16 @@
               </td>
               <td>{{$p->sub_titulo}}</td>
               <td>{{$p->titulo}}</td>
+              <td>
+                @if (!$loop->first)
+                  <a href="#" onclick="changeOrdem('{{$p->id}}','up')" class="btn  btn-warning "> <i class="fas fa-arrow-up"></i></a>
+                @endif
+              </td>
+              <td>
+                @if(!$loop->last)
+                  <a href="#"  onclick="changeOrdem('{{$p->id}}','down')" class="btn  btn-warning "> <i class="fas fa-arrow-down"></i></a>
+                @endif
+              </td>
               <td><a href="{{route('parceria-cadastro',$p->id)}}" class="btn btn-primary"> Editar </a></td>
               <td><a href="{{route('parceria-delete',$p->id)}}"class="btn btn-danger"> excluir </a></td>
 
@@ -77,23 +91,21 @@
 
 <script>
   $(function () {
-    $("#vitrine_produtos").DataTable({
-        "responsive": true,
-        "autoWidth": false,
-      });
+    //$("#vitrine_produtos").DataTable({
+    //    "responsive": true,
+    //    "autoWidth": false,
+    //  });
   });
 
 
 
-$("#btn_carrega").click(function() {
- $('#relatorios-aniversarios').html('Loading...');
- const data = prepara_data();
- console.log(data);
- requisicao("{{route('relatorios-aniversarios')}}",'post', data)
+ 
+function changeOrdem(id,action){
+ requisicao("{{route('parceria-ordem')}}",'get', id, action)
       .then(result => {
-        $('#relatorios-aniversarios').html(result);
+         location.reload();
      });
-});
+}
 
 </script>
 @endsection

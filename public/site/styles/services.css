@@ -862,11 +862,10 @@ section
 	background: #262626;
 	padding-top: 96px;
 	border-top: solid 1px #88591d;
-	padding-bottom: 105px;
+	padding-bottom: 20px;
 }
 .footer_content
 {
-	padding-bottom: 253px;
 	z-index: 1;
 }
 .footer_logo .logo
