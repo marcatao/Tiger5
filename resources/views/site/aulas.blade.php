@@ -223,24 +223,24 @@
 <!-- Skills -->
 @isset($planos)
  
-<div class="skills mt-5 mb-5">
+<div class="mt-5 mb-5">
     <div class="container">
         <div class="row row-lg-eq-height">
             <div class="section_title_container">
-                <div class="section_subtitle">Confira</div>
-                <div class="section_title">Nossos Planos</div>
+                <div class="section_subtitle mt-5">Confira</div>
+                <div class="section_titles">Nossos Planos</div>
             </div>
             <!-- Extra -->
             <div class="col-md-12">
-                <div class="extra d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center">
 
                     
 <div class="row">
 @foreach ($planos as $plano)
     
  
-                    <div class="col-md-3 mt-5 text-center">
-                        <div class="servicos text-center">
+                    <div class="col-md-3 mt-5 text-center" >
+                        <div class="servicos text-center" style="background-color: #FFF ">
                             <div class="titulo">
                                 <h3>{{$plano->titulo_plano}}</h3>
                             </div>

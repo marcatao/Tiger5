@@ -110,7 +110,8 @@ class SiteController extends Controller
                        ->where('profile_id','0')
                        ->get();
         foreach ($admin as $u) {
-            Mail::to($u->email)->send(new ContactMail($request));
+            
+            Mail::to('contato@tigerthai.com.br')->send(new ContactMail($request));
         }
         return redirect(route('index'));
     }

@@ -1394,3 +1394,9 @@ padding-left: 8vh;
 	color: rgb(204, 204, 204);
 	font-size: 1.5vh;
 }
+
+.section_titles{
+	color: rgb(148, 148, 148); 
+	mix-blend-mode: difference;
+	font-size: 5vh;
+}
