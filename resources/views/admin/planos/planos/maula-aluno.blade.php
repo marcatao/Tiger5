@@ -20,7 +20,7 @@
                 <th>Status</th>
                 <th> </th>
                 <th> </th>
-            </tr>
+            </tr> 
 
             @foreach ($Maulas as $Maula)
             @php
@@ -38,8 +38,8 @@
                 <td>@if($Maula->dt_pagamento) {{date('d/m/Y', strtotime($Maula->dt_pagamento))}} @endif</td>
                <!-- <td>{{$Maula->aulas->count()}} /   {{ $Maula->QtdAulasEncerradas->count() }}</td>-->
                 <td> {{ $Maula->RenovacaoText }}  </td>
-                <td> @if($Maula->statusDesc) 
-                      {{ $Maula->statusDesc->descricao }} 
+                <td> @if($Maula->statusDesc and $Maula->status_id <> 4) 
+                     {{ $Maula->statusDesc->descricao }}
                     @endif
                 </td>
                 <td> @if(   ($Maula->status_id == 6) or ($Maula->status_id==1 && $Maula->valor_pago == 0) )

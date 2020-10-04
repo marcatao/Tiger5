@@ -16,7 +16,6 @@ class MensalidadeController extends Controller
 {
     public function index(){
         $dt = Carbon::now();
-        $dt->addMonth(-1);
         $dt->addDays(5);
         $dt = $dt->format('Y-m-d');
 
@@ -37,21 +36,12 @@ class MensalidadeController extends Controller
                        'nome'=> $aluno->nome];
             $email_to = $aluno->email;
 
-            Mail::to([['email' => 'thiagomarcato@gmail.com' , 'name'=> 'thiago'],
-                      ['email' => 'contato@tigerthai.com.br', 'name'=> 'lael']])
+            Mail::to([['email' => 'contato@tigerthai.com.br', 'name'=> 'lael']])
                       ->send(new VencimentoEmail($dados));
  
              
         }
 
-        $dados = ['valor_plano'=>'00.5',
-                      'plano' => 'Somente Teste',
-                      'vencimento' => '22/02/2020',
-                       'nome'=> 'Testando da Silva'];
-       
-
-            Mail::to([['email' => 'thiagomarcato@gmail.com' , 'name'=> 'thiago']])
-                      ->send(new VencimentoEmail($dados));
 
         return $dt;
     }

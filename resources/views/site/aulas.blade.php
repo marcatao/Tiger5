@@ -239,7 +239,7 @@
 @foreach ($planos as $plano)
     
  
-                    <div class="col-md-3 mt-5 text-center" >
+                    <div class="col-md-3 mt-5 text-center " >
                         <div class="servicos text-center" style="background-color: #FFF ">
                             <div class="titulo">
                                 <h3>{{$plano->titulo_plano}}</h3>
